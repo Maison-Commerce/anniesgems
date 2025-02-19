@@ -1,0 +1,55 @@
+<style>
+.product-text{{ id }} p {
+margin-top: 0px!important;    
+font-size: 14px;
+}
+.product-text{{ id }} h4 {
+margin-top: 0px;
+}
+.product-text{{ id }} {
+border: 1px solid #ece9e7;
+border-radius: 10px;
+{% if align %}
+text-align: center;
+{% endif %}
+{% if padding %}
+padding: 15px 30px;
+{% endif %}
+{% if background != blank %}
+background: {{ background }}!important;
+{% endif %}
+}
+
+  @media only screen and (max-width: 750px) {
+    .product-text{{ id }} {
+border: 1px solid #ece9e7;
+border-radius: 10px;
+{% if align %}
+text-align: center;
+{% endif %}
+{% if padding %}
+padding: 15px 20px;
+{% endif %}
+{% if background != blank %}
+background: {{ background }}!important;
+{% endif %}
+}
+  }
+</style>
+
+{% comment %} Text block for product {% endcomment %}
+{%- if block.settings.title != blank or block.settings.text != blank -%}
+  <div class="product-text{{ id }} product__block product__text{% if block.settings.layout == "inline" %} product__text--inline{% endif %} block-padding" {{ block.shopify_attributes }} {{ block_style }}>
+    {%- if block.settings.title != blank -%}
+      <h4 class="product__heading strong">
+        {{- block.settings.title -}}
+      </h4>
+    {%- endif -%}
+
+    {%- if block.settings.text != blank -%}
+      <div class="product__subheading">
+        {{- block.settings.text -}}
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}

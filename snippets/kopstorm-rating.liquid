@@ -1,0 +1,37 @@
+{% if product.metafields.loox.avg_rating != blank %}
+<div class="kopstorm-rating product__block block-padding"
+  {{ block_style }}
+  {% if animation_name %}
+    data-animation="{{ animation_name }}"
+    data-animation-duration="{{ animation_duration }}"
+    data-animation-delay="{{ animation_delay }}"
+  {% endif %}>
+<div class="kopstorm-review">
+  <a href="#looxReviews"><div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>Reviews</a>
+</div>
+
+<div class="limited-kopstorm">
+  <div class="dot"></div>
+  <p>{{ rating }}</p>
+</div>
+</div>
+{% else %}
+<div class="kopstorm-rating product__block block-padding"
+  {{ block_style }}
+  {% if animation_name %}
+    data-animation="{{ animation_name }}"
+    data-animation-duration="{{ animation_duration }}"
+    data-animation-delay="{{ animation_delay }}"
+  {% endif %}>
+<div class="kopstorm-review">
+{% if shop.metafields.loox["global_stats"] %}
+{% assign looxstats = shop.metafields.loox["global_stats"] | split: ',' %} 
+<div class="loox-rating loox-rating-hp" data-rating="{{ looxstats[0] }}" data-raters="{{ looxstats[1] }}"></div> <u>Reviews</u>
+{% endif %}</div>
+
+<div class="limited-kopstorm">
+  <div class="dot"></div>
+  <p>{{ rating }}</p>
+</div>
+</div>
+{% endif %}

@@ -1,0 +1,55 @@
+<div class="cust_swatches product__block block-padding"
+  {{ block_style }}
+  {% if animation_name %}
+    data-animation="{{ animation_name }}"
+    data-animation-duration="{{ animation_duration }}"
+    data-animation-delay="{{ animation_delay }}"
+  {% endif %}>
+{% assign pid = product.id %}
+{% for tag in product.tags %}
+
+{% if tag contains 'group' %}
+{% assign tag1 = tag %}
+{% paginate collections.all.products by 1000 %}
+{% for product in collections.all.products limit: 250 %}
+
+{% if pid == product.id %}{% assign words = product.title | split: ' - ' %}
+
+<div>
+<span class="text-subdued color_label">{{ 'general.kopstorm.color_label' | t }}: </span>
+<span>{{ product.metafields.custom.swatch_color_name }}</span>
+</div>
+
+{% endif %}
+
+{% endfor %}
+{% endpaginate %}
+{% else %}
+
+{% endif %}
+{% endfor %}
+
+<div class="swatch_wrapper">
+  
+{% for tag in product.tags %}
+{% if tag contains 'group' %}
+{% assign tag1 = tag %} 
+{% paginate collections.all.products by 1000 %}
+{% for product in collections.all.products limit: 250 %}
+{% for tag2 in product.tags %}
+{% if tag2 == tag1 %}
+{% assign featured_image = product.selected_variant.featured_image | default: product.featured_image %}
+<a href="{{ product.url }}"
+class="{% if pid == product.id %}active {% endif %}{% if product.available %}{% else %}outOfStock{% endif %}">
+<img width="56" height="72" src="{{ featured_image | img_url: 'master' }}"  alt="{{ product.featured_image.alt }}"/></a>
+
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% endpaginate %}
+{% else %} 
+{% endif %}
+{% endfor %}
+
+</div>
+</div>

@@ -1,0 +1,23 @@
+<div class="afterpay-widget product__block block-padding"
+  {{ block_style }}
+  {% if animation_name %}
+    data-animation="{{ animation_name }}"
+    data-animation-duration="{{ animation_duration }}"
+    data-animation-delay="{{ animation_delay }}"
+  {% endif %}>
+  <p>Pay in 4 interest-free installments of {{ product.price | divided_by: 4 | money }} with </p>
+  {% comment %}
+  <img src="https://cdn.shopify.com/s/files/1/0610/5897/3792/files/SVG.svg?v=1737634601">
+  {% endcomment %}
+  {% if logo1 %}
+  <img src="{{ logo1 | img_url: "500x500" }}">
+  {% endif %}
+  {% if logo2 %}
+  {{ "general.kopstorm.and" | t }}
+  <img src="{{ logo2 | img_url: "500x500" }}">
+  {% endif %}
+  {% if logo3 %}
+  {{ "general.kopstorm.and" | t }}
+  <img src="{{ logo3 | img_url: "500x500" }}">
+  {% endif %}
+</div>

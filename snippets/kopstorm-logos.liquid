@@ -1,0 +1,26 @@
+{% if logo1 or logo2 or logo3 or logo4 %}
+<div class="kopstorm--logos">
+<ul class="logos--wrapper" role="list">
+{% if logo1 %}
+<li>
+<img src="{{ logo1 | img_url: "750x750" }}" width="89" height="45" loading="lazy" fetchpriority="auto">
+</li>
+{% endif %}
+{% if logo2 %}
+<li>
+<img src="{{ logo2 | img_url: "750x750" }}" width="89" height="45" loading="lazy" fetchpriority="auto">
+</li>
+{% endif %}
+{% if logo3 %}
+<li>
+<img src="{{ logo3 | img_url: "750x750" }}" width="89" height="45" loading="lazy" fetchpriority="auto">
+</li>
+{% endif %}
+{% if logo4 %}
+<li>
+<img src="{{ logo4 | img_url: "750x750" }}" width="89" height="45" loading="lazy" fetchpriority="auto">
+</li>
+{% endif %}
+</ul>
+</div>
+{% endif %}

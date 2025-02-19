@@ -1,0 +1,340 @@
+{% liquid
+  assign unique = 'SectionColumns--' | append: section.id
+  assign type = type | default: ''
+  assign animation_order = 0
+  assign animation_anchor = unique | prepend: '#'
+ %}
+
+{%- style -%}
+.section-{{ section.id }} {
+  padding-top: {{ section.settings.padding-top-desktop }}px!important;
+  padding-bottom: {{ section.settings.padding-bottom-desktop }}px!important;
+}
+
+  
+  #shopify-section-{{ section.id }} {
+    --text-color: {{ section.settings.text_color }};
+    --text-light: {{ section.settings.text_light }};
+    --overlay-color: {{ section.settings.text_color | color_modify: 'alpha', 0.1 }};
+    --overlay-light: {{ section.settings.text_color | color_modify: 'alpha', 0.05 }};
+  }
+
+  .section-{{ section.id }} {
+    margin: 0 auto;
+    padding: 64px 0px;
+    padding-top: 0px;
+  }
+  
+
+  .section-{{ section.id }} .section-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .section-{{ section.id }} .section-title {
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .section-{{ section.id }} .section-subtitle {
+   font-size: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+    width: max-content;
+    border: 1px solid #e6e7eb;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 30px;
+  }
+
+  .section-{{ section.id }} .section-subtitle svg {
+        fill: black;
+    color: white;
+  }
+
+  .section-{{ section.id }} .instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .section-{{ section.id }} .instagram-post {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    aspect-ratio: 1;
+  }
+
+  .section-{{ section.id }} .post-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .section-{{ section.id }} .post-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--overlay-light);
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    transition: all 0.3s ease;
+  }
+
+  .section-{{ section.id }} .instagram-post:hover .post-overlay {
+    opacity: 1;
+    background: var(--overlay-color);
+  }
+
+  .section-{{ section.id }} .instagram-post:hover .post-image {
+    transform: scale(1.05);
+  }
+
+  .section-{{ section.id }} .post-meta {
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #551116;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+  }
+
+  .section-{{ section.id }} .instagram-post:hover .post-meta {
+    transform: translateY(0);
+  }
+
+  .section-{{ section.id }} .kopstorm-follow-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    margin: 40px auto 0;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+    max-width: 240px;
+  }
+
+  .section-{{ section.id }} .kopstorm-follow-button:hover {
+  }
+
+  @media (max-width: 768px) {
+
+  .section-{{ section.id }} {
+  padding-top: {{ section.settings.padding-top-mobile }}px!important;
+  padding-bottom: {{ section.settings.padding-bottom-mobile }}px!important;
+}
+    
+    .section-{{ section.id }} .instagram-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="section-{{ section.id }}">
+  <div class="wrapper">
+  <div class="section-header">
+
+<h3 class="grid__heading {{ section.settings.heading_font_size }}"
+            data-aos="hero"
+            data-aos-anchor="{{ animation_anchor }}"
+            data-aos-order="{{ animation_order }}"
+          >
+            {{ section.settings.title }}
+</h3>
+
+    {%- if section.settings.subtitle != blank -%}
+      <p class=""  data-aos="hero"
+            data-aos-anchor="{{ animation_anchor }}"
+            data-aos-order="{{ animation_order }}">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+      {%- if section.settings.show_follow_button -%}
+    <a href="{{ section.settings.instagram_url }}" 
+       class="section-subtitle btn kopstorm-follow-button" 
+       target="_blank" 
+       rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+      </svg>
+      {{ section.settings.button_text }}
+    </a>
+  {%- endif -%}
+  </div>
+
+  <div class="instagram-grid">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'post' -%}
+        <div class="instagram-post" {{ block.shopify_attributes }}>
+          {%- if block.settings.image -%}
+            {{ block.settings.image | image_url: width: 600 | image_tag:
+              class: 'post-image',
+              loading: 'lazy',
+              alt: block.settings.caption
+            }}
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'post-image' }}
+          {%- endif -%}
+          <div class="post-overlay">
+            <div class="post-meta">{{ block.settings.caption }}</div>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Instagram Feed",
+  "settings": [
+        {
+"type": "range",
+"id": "padding-top-desktop",
+"min": 0,
+"max": 100,
+"step": 5,
+"unit": "px",
+"label": "Spacing top desktop",
+"default": 50
+},
+{
+"type": "range",
+"id": "padding-bottom-desktop",
+"min": 0,
+"max": 100,
+"step": 5,
+"unit": "px",
+"label": "Spacing bottom desktop",
+"default": 50
+},
+{
+"type": "range",
+"id": "padding-top-mobile",
+"min": 0,
+"max": 100,
+"step": 5,
+"unit": "px",
+"label": "Spacing top mobile",
+"default": 50
+},
+{
+"type": "range",
+"id": "padding-bottom-mobile",
+"min": 0,
+"max": 100,
+"step": 5,
+"unit": "px",
+"label": "Spacing bottom mobile",
+"default": 50
+},
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Follow Us @sleepingculture"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Join our community of sleep enthusiasts and discover how others style their perfect bedroom"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#3F3F86"
+    },
+    {
+      "type": "color",
+      "id": "text_light",
+      "label": "Light Text Color",
+      "default": "#6B7280"
+    },
+    {
+      "type": "header",
+      "content": "Follow Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_follow_button",
+      "label": "Show Follow Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Follow on Instagram"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "post",
+      "name": "Instagram Post",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption",
+          "default": "The perfect hotel fold ✨"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram Feed",
+      "settings": {
+        "show_follow_button": true
+      },
+      "blocks": [
+        {
+          "type": "post",
+          "settings": {
+            "caption": "The perfect hotel fold ✨"
+          }
+        },
+        {
+          "type": "post",
+          "settings": {
+            "caption": "Morning sunlight through our silk pillowcase 🌅"
+          }
+        },
+        {
+          "type": "post",
+          "settings": {
+            "caption": "Bedtime routines with our plush robe 🌙"
+          }
+        },
+        {
+          "type": "post",
+          "settings": {
+            "caption": "The fluffiest hotel pillows at home 🛏️"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

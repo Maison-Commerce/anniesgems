@@ -1,0 +1,248 @@
+                 {% assign gift1 = product.metafields.custom.upsell_1_free_gift_.value %}
+                  {% assign gift2 = product.metafields.custom.upsell_2_free_gift_.value %}
+
+
+  <input type="hidden" name="properties[_gift_variant_id]" value="" data-gift-variant-id>
+
+  <div class="gift-selector product__block block-padding"
+  {{ block_style }}
+  {% if animation_name %}
+    data-animation="{{ animation_name }}"
+    data-animation-duration="{{ animation_duration }}"
+    data-animation-delay="{{ animation_delay }}"
+  {% endif %} data-gift-selector>
+    <div class="gift-selector__header">
+      <svg class="gift-selector__icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M20 12V22H4V12" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M22 7H2V12H22V7Z" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M12 22V7" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M12 7H7.5C6.83696 7 6.20107 6.73661 5.73223 6.26777C5.26339 5.79893 5 5.16304 5 4.5C5 3.83696 5.26339 3.20107 5.73223 2.73223C6.20107 2.26339 6.83696 2 7.5 2C11 2 12 7 12 7Z" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M12 7H16.5C17.163 7 17.7989 6.73661 18.2678 6.26777C18.7366 5.79893 19 5.16304 19 4.5C19 3.83696 18.7366 3.20107 18.2678 2.73223C17.7989 2.26339 17.163 2 16.5 2C13 2 12 7 12 7Z" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+      <div class="gift-selector__text">
+        {% if title != blank %}
+        <h3>{{ title }}</h3>
+        {% endif %}
+        {% if subtitle != blank %}
+        <p>{{ subtitle }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="gift-selector__options">
+      {%- if gift1 != blank -%}
+        <div class="gift-option" data-variant-id="{{ gift1.first_available_variant.id }}" data-gift-option>
+          <div class="gift-option__content">
+            <div class="gift-option__info">
+              <h4>GIFT 1</h4>
+              <p>{{ gift1.title }}</p>
+              <span class="gift-option__value">Value {{ gift1.first_available_variant.price | money }}</span>
+            </div>
+            {%- if gift1.featured_image -%}
+              <div class="gift-option__image">
+                <img src="{{ gift1.featured_image | img_url: '200x200', crop: 'center' }}" 
+                     alt="{{ gift1.title }}"
+                     loading="lazy"
+                     width="200"
+                     height="200">
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if gift2 != blank -%}
+        <div class="gift-option" data-variant-id="{{ gift2.first_available_variant.id }}" data-gift-option>
+          <div class="gift-option__content">
+            <div class="gift-option__info">
+              <h4>GIFT 2</h4>
+              <p>{{ gift2.title }}</p>
+              <span class="gift-option__value">Value {{ gift2.first_available_variant.price | money }}</span>
+            </div>
+            {%- if gift2.featured_image -%}
+              <div class="gift-option__image">
+                <img src="{{ gift2.featured_image | img_url: '200x200', crop: 'center' }}" 
+                     alt="{{ gift2.title }}"
+                     loading="lazy"
+                     width="200"
+                     height="200">
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <style>
+    .gift-option__info h4 {
+    margin-bottom: 0;
+    margin-top: 0px;
+    font-size: 18px;
+    }
+    .gift-option__info p {
+      font-size: 12px;
+    }
+    .gift-selector {
+         max-width: none;
+    }
+
+    .gift-selector__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    }
+
+    .gift-selector__icon {
+    width: 17px;
+    height: 17px;
+    }
+
+    .gift-selector__options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .gift-option {
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .gift-option:hover {
+   border-color: #8b7455;
+    background: rgb(254 251 249);
+    }
+
+    .gift-option.selected {
+      border-color: #8b7455;
+    background: rgb(254 251 249);
+    }
+
+    .gift-option__content {
+       display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    }
+
+    .gift-option__image {
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .gift-option__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gift-option__value {
+color: #666;
+    font-size: 12px;
+    }
+
+    @media only screen and (max-width: 767px) {
+          .gift-selector__options {
+      grid-template-columns: 1fr 1fr;
+    }
+
+      .gift-option__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 15px;
+    flex-direction: column-reverse;
+}
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const giftOptions = document.querySelectorAll('[data-gift-option]');
+      const giftVariantInput = document.querySelector('[data-gift-variant-id]');
+      const productForm = document.querySelector('[data-product-form]');
+      
+      giftOptions.forEach(option => {
+        option.addEventListener('click', function() {
+          // Remove selected class from all options
+          giftOptions.forEach(opt => opt.classList.remove('selected'));
+          
+          // Add selected class to clicked option
+          this.classList.add('selected');
+          
+          // Update hidden input with selected variant ID
+          const variantId = this.dataset.variantId;
+          giftVariantInput.value = variantId;
+        });
+      });
+
+      if (productForm) {
+        productForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          const submitButton = this.querySelector('[data-add-to-cart]');
+          const selectedGiftId = giftVariantInput.value;
+          const formData = new FormData(this);
+          
+          try {
+            submitButton.setAttribute('disabled', true);
+            submitButton.classList.add('is-loading');
+
+            // Add main product
+            const mainProductResponse = await fetch('/cart/add.js', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                items: [{
+                  id: formData.get('id'),
+                  quantity: formData.get('quantity')
+                }]
+              })
+            });
+
+            if (!mainProductResponse.ok) throw new Error('Failed to add main product');
+
+            // If gift is selected, add it too
+            if (selectedGiftId) {
+              const giftResponse = await fetch('/cart/add.js', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  items: [{
+                    id: selectedGiftId,
+                    quantity: 1,
+                    properties: {
+                      '_gift': 'true'
+                    }
+                  }]
+                })
+              });
+
+              if (!giftResponse.ok) throw new Error('Failed to add gift');
+            }
+
+            window.location.reload();
+          } catch (error) {
+            console.error('Error during add to cart:', error);
+            const errorContainer = this.querySelector('[data-cart-errors-container]');
+            if (errorContainer) {
+              errorContainer.textContent = 'There was an error adding items to cart. Please try again.';
+            }
+            submitButton.removeAttribute('disabled');
+            submitButton.classList.remove('is-loading');
+          }
+        });
+      }
+    });
+  </script>
