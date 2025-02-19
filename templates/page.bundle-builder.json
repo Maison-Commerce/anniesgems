@@ -1,56 +1,65 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections": {
-      "bundle_builder": {
-        "type": "bundle-builder",
-        "custom_css": [
-          "@media screen and (max-width: 768px) {.h4-title {font-size: 14px; }}",
-          "@media screen and (max-width: 768px) {.bundle-view-button {right: 0px; bottom: 0px; padding: 15px 20px; width: 100%; border-radius: 0px; }}"
-        ],
-        "settings": {
-          "title": "ANY 5 PIECES FOR $59.99",
-          "bundle_size": 5,
-          "discount_percentage": 50,
-          "bundle_collection": "best-sellers",
-          "card_radius": 0,
-          "button_radius": 0,
-          "input_radius": 0,
-          "card_shadow": 2,
-          "title_size": 16,
-          "price_size": 16,
-          "add_button_color": "#000000",
-          "secondary_button_color": "#212121",
-          "button_text_color": "#ffffff",
-          "secondary_button_text_color": "#ffffff",
-          "mobile_card_radius": 0,
-          "mobile_button_radius": 0,
-          "mobile_input_radius": 0,
-          "mobile_title_size": 12,
-          "mobile_price_size": 14,
-          "mobile_add_button_color": "#000000",
-          "mobile_remove_button_color": "#000000",
-          "mobile_button_text_color": "#ffffff",
-          "mobile_remove_text_color": "#ffffff",
-          "add_to_bundle_text": "Add to Box",
-          "add_another_text": "Add Another",
-          "remove_text": "Remove",
-          "view_box_text": "View Box",
-          "add_to_cart_text": "Add Box to Cart",
-          "adding_to_cart_text": "Adding to Cart...",
-          "box_full_notification": "🎁 Your box is full! 🛑",
-          "item_added_notification": "✨ Item added to your box! 🛍️",
-          "item_removed_notification": "❌ Item removed from box",
-          "exceed_size_notification": "⚠️ Cannot exceed box size of {size} 🛑",
-          "bundle_added_message": "🎉 Box added to cart! Taking you there... 🛒",
-          "bundle_error_message": "😔 Oops! Something went wrong. Please try again.",
-          "bundle_incomplete_message": "💝 Please select all items to complete your bundle",
-          "empty_box_title": "Your Box is Empty",
-          "empty_box_text": "Add items to your box to get started!",
-          "box_full_message": "Box is full!",
-          "comparison_product": "bundle-products"
-        }
+  "sections": {
+    "bundle_builder": {
+      "type": "bundle-builder",
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.h4-title {font-size: 14px; }}",
+        "@media screen and (max-width: 768px) {.bundle-view-button {right: 0px; bottom: 0px; padding: 15px 20px; width: 100%; border-radius: 0px; }}"
+      ],
+      "settings": {
+        "title": "ANY 5 PIECES FOR $59.99",
+        "bundle_size": 5,
+        "discount_percentage": 50,
+        "bundle_collection": "best-sellers",
+        "card_radius": 0,
+        "button_radius": 0,
+        "input_radius": 0,
+        "card_shadow": 2,
+        "title_size": 16,
+        "price_size": 16,
+        "add_button_color": "#000000",
+        "secondary_button_color": "#212121",
+        "button_text_color": "#ffffff",
+        "secondary_button_text_color": "#ffffff",
+        "mobile_card_radius": 0,
+        "mobile_button_radius": 0,
+        "mobile_input_radius": 0,
+        "mobile_title_size": 12,
+        "mobile_price_size": 14,
+        "mobile_add_button_color": "#000000",
+        "mobile_remove_button_color": "#000000",
+        "mobile_button_text_color": "#ffffff",
+        "mobile_remove_text_color": "#ffffff",
+        "add_to_bundle_text": "Add to Box",
+        "add_another_text": "Add Another",
+        "remove_text": "Remove",
+        "view_box_text": "View Box",
+        "add_to_cart_text": "Add Box to Cart",
+        "adding_to_cart_text": "Adding to Cart...",
+        "box_full_notification": "🎁 Your box is full! 🛑",
+        "item_added_notification": "✨ Item added to your box! 🛍️",
+        "item_removed_notification": "❌ Item removed from box",
+        "exceed_size_notification": "⚠️ Cannot exceed box size of {size} 🛑",
+        "bundle_added_message": "🎉 Box added to cart! Taking you there... 🛒",
+        "bundle_error_message": "😔 Oops! Something went wrong. Please try again.",
+        "bundle_incomplete_message": "💝 Please select all items to complete your bundle",
+        "empty_box_title": "Your Box is Empty",
+        "empty_box_text": "Add items to your box to get started!",
+        "box_full_message": "Box is full!",
+        "comparison_product": "bundle-prducts"
       }
-    },
-    "order": [
-      "bundle_builder"
-    ]
-  }
+    }
+  },
+  "order": [
+    "bundle_builder"
+  ]
+}
