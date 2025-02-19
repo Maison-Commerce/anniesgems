@@ -1,2059 +1,2005 @@
+
+
+
+
+
 <!-- Initialize Liquid Ajax Cart -->
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    if (typeof window.liquidAjaxCart === 'undefined') {
-      console.warn('Liquid Ajax Cart not loaded, falling back to standard cart functionality');
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof window.liquidAjaxCart === 'undefined') {
+        console.warn('Liquid Ajax Cart not loaded, falling back to standard cart functionality');
+      }
+    });
+  </script>
+  
+  {%- style -%}
+    :root {
+      --color-success: #4CAF50;  /* You can adjust this green color */
+      --bundle-button-radius: {{ section.settings.button_radius }}px;
+      --bundle-card-radius: {{ section.settings.card_radius }}px;
+      --bundle-input-radius: {{ section.settings.input_radius }}px;
+      --bundle-card-shadow: {{ section.settings.card_shadow }}px;
+      --bundle-title-size: {{ section.settings.title_size }}px;
+      --bundle-price-size: {{ section.settings.price_size }}px;
+      --bundle-text-size: {{ section.settings.text_size }}px;
+      --bundle-primary-color: {{ section.settings.primary_color }};
+      --bundle-secondary-color: {{ section.settings.secondary_color }};
+      --bundle-text-color: {{ section.settings.text_color }};
+      --bundle-button-text-color: {{ section.settings.button_text_color }};
+      --bundle-button-text-color-secondary: {{ section.settings.button_text_color_secondary }};
+      
+      /* Mobile specific variables */
+      --bundle-mobile-title-size: {{ section.settings.mobile_title_size }}px;
+      --bundle-mobile-price-size: {{ section.settings.mobile_price_size }}px;
+      --bundle-mobile-text-size: {{ section.settings.mobile_text_size }}px;
+      --bundle-mobile-button-radius: {{ section.settings.mobile_button_radius }}px;
+      --bundle-mobile-button-background: {{ section.settings.mobile_button_background }};
+      --bundle-mobile-card-radius: {{ section.settings.mobile_card_radius }}px;
+      --bundle-mobile-input-radius: {{ section.settings.mobile_input_radius }}px;
+      --bundle-mobile-add-button-color: {{ section.settings.mobile_add_button_color }};
+      --bundle-mobile-remove-button-color: {{ section.settings.mobile_remove_button_color }};
+      --bundle-mobile-button-text-color: {{ section.settings.mobile_button_text_color }};
+      --bundle-mobile-remove-text-color: {{ section.settings.mobile_remove_text_color }};
+      /* Desktop button variables */
+      --bundle-add-button-color: {{ section.settings.add_button_color }};
+      --bundle-add-button-text: {{ section.settings.add_button_text_color }};
+      --bundle-secondary-button-color: {{ section.settings.secondary_button_color }};
+      --bundle-secondary-button-text: {{ section.settings.secondary_button_text_color }};
     }
-  });
-</script>
-
-{%- style -%}
-  :root {
-    --color-success: #4CAF50;  /* You can adjust this green color */
-    --bundle-button-radius: {{ section.settings.button_radius }}px;
-    --bundle-card-radius: {{ section.settings.card_radius }}px;
-    --bundle-input-radius: {{ section.settings.input_radius }}px;
-    --bundle-card-shadow: {{ section.settings.card_shadow }}px;
-    --bundle-title-size: {{ section.settings.title_size }}px;
-    --bundle-price-size: {{ section.settings.price_size }}px;
-    --bundle-text-size: {{ section.settings.text_size }}px;
-    --bundle-primary-color: {{ section.settings.primary_color }};
-    --bundle-secondary-color: {{ section.settings.secondary_color }};
-    --bundle-text-color: {{ section.settings.text_color }};
-    --bundle-button-text-color: {{ section.settings.button_text_color }};
-    --bundle-button-text-color-secondary: {{ section.settings.button_text_color_secondary }};
-
-    /* Mobile specific variables */
-    --bundle-mobile-title-size: {{ section.settings.mobile_title_size }}px;
-    --bundle-mobile-price-size: {{ section.settings.mobile_price_size }}px;
-    --bundle-mobile-text-size: {{ section.settings.mobile_text_size }}px;
-    --bundle-mobile-button-radius: {{ section.settings.mobile_button_radius }}px;
-    --bundle-mobile-button-background: {{ section.settings.mobile_button_background }};
-    --bundle-mobile-card-radius: {{ section.settings.mobile_card_radius }}px;
-    --bundle-mobile-input-radius: {{ section.settings.mobile_input_radius }}px;
-    --bundle-mobile-add-button-color: {{ section.settings.mobile_add_button_color }};
-    --bundle-mobile-remove-button-color: {{ section.settings.mobile_remove_button_color }};
-    --bundle-mobile-button-text-color: {{ section.settings.mobile_button_text_color }};
-    --bundle-mobile-remove-text-color: {{ section.settings.mobile_remove_text_color }};
-    /* Desktop button variables */
-    --bundle-add-button-color: {{ section.settings.add_button_color }};
-    --bundle-add-button-text: {{ section.settings.add_button_text_color }};
-    --bundle-secondary-button-color: {{ section.settings.secondary_button_color }};
-    --bundle-secondary-button-text: {{ section.settings.secondary_button_text_color }};
-  }
-
-  .bundle-builder {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .bundle-builder__header {
-    text-align: center;
-    margin-bottom: 2rem;
-    position: relative;
-  }
-
-  .bundle-builder__content {
-    display: grid;
-    gap: 2rem;
-  }
-
-  @media screen and (max-width: 768px) {
-    .bundle-builder__content {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .bundle-builder__products {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    position: relative;
-  }
-
-  @media screen and (max-width: 768px) {
-    .bundle-builder__products {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-    }
-  }
-
-  @media screen and (min-width: 769px) and (max-width: 1024px) {
-    .bundle-builder__products {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .bundle-builder__summary {
-    background: var(--color-background);
-    padding: 1.5rem;
-    border-radius: 8px;
-    position: sticky;
-    top: 20px;
-    border: 1px solid var(--color-border);
-  }
-
-  .bundle-product-card {
-    background: #ffffff;
-    border-radius: var(--bundle-card-radius);
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    box-shadow: 0 var(--bundle-card-shadow) calc(var(--bundle-card-shadow) * 2) rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  .bundle-product-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  }
-
-  .bundle-product-card.selected {
-    border: 2px solid var(--color-button);
-    box-shadow: 0 0 0 2px var(--color-button-text);
-  }
-
-  .bundle-product-image-wrapper {
-    position: relative;
-    padding-top: 100%;
-    background: #f8f8f8;
-    overflow: hidden;
-  }
-
-  .bundle-product-image-wrapper img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .bundle-product-card:hover img {
-    transform: scale(1.05);
-  }
-
-  .bundle-product-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: var(--color-button);
-    color: var(--color-button-text);
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
-  }
-
-  .bundle-product-content {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: space-between;
-  }
-
-  .bundle-product-info {
-    margin-bottom: 1rem;
-  }
-
-  .bundle-product-title {
-    font-size: var(--bundle-title-size);
-    font-weight: 500;
-    color: var(--bundle-text-color);
-    margin: 0 0 0.5rem;
-    line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-align: center;
-    font-family: "DM Sans", sans-serif;
-  }
-
-  .bundle-product-price {
-    font-size: var(--bundle-price-size);
-    font-weight: 600;
-    color: var(--bundle-text-color);
-    margin: 0 0 1rem;
-    text-align: center;
-    font-family: "DM Sans", sans-serif;
-    text-align: center;
-  }
-
-  .variant-selects {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    width: 100%; /* Ensure full width */
-  }
-
-  .variant-selects .variant-dropdown {
-    width: 100%;
-    min-width: 200px; /* Set minimum width */
-    max-width: 100%; /* Ensure it doesn't overflow */
-    padding: 0.75rem 1rem;
-    border: 1px solid #6d6d6d;
-    border-radius: var(--bundle-input-radius);
-    font-size: 0.875rem;
-    color: #374151;
-    background: #f9fafb;
-    cursor: pointer;
-    appearance: none;
-    font-family: "DM Sans", sans-serif;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1.25rem;
-    padding-right: 2.5rem;
-    height: 45px; /* Set consistent height */
-    box-sizing: border-box; /* Include padding in width/height calculations */
-  }
-
-  /* Mobile adjustments */
-  @media screen and (max-width: 768px) {
-    .variant-selects .variant-dropdown {
-      min-width: 150px; /* Smaller minimum width on mobile */
-      font-size: 0.8rem;
-      padding: 0.5rem 0.75rem;
-      height: 40px; /* Slightly smaller height on mobile */
-    }
-  }
-
-  .variant-dropdown:focus {
-    outline: 2px solid var(--color-button);
-    outline-offset: 2px;
-  }
-
-  .bundle-button-group {
-    margin-top: 0.5rem;
-  }
-
-  .bundle-button {
-    background-color: {{ section.settings.add_button_color }};
-    color: {{ section.settings.button_text_color}};
-    border-radius: {{ section.settings.button_radius }}px;
-    border: none;
-    padding: 20px 20px;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-    width: 100%;
-    font-weight: 500;
-  }
-
-  .bundle-button:hover {
-    opacity: 0.9;
-  }
-
-  .bundle-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  .bundle-button-row {
-    display: flex;
-    gap: 8px;
-    width: 100%;
-  }
-
-  .bundle-button--add-another,
-  .bundle-button--remove {
-    background-color: {{ section.settings.secondary_button_color }} !important;
-    color: {{ section.settings.secondary_button_text_color }} !important;
-    border-radius: {{ section.settings.button_radius }}px;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-    flex: 1;
-    font-weight: 500;
-  }
-
-  .bundle-button--add-another:hover,
-  .bundle-button--remove:hover {
-    opacity: 0.9;
-  }
-
-  .bundle-button--add-another:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  .bundle-notifications {
-    position: fixed;
-    top: 80px;
-    left: 20px;
-    z-index: 1000;
-  }
-
-  /* Add media query for mobile notifications */
-  @media screen and (max-width: 768px) {
-    .bundle-notifications {
-      bottom: auto;
-      top: 80px;
-    }
-
-    /* Adjust Toastify positioning for mobile */
-    .toastify {
-      left: 20px !important;
-      right: 20px !important;
-      top: 80px !important;
-      bottom: auto !important;
-      max-width: calc(100% - 40px) !important;
-      transform: translateX(0) !important;
-    }
-  }
-
-  /* Toastify custom styles */
-  .toastify {
-    padding: 12px 20px;
-    color: #ffffff;
-    display: inline-block;
-    box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12);
-    background: #000000;
-    position: fixed;
-    opacity: 0;
-    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    max-width: calc(50% - 20px);
-    z-index: 2147483647;
-  }
-
-  .toastify.on {
-    opacity: 1;
-  }
-
-  .toast-close {
-    opacity: 0.4;
-    padding: 0 5px;
-    margin-left: 10px;
-  }
-
-  .toastify.success {
-    background: #000000;
-  }
-
-  .toastify.error {
-    background: #ef4444;
-  }
-
-  .bundle-total {
-    margin: 1.5rem 0;
-    padding-top: 1rem;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .bundle-savings {
-    color: var(--color-success);
-    font-weight: bold;
-  }
-
-  .add-bundle-to-cart {
-    width: 100%;
-    padding: 1rem;
-    background: var(--color-button);
-    color: var(--color-button-text);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1.1em;
-    font-weight: bold;
-    transition: all 0.3s ease;
-  }
-
-  .add-bundle-to-cart:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  .bundle-view {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    max-width: 450px;
-    height: 100vh;
-    background: #ffffff;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-    padding: 30px;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    z-index: 10000;
-    overflow-y: auto;
-  }
-
-  @media screen and (max-width: 768px) {
-    .bundle-view {
-      width: 100%;
-      max-width: 100%;
-    }
-  }
-
-  .bundle-view.active {
-    transform: translateX(0);
-  }
-
-  .bundle-view-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #e5e5e5;
-  }
-
-  .bundle-view-header h3 {
-    font-size: 24px;
-    font-weight: 500;
-    margin: 0;
-  }
-
-  .close-button {
-    background: transparent;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 5px;
-    color: #333;
-  }
-
-  .bundle-item {
-    padding: 20px 0;
-    border-bottom: 1px solid #e5e5e5;
-  }
-
-  .bundle-item-content {
-    display: flex;
-    gap: 15px;
-  }
-
-  .bundle-item-image {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 4px;
-  }
-
-  .bundle-item-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .bundle-item-title {
-    font-size: 16px;
-    color: #333;
-    margin: 0;
-  }
-
-  .bundle-item-variant {
-    font-size: 14px;
-    color: #666;
-  }
-
-  .bundle-item-price {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 4px;
-  }
-
-  .bundle-item-remove {
-    background: transparent;
-    border: none;
-    color: #000000;
-    padding: 0;
-    cursor: pointer;
-    font-size: 14px;
-    transition: opacity 0.3s ease;
-    width: fit-content;
-    text-decoration: underline;
-  }
-
-  .bundle-item-remove:hover {
-    opacity: 0.7;
-  }
-
-  .bundle-total {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 2px solid #e5e5e5;
-  }
-
-  .bundle-total p {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-    font-size: 14px;
-    color: #666;
-  }
-
-  .bundle-total .final-price {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin-top: 15px;
-  }
-
-  .bundle-actions {
-    position: sticky;
-    bottom: 0;
-    background: #ffffff;
-    padding: 20px 0;
-    margin-top: 30px;
-  }
-
-  .add-bundle-to-cart {
-    width: 100%;
-    padding: 15px;
-    background: #000000;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .add-bundle-to-cart:hover {
-    background: #333;
-  }
-
-  .add-bundle-to-cart:disabled {
-    background: #cccccc;
-    cursor: not-allowed;
-  }
-
-  .bundle-view-button {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    padding: 12px 24px;
-    background: #000000;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    z-index: 999;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  }
-
-  @media screen and (max-width: 768px) {
-    .bundle-view-button {
-      right: 10px;
-      bottom: 10px;
-      padding: 10px 20px;
-    }
-  }
-
-  .bundle-progress-container {
-    margin: 30px auto;
-    max-width: 400px;
-    text-align: center;
-    position: sticky;
-    top: 80px;
-    z-index: 1000;
-    background: var(--color-background);
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    display: block;
-    overflow: visible;
-    will-change: transform;
-    transition: all 0.3s ease;
-    background-color: #ffffff;
-  }
-
-  .bundle-progress-text {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 15px;
-  }
-
-  .bundle-progress-bar {
-    height: 8px;
-    background: #e5e5e5;
-    border-radius: 4px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .bundle-progress-fill {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-  }
-
-  .bundle-progress-steps {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    position: relative;
-    padding: 0 10px;
-    display: none;
-  }
-
-  /* Add line connecting steps */
-  .bundle-progress-steps::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: #e5e5e5;
-    transform: translateY(-50%);
-    z-index: 1;
-  }
-
-  .bundle-progress-step {
-    width: 24px;
-    height: 24px;
-    background: #e5e5e5;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    color: #ffffff;
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 2;
-  }
-
-  .bundle-progress-step.active {
-    background: #000000;
-  }
-
-  .bundle-progress-step.active::after {
-    content: '✓';
-    font-size: 14px;
-  }
-
-  /* Add style for completed steps */
-  .bundle-progress-step.completed {
-    background: #000000;
-  }
-
-  .bundle-progress-step.completed::after {
-    content: '✓';
-    font-size: 14px;
-  }
-
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-  }
-
-  .bundle-progress-step.active {
-    animation: pulse 2s infinite;
-  }
-
-  .bundle-progress-labels {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 25px;
-    font-size: 14px;
-    color: #666;
-    display: none;
-  }
-
-  .bundle-progress-label {
-    text-align: center;
-    transition: color 0.3s ease;
-  }
-
-  .bundle-progress-label.active {
-    color: #000000;
-    font-weight: 500;
-  }
-
-  /* Empty state message */
-  .bundle-view-empty {
-    text-align: center;
-    padding: 40px 20px;
-    color: #666;
-  }
-
-  .bundle-view-empty h4 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #333;
-  }
-
-  .bundle-view-empty p {
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  /* Selected product card styling */
-  .bundle-product-card.selected {
-    border: 2px solid #000000;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transform: translateY(-2px);
-  }
-
-  .bundle-product-card.selected .bundle-button {
-    background: #000000;
-    color: #ffffff;
-    border-radius: 4px;
-    padding: 10px 20px;
-    border: 1px solid #000000;
-    transition: all 0.3s ease;
-  }
-
-  .bundle-product-card.selected .bundle-button:hover {
-    background: #ffffff;
-    color: #000000;
-  }
-
-  .bundle-type-filter {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin: 2rem 0;
-    justify-content: center;
-  }
-
-  .type-filter-button {
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
-    background: var(--color-background);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    font-weight: normal;
-  }
-
-  .type-filter-button:hover {
-    background: var(--color-background-secondary);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .type-filter-button.active {
-    background: var(--color-button);
-    color: var(--color-button-text);
-    border-color: var(--color-button);
-    font-weight: bold;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .type-filter-button.active::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 4px;
-    background: var(--color-button);
-    border-radius: 50%;
-  }
-
-  /* Add active indicator styles */
-  .active-indicator {
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    background: var(--color-button);
-    border-radius: 50%;
-    transition: all 0.3s ease;
-  }
-
-  /* Optional: Add animation for the active indicator */
-  @keyframes indicatorPop {
-    0% { transform: translateX(-50%) scale(0); }
-    50% { transform: translateX(-50%) scale(1.2); }
-    100% { transform: translateX(-50%) scale(1); }
-  }
-
-  .active-indicator {
-    animation: indicatorPop 0.3s ease forwards;
-  }
-
-  /* Mobile Styles */
-  @media screen and (max-width: 768px) {
+  
     .bundle-builder {
-      padding: 0;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
     }
+  
+    .bundle-builder__header {
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+  
+    .bundle-builder__content {
+      display: grid;
+      gap: 2rem;
+    }
+  
+    @media screen and (max-width: 768px) {
+      .bundle-builder__content {
+        grid-template-columns: 1fr;
+      }
+    }
+  
     .bundle-builder__products {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      padding: 0 0.5rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      position: relative;
     }
-
+  
+    @media screen and (max-width: 768px) {
+      .bundle-builder__products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+    }
+  
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+      .bundle-builder__products {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  
+    .bundle-builder__summary {
+      background: var(--color-background);
+      padding: 1.5rem;
+      border-radius: 8px;
+      position: sticky;
+      top: 20px;
+      border: 1px solid var(--color-border);
+    }
+  
     .bundle-product-card {
-      padding: 0.5rem;
-    }
-
-    .bundle-product-content {
-      padding: 0.75rem 0.5rem;
-    }
-
-    .bundle-product-title {
-      font-size: 0.9rem;
-      line-height: 1.2;
-      margin-bottom: 0.25rem;
-    }
-
-    .bundle-product-price {
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .variant-selects .variant-dropdown {
-      min-width: 100%;
-      font-size: 0.8rem;
-      padding: 0.5rem;
-      height: 35px;
-      padding-right: 1.5rem; /* Space for dropdown arrow */
-      background-position: right 0.5rem center;
-      background-size: 0.8rem;
-      white-space: nowrap;
+      background: #ffffff;
+      border-radius: var(--bundle-card-radius);
       overflow: hidden;
-      text-overflow: ellipsis;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      box-shadow: 0 var(--bundle-card-shadow) calc(var(--bundle-card-shadow) * 2) rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
-
-    .bundle-button {
-      padding: 0.5rem;
-      font-size: 0.85rem;
-      min-height: 35px;
+  
+    .bundle-product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     }
-
-    /* Adjust grid layout for mobile */
-    .bundle-builder__products {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.5rem;
-      padding: 0 0.25rem;
+  
+    .bundle-product-card.selected {
+      border: 2px solid var(--color-button);
+      box-shadow: 0 0 0 2px var(--color-button-text);
     }
-  }
-
-  /* Add smooth loading transition */
-  .bundle-product-card {
-    opacity: 0;
-    animation: fadeIn 0.3s ease forwards;
-    border: 2px solid transparent;
-    margin: 1px;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Add loading state styles */
-  .bundle-product-card.loading {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .bundle-product-card.loading::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.5) 50%,
-      rgba(255,255,255,0) 100%
-    );
-    animation: shimmer 1.5s infinite;
-  }
-
-  @keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-  }
-
-  .bundle-item-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 8px 0;
-  }
-
-  .bundle-button-group {
-    margin-top: 0.5rem;
-  }
-
-  .bundle-button-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-  }
-
-  .bundle-button--add-another {
-    background: var(--bundle-primary-color);
-  }
-
-  .bundle-button--remove {
-    background: transparent;
-    border: 1px solid var(--bundle-primary-color);
-    color: var(--bundle-button-text-color-secondary);
-  }
-
-  .bundle-button--remove:hover {
-    background: var(--bundle-primary-color);
-    color: var(--bundle-button-text-color);
-  }
-
-  /* Mobile Styles */
-  @media screen and (max-width: 768px) {
-    .bundle-button-group {
-      margin-top: 0.25rem;
+  
+    .bundle-product-image-wrapper {
+      position: relative;
+      padding-top: 100%;
+      background: #f8f8f8;
+      overflow: hidden;
+    }
+  
+    .bundle-product-image-wrapper img {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
-    .bundle-button {
-      padding: 6px 8px;
-      font-size: 15px;
-      letter-spacing: 0;
-      border-radius: 4px;
-      min-height: 28px;
+  
+    .bundle-product-card:hover img {
+      transform: scale(1.05);
     }
-
-    .bundle-button-row {
-      gap: 4px;
-    }
-
-    .bundle-button--add-another,
-    .bundle-button--remove {
-      padding: 6px 8px;
-      font-size: 15px;
-      min-height: 28px;
+  
+    .bundle-product-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--color-button);
+      color: var(--color-button-text);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 4px;
+      box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
     }
-
+  
     .bundle-product-content {
-      padding: 0.5rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
     }
-
-    .variant-dropdown {
-      padding: 4px 8px;
-      font-size: 15px;
-      margin-bottom: 0.25rem;
-      border-radius: 4px;
+  
+    .bundle-product-info {
+      margin-bottom: 1rem;
     }
-  }
-
-  /* Extra Small Mobile Styles */
-  @media screen and (max-width: 465px) {
+  
+    .bundle-product-title {
+      font-size: var(--bundle-title-size);
+      font-weight: 500;
+      color: var(--bundle-text-color);
+      margin: 0 0 0.5rem;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-align: center;
+      font-family: "DM Sans", sans-serif;
+    }
+  
+    .bundle-product-price {
+      font-size: var(--bundle-price-size);
+      font-weight: 600;
+      color: var(--bundle-text-color);
+      margin: 0 0 1rem;
+      text-align: center;
+      font-family: "DM Sans", sans-serif;
+      text-align: center;
+    }
+  
+    .variant-selects {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      width: 100%; /* Ensure full width */
+    }
+  
+    .variant-selects .variant-dropdown {
+      width: 100%;
+      min-width: 200px; /* Set minimum width */
+      max-width: 100%; /* Ensure it doesn't overflow */
+      padding: 0.75rem 1rem;
+      border: 1px solid #6d6d6d;
+      border-radius: var(--bundle-input-radius);
+      font-size: 0.875rem;
+      color: #374151;
+      background: #f9fafb;
+      cursor: pointer;
+      appearance: none;
+      font-family: "DM Sans", sans-serif;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1.25rem;
+      padding-right: 2.5rem;
+      height: 45px; /* Set consistent height */
+      box-sizing: border-box; /* Include padding in width/height calculations */
+    }
+  
+    /* Mobile adjustments */
+    @media screen and (max-width: 768px) {
+      .variant-selects .variant-dropdown {
+        min-width: 150px; /* Smaller minimum width on mobile */
+        font-size: 0.8rem;
+        padding: 0.5rem 0.75rem;
+        height: 40px; /* Slightly smaller height on mobile */
+      }
+    }
+  
+    .variant-dropdown:focus {
+      outline: 2px solid var(--color-button);
+      outline-offset: 2px;
+    }
+  
     .bundle-button-group {
-      margin-top: 0.2rem;
+      margin-top: 0.5rem;
+    }
+  
+    .bundle-button {
+      background-color: {{ section.settings.add_button_color }};
+      color: {{ section.settings.button_text_color}};
+      border-radius: {{ section.settings.button_radius }}px;
+      border: none;
+      padding: 20px 20px;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+      width: 100%;
+      font-weight: 500;
+    }
+  
+    .bundle-button:hover {
+      opacity: 0.9;
+    }
+  
+    .bundle-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  
+    .bundle-button-row {
+      display: flex;
+      gap: 8px;
       width: 100%;
     }
-
-
-    .bundle-button {
-      padding: 12.5px 5px;
-      font-size: 15px;
-      min-height: 24px;
-    }
-
-    .bundle-button-row {
-      gap: 3px;
-    }
-
+  
     .bundle-button--add-another,
     .bundle-button--remove {
-      padding: 5px 1px !important;
-      font-size: 14px;
-      min-height: 24px;
+      background-color: {{ section.settings.secondary_button_color }} !important;
+      color: {{ section.settings.secondary_button_text_color }} !important;
+      border-radius: {{ section.settings.button_radius }}px;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+      flex: 1;
+      font-weight: 500;
     }
-
-    .bundle-product-content {
-      padding: 0.4rem;
+  
+    .bundle-button--add-another:hover,
+    .bundle-button--remove:hover {
+      opacity: 0.9;
     }
-
-    .variant-dropdown {
-      padding: 3px 6px;
-      font-size: 15px;
-      margin-bottom: 0.2rem;
+  
+    .bundle-button--add-another:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .bundle-progress-container {
-      width: calc(100% - 40px);
-      max-width: none;
+  
+    .bundle-notifications {
+      position: fixed;
       top: 80px;
+      left: 20px;
+      z-index: 1000;
     }
-  }
-
-
-
-  .bundle-product-controls {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .bundle-product-title-link {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.2s ease;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .bundle-product-title-link:hover {
-    color: var(--color-button);
-    text-decoration: underline;
-  }
-
-  @media screen and (max-width: 768px) {
-    .bundle-button {
-      background-color: var(--bundle-mobile-add-button-color) !important;
-      color: var(--bundle-mobile-button-text-color) !important;
-    }
-
-    .bundle-button--add-another,
-    .bundle-button--remove {
-      background-color: var(--bundle-mobile-remove-button-color) !important;
-      color: var(--bundle-mobile-remove-text-color) !important;
-    }
-  }
-
-  .variant-single {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid #e5e7eb;
-    border-radius: var(--bundle-input-radius);
-    font-size: 0.875rem;
-    color: #374151;
-    background: #f9fafb;
-    text-align: center;
-    margin-bottom: 0.5rem;
-    font-family: "DM Sans", sans-serif;
-  }
-
-  .bundle-banner-button {
-    background-color: #ffffff;
-    color: var(--bundle-text-color, #000000);
-    border: 1px solid #e5e7eb;
-    border-radius: var(--bundle-button-radius, 8px);
-    padding: 10px 20px;
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-  }
-
-  .bundle-banner-button:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transform: translateY(-1px);
-    border-color: #d1d5db;
-  }
-
-  .bundle-banner-button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  }
-
-  @media screen and (max-width: 768px) {
-    .bundle-banner-button {
-      padding: 8px 16px;
-      font-size: 13px;
-    }
-  }
-{%- endstyle -%}
-
-<!-- Add Toastify CDN in the head of your document -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-
-<script>
-  document.addEventListener('alpine:init', () => {
-    Alpine.data('bundleBuilder', (bundleSize, discountPercentage) => ({
-      bundleSize: bundleSize,
-      discountPercentage: discountPercentage,
-      selectedItems: [],
-      selectedType: 'all',
-      notification: {
-        show: false,
-        message: '',
-        type: 'success',
-      },
-      loading: false,
-      isViewOpen: false,
-
-      init() {
-        // Clear localStorage on page load
-        localStorage.removeItem('currentBundle');
-        this.selectedItems = [];
-        this.selectedType = 'all';
-      },
-
-      toggleView() {
-        this.isViewOpen = !this.isViewOpen;
-      },
-
-      get originalTotal() {
-        return this.selectedItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-      },
-
-      get finalPrice() {
-        return this.originalTotal * (1 - this.discountPercentage / 100);
-      },
-
-      get savings() {
-        return this.originalTotal - this.finalPrice;
-      },
-
-      isProductSelected(productId) {
-        return this.selectedItems.some((item) => item.id === productId);
-      },
-
-      addToBundle(product) {
-        if (this.selectedItems.length >= this.bundleSize) {
-          this.showNotification('{{ section.settings.box_full_notification | escape }}', 'error');
-          return;
-        }
-
-        const bundleItem = {
-          ...product,
-          instanceId: `${product.id}_${Date.now()}`,
-          quantity: 1,
-        };
-
-        this.selectedItems.push(bundleItem);
-        localStorage.setItem('currentBundle', JSON.stringify(this.selectedItems));
-        this.showNotification('{{ section.settings.item_added_notification | escape }}', 'success');
-      },
-
-      removeFromBundle(productId) {
-        const lastIndex = [...this.selectedItems].reverse().findIndex((item) => item.id === productId);
-
-        if (lastIndex !== -1) {
-          const actualIndex = this.selectedItems.length - 1 - lastIndex;
-          this.selectedItems.splice(actualIndex, 1);
-          localStorage.setItem('currentBundle', JSON.stringify(this.selectedItems));
-          this.showNotification('{{ section.settings.item_removed_notification | escape }}', 'success');
-        }
-      },
-
-      updateQuantity(instanceId, change) {
-        const item = this.selectedItems.find((item) => item.instanceId === instanceId);
-        if (!item) return;
-
-        const newQuantity = item.quantity + change;
-        if (newQuantity < 1) return;
-
-        const currentTotalItems = this.selectedItems.reduce((sum, i) => sum + i.quantity, 0);
-        if (currentTotalItems + change > this.bundleSize) {
-          const message = '{{ section.settings.exceed_size_notification | escape }}'.replace('{size}', this.bundleSize);
-          this.showNotification(message, 'error');
-          return;
-        }
-
-        item.quantity = newQuantity;
-        localStorage.setItem('currentBundle', JSON.stringify(this.selectedItems));
-      },
-
-      async addBundleToCart() {
-        if (this.selectedItems.length < this.bundleSize) {
-          this.showNotification('{{ section.settings.bundle_incomplete_message | escape }}', 'error');
-          return;
-        }
-
-        this.loading = true;
-
-        try {
-          const bundleId = new Date().getTime();
-          let items = [];
-
-          // Remove the comparison product section and only add bundle items
-          const bundleItems = this.selectedItems.map((item) => ({
-            id: parseInt(item.variant_id),
-            quantity: item.quantity,
-            properties: {
-              _bundle_id: bundleId,
-              _bundle_discount: this.discountPercentage + '%',
-              Bundle: 'Jewelry Bundle Set - Bundle Item',
-              _original_price: item.price,
-            },
-          }));
-
-          items = bundleItems; // Just use the bundle items directly
-
-          // Ensure we have items to add
-          if (items.length === 0) {
-            throw new Error('No valid items to add to cart');
-          }
-
-          let cartResponse;
-          if (typeof window.liquidAjaxCart !== 'undefined') {
-            cartResponse = await window.liquidAjaxCart.add({
-              items: items,
-            });
-          } else {
-            cartResponse = await fetch('/cart/add.js', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ items }),
-            });
-          }
-
-          if (!cartResponse.ok) {
-            const errorData = await cartResponse.json();
-            throw new Error(errorData.description || 'Failed to add bundle to cart');
-          }
-
-          // Clear the bundle
-          this.selectedItems = [];
-          localStorage.removeItem('currentBundle');
-          this.isViewOpen = false;
-
-          // Show success message
-          this.showNotification('{{ section.settings.bundle_added_message | escape }}', 'success');
-
-          // Redirect to cart page
-          window.location.href = '/cart';
-        } catch (error) {
-          this.showNotification('{{ section.settings.bundle_error_message | escape }}', 'error');
-        } finally {
-          this.loading = false;
-        }
-      },
-
-      showNotification(message, type = 'success') {
-        // Clear any existing toasts first
-        const existingToasts = document.querySelectorAll('.toastify');
-        existingToasts.forEach((toast) => toast.remove());
-
-        // Show new toast
-        Toastify({
-          text: message,
-          duration: 3000,
-          gravity: window.innerWidth <= 768 ? 'top' : 'bottom', // Change gravity based on screen size
-          position: 'left',
-          className: type,
-          style: {
-            background: type === 'success' ? '#000000' : '#ef4444',
-          },
-          onClick: function () {}, // Callback after click
-        }).showToast();
-      },
-
-      formatMoney(cents) {
-        return new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: '{{ cart.currency.iso_code }}',
-        }).format(cents / 100);
-      },
-    }));
-  });
-</script>
-
-<!-- Add event listener for cart drawer -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Prevent default cart form submission
-    document.addEventListener('submit', (e) => {
-      if (e.target.action && e.target.action.includes('/cart/add')) {
-        e.preventDefault();
+  
+    /* Add media query for mobile notifications */
+    @media screen and (max-width: 768px) {
+      .bundle-notifications {
+        bottom: auto;
+        top: 80px;
       }
-    });
-  });
-</script>
-
-<div
-  class="bundle-builder"
-  x-data="bundleBuilder({{ section.settings.bundle_size }}, {{ section.settings.discount_percentage }})"
-  x-init="init()"
->
-  <div class="bundle-progress-container">
-    <div class="bundle-progress-text">
-      <span x-text="selectedItems.length"></span> / <span x-text="bundleSize"></span> items selected
-    </div>
-
-    <div class="bundle-progress-bar">
-      <div
-        class="bundle-progress-fill"
-        :style="
-          {
-            width: (selectedItems.length / bundleSize * 100) + '%',
-            background: selectedItems.length === bundleSize ? 'var(--color-success, #4CAF50)' : 'linear-gradient(90deg, #000000, #333333)'
+  
+      /* Adjust Toastify positioning for mobile */
+      .toastify {
+        left: 20px !important;
+        right: 20px !important;
+        top: 80px !important;
+        bottom: auto !important;
+        max-width: calc(100% - 40px) !important;
+        transform: translateX(0) !important;
+      }
+    }
+  
+    /* Toastify custom styles */
+    .toastify {
+      padding: 12px 20px;
+      color: #ffffff;
+      display: inline-block;
+      box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12);
+      background: #000000;
+      position: fixed;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      max-width: calc(50% - 20px);
+      z-index: 2147483647;
+    }
+  
+    .toastify.on {
+      opacity: 1;
+    }
+  
+    .toast-close {
+      opacity: 0.4;
+      padding: 0 5px;
+      margin-left: 10px;
+    }
+  
+    .toastify.success {
+      background: #000000;
+    }
+  
+    .toastify.error {
+      background: #ef4444;
+    }
+  
+    .bundle-total {
+      margin: 1.5rem 0;
+      padding-top: 1rem;
+      border-top: 1px solid var(--color-border);
+    }
+  
+    .bundle-savings {
+      color: var(--color-success);
+      font-weight: bold;
+    }
+  
+    .add-bundle-to-cart {
+      width: 100%;
+      padding: 1rem;
+      background: var(--color-button);
+      color: var(--color-button-text);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1.1em;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+  
+    .add-bundle-to-cart:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  
+    .bundle-view {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      max-width: 450px;
+      height: 100vh;
+      background: #ffffff;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      padding: 30px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 10000;
+      overflow-y: auto;
+    }
+  
+    @media screen and (max-width: 768px) {
+      .bundle-view {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  
+    .bundle-view.active {
+      transform: translateX(0);
+    }
+  
+    .bundle-view-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+  
+    .bundle-view-header h3 {
+      font-size: 24px;
+      font-weight: 500;
+      margin: 0;
+    }
+  
+    .close-button {
+      background: transparent;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 5px;
+      color: #333;
+    }
+  
+    .bundle-item {
+      padding: 20px 0;
+      border-bottom: 1px solid #e5e5e5;
+    }
+  
+    .bundle-item-content {
+      display: flex;
+      gap: 15px;
+    }
+  
+    .bundle-item-image {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+  
+    .bundle-item-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+  
+    .bundle-item-title {
+      font-size: 16px;
+      color: #333;
+      margin: 0;
+    }
+  
+    .bundle-item-variant {
+      font-size: 14px;
+      color: #666;
+    }
+  
+    .bundle-item-price {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+  
+    .bundle-item-remove {
+      background: transparent;
+      border: none;
+      color: #000000;
+      padding: 0;
+      cursor: pointer;
+      font-size: 14px;
+      transition: opacity 0.3s ease;
+      width: fit-content;
+      text-decoration: underline;
+    }
+  
+    .bundle-item-remove:hover {
+      opacity: 0.7;
+    }
+  
+    .bundle-total {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 2px solid #e5e5e5;
+    }
+  
+    .bundle-total p {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      font-size: 14px;
+      color: #666;
+    }
+  
+    .bundle-total .final-price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      margin-top: 15px;
+    }
+  
+    .bundle-actions {
+      position: sticky;
+      bottom: 0;
+      background: #ffffff;
+      padding: 20px 0;
+      margin-top: 30px;
+    }
+  
+    .add-bundle-to-cart {
+      width: 100%;
+      padding: 15px;
+      background: #000000;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+  
+    .add-bundle-to-cart:hover {
+      background: #333;
+    }
+  
+    .add-bundle-to-cart:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+    }
+  
+    .bundle-view-button {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      padding: 12px 24px;
+      background: #000000;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+  
+    @media screen and (max-width: 768px) {
+      .bundle-view-button {
+        right: 10px;
+        bottom: 10px;
+        padding: 10px 20px;
+      }
+    }
+  
+    .bundle-progress-container {
+      margin: 30px auto;
+      max-width: 400px;
+      text-align: center;
+      position: sticky;
+      top: 80px;
+      z-index: 1000;
+      background: var(--color-background);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: block;
+      overflow: visible;
+      will-change: transform;
+      transition: all 0.3s ease;
+      background-color: #ffffff;
+    }
+  
+    .bundle-progress-text {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+  
+    .bundle-progress-bar {
+      height: 8px;
+      background: #e5e5e5;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+  
+    .bundle-progress-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+    }
+  
+    .bundle-progress-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      position: relative;
+      padding: 0 10px;
+      display: none;
+    }
+  
+    /* Add line connecting steps */
+    .bundle-progress-steps::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #e5e5e5;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+  
+    .bundle-progress-step {
+      width: 24px;
+      height: 24px;
+      background: #e5e5e5;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #ffffff;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+  
+    .bundle-progress-step.active {
+      background: #000000;
+    }
+  
+    .bundle-progress-step.active::after {
+      content: '✓';
+      font-size: 14px;
+    }
+  
+    /* Add style for completed steps */
+    .bundle-progress-step.completed {
+      background: #000000;
+    }
+  
+    .bundle-progress-step.completed::after {
+      content: '✓';
+      font-size: 14px;
+    }
+  
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+  
+    .bundle-progress-step.active {
+      animation: pulse 2s infinite;
+    }
+  
+    .bundle-progress-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 25px;
+      font-size: 14px;
+      color: #666;
+      display: none;
+    }
+  
+    .bundle-progress-label {
+      text-align: center;
+      transition: color 0.3s ease;
+    }
+  
+    .bundle-progress-label.active {
+      color: #000000;
+      font-weight: 500;
+    }
+  
+    /* Empty state message */
+    .bundle-view-empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
+    }
+  
+    .bundle-view-empty h4 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+  
+    .bundle-view-empty p {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  
+    /* Selected product card styling */
+    .bundle-product-card.selected {
+      border: 2px solid #000000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+  
+    .bundle-product-card.selected .bundle-button {
+      background: #000000;
+      color: #ffffff;
+      border-radius: 4px;
+      padding: 10px 20px;
+      border: 1px solid #000000;
+      transition: all 0.3s ease;
+    }
+  
+    .bundle-product-card.selected .bundle-button:hover {
+      background: #ffffff;
+      color: #000000;
+    }
+  
+    .bundle-type-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem 0;
+      justify-content: center;
+    }
+  
+    .type-filter-button {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      background: var(--color-background);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      font-weight: normal;
+    }
+  
+    .type-filter-button:hover {
+      background: var(--color-background-secondary);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  
+    .type-filter-button.active {
+      background: var(--color-button);
+      color: var(--color-button-text);
+      border-color: var(--color-button);
+      font-weight: bold;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  
+    .type-filter-button.active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      background: var(--color-button);
+      border-radius: 50%;
+    }
+  
+    /* Add active indicator styles */
+    .active-indicator {
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 6px;
+      background: var(--color-button);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+  
+    /* Optional: Add animation for the active indicator */
+    @keyframes indicatorPop {
+      0% { transform: translateX(-50%) scale(0); }
+      50% { transform: translateX(-50%) scale(1.2); }
+      100% { transform: translateX(-50%) scale(1); }
+    }
+  
+    .active-indicator {
+      animation: indicatorPop 0.3s ease forwards;
+    }
+  
+    /* Mobile Styles */
+    @media screen and (max-width: 768px) {
+      .bundle-builder {
+        padding: 0;
+      }
+      .bundle-builder__products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 0 0.5rem;
+      }
+  
+      .bundle-product-card {
+        padding: 0.5rem;
+      }
+  
+      .bundle-product-content {
+        padding: 0.75rem 0.5rem;
+      }
+  
+      .bundle-product-title {
+        font-size: 0.9rem;
+        line-height: 1.2;
+        margin-bottom: 0.25rem;
+      }
+  
+      .bundle-product-price {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+  
+      .variant-selects .variant-dropdown {
+        min-width: 100%;
+        font-size: 0.8rem;
+        padding: 0.5rem;
+        height: 35px;
+        padding-right: 1.5rem; /* Space for dropdown arrow */
+        background-position: right 0.5rem center;
+        background-size: 0.8rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+  
+      .bundle-button {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+        min-height: 35px;
+      }
+  
+      /* Adjust grid layout for mobile */
+      .bundle-builder__products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        padding: 0 0.25rem;
+      }
+    }
+  
+    /* Add smooth loading transition */
+    .bundle-product-card {
+      opacity: 0;
+      animation: fadeIn 0.3s ease forwards;
+      border: 2px solid transparent;
+      margin: 1px;
+    }
+  
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  
+    /* Add loading state styles */
+    .bundle-product-card.loading {
+      position: relative;
+      overflow: hidden;
+    }
+  
+    .bundle-product-card.loading::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.5) 50%,
+        rgba(255,255,255,0) 100%
+      );
+      animation: shimmer 1.5s infinite;
+    }
+  
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+  
+    .bundle-item-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 8px 0;
+    }
+  
+    .bundle-button-group {
+      margin-top: 0.5rem;
+    }
+  
+    .bundle-button-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+  
+    .bundle-button--add-another {
+      background: var(--bundle-primary-color);
+    }
+  
+    .bundle-button--remove {
+      background: transparent;
+      border: 1px solid var(--bundle-primary-color);
+      color: var(--bundle-button-text-color-secondary);
+    }
+  
+    .bundle-button--remove:hover {
+      background: var(--bundle-primary-color);
+      color: var(--bundle-button-text-color);
+    }
+  
+    /* Mobile Styles */
+    @media screen and (max-width: 768px) {
+      .bundle-button-group {
+        margin-top: 0.25rem;
+        width: 100%;
+      }
+  
+      .bundle-button {
+        padding: 6px 8px;
+        font-size: 15px;
+        letter-spacing: 0;
+        border-radius: 4px;
+        min-height: 28px;
+      }
+  
+      .bundle-button-row {
+        gap: 4px;
+      }
+  
+      .bundle-button--add-another,
+      .bundle-button--remove {
+        padding: 6px 8px;
+        font-size: 15px;
+        min-height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+      }
+  
+      .bundle-product-content {
+        padding: 0.5rem;
+      }
+  
+      .variant-dropdown {
+        padding: 4px 8px;
+        font-size: 15px;
+        margin-bottom: 0.25rem;
+        border-radius: 4px;
+      }
+    }
+  
+    /* Extra Small Mobile Styles */
+    @media screen and (max-width: 465px) {
+      .bundle-button-group {
+        margin-top: 0.2rem;
+        width: 100%;
+      }
+  
+  
+      .bundle-button {
+        padding: 12.5px 5px;
+        font-size: 15px;
+        min-height: 24px;
+      }
+  
+      .bundle-button-row {
+        gap: 3px;
+      }
+  
+      .bundle-button--add-another,
+      .bundle-button--remove {
+        padding: 5px 1px !important;
+        font-size: 14px;
+        min-height: 24px;
+      }
+  
+      .bundle-product-content {
+        padding: 0.4rem;
+      }
+  
+      .variant-dropdown {
+        padding: 3px 6px;
+        font-size: 15px;
+        margin-bottom: 0.2rem;
+      }
+    }
+  
+  
+    @media screen and (max-width: 768px) {
+      .bundle-progress-container {
+        width: calc(100% - 40px);
+        max-width: none;
+        top: 80px;
+      }
+    }
+  
+  
+  
+    .bundle-product-controls {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .bundle-product-title-link {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  
+    .bundle-product-title-link:hover {
+      color: var(--color-button);
+      text-decoration: underline;
+    }
+  
+    @media screen and (max-width: 768px) {
+      .bundle-button {
+        background-color: var(--bundle-mobile-add-button-color) !important;
+        color: var(--bundle-mobile-button-text-color) !important;
+      }
+  
+      .bundle-button--add-another,
+      .bundle-button--remove {
+        background-color: var(--bundle-mobile-remove-button-color) !important;
+        color: var(--bundle-mobile-remove-text-color) !important;
+      }
+    }
+  
+    .variant-single {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #e5e7eb;
+      border-radius: var(--bundle-input-radius);
+      font-size: 0.875rem;
+      color: #374151;
+      background: #f9fafb;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-family: "DM Sans", sans-serif;
+    }
+  
+    .bundle-banner-button {
+      background-color: #ffffff;
+      color: var(--bundle-text-color, #000000);
+      border: 1px solid #e5e7eb;
+      border-radius: var(--bundle-button-radius, 8px);
+      padding: 10px 20px;
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+  
+    .bundle-banner-button:hover {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transform: translateY(-1px);
+      border-color: #d1d5db;
+    }
+  
+    .bundle-banner-button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+  
+    @media screen and (max-width: 768px) {
+      .bundle-banner-button {
+        padding: 8px 16px;
+        font-size: 13px;
+      }
+    }
+  {%- endstyle -%}
+  
+  <!-- Add Toastify CDN in the head of your document -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('bundleBuilder', (bundleSize, discountPercentage) => ({
+        bundleSize: bundleSize,
+        discountPercentage: discountPercentage,
+        selectedItems: [],
+        selectedType: 'all',
+        notification: {
+          show: false,
+          message: '',
+          type: 'success'
+        },
+        loading: false,
+        isViewOpen: false,
+  
+        init() {
+          // Clear localStorage on page load
+          localStorage.removeItem('currentBundle');
+          this.selectedItems = [];
+          this.selectedType = 'all';
+        },
+  
+        toggleView() {
+          this.isViewOpen = !this.isViewOpen;
+        },
+  
+        get originalTotal() {
+          return this.selectedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        },
+  
+        get finalPrice() {
+          return this.originalTotal * (1 - this.discountPercentage / 100);
+        },
+  
+        get savings() {
+          return this.originalTotal - this.finalPrice;
+        },
+  
+        isProductSelected(productId) {
+          return this.selectedItems.some(item => item.id === productId);
+        },
+  
+        addToBundle(product) {
+          if (this.selectedItems.length >= this.bundleSize) {
+            this.showNotification('{{ section.settings.box_full_notification | escape }}', 'error');
+            return;
           }
-        "
-      ></div>
-    </div>
-
-    <div class="bundle-progress-steps">
-      <template x-for="index in bundleSize" :key="index">
-        <div
-          class="bundle-progress-step"
-          :class="
-            {
-              'active': selectedItems.length === index,
-              'completed': selectedItems.length > index
+  
+          const bundleItem = {
+            ...product,
+            instanceId: `${product.id}_${Date.now()}`,
+            quantity: 1
+          };
+  
+          this.selectedItems.push(bundleItem);
+          localStorage.setItem('currentBundle', JSON.stringify(this.selectedItems));
+          this.showNotification('{{ section.settings.item_added_notification | escape }}', 'success');
+        },
+  
+        removeFromBundle(productId) {
+          const lastIndex = [...this.selectedItems].reverse()
+            .findIndex(item => item.id === productId);
+          
+          if (lastIndex !== -1) {
+            const actualIndex = this.selectedItems.length - 1 - lastIndex;
+            this.selectedItems.splice(actualIndex, 1);
+            localStorage.setItem('currentBundle', JSON.stringify(this.selectedItems));
+            this.showNotification('{{ section.settings.item_removed_notification | escape }}', 'success');
+          }
+        },
+  
+        updateQuantity(instanceId, change) {
+          const item = this.selectedItems.find(item => item.instanceId === instanceId);
+          if (!item) return;
+  
+          const newQuantity = item.quantity + change;
+          if (newQuantity < 1) return;
+  
+          const currentTotalItems = this.selectedItems.reduce((sum, i) => sum + i.quantity, 0);
+          if (currentTotalItems + change > this.bundleSize) {
+            const message = '{{ section.settings.exceed_size_notification | escape }}'.replace('{size}', this.bundleSize);
+            this.showNotification(message, 'error');
+            return;
+          }
+  
+          item.quantity = newQuantity;
+          localStorage.setItem('currentBundle', JSON.stringify(this.selectedItems));
+        },
+  
+        async addBundleToCart() {
+          if (this.selectedItems.length < this.bundleSize) {
+            this.showNotification('{{ section.settings.bundle_incomplete_message | escape }}', 'error');
+            return;
+          }
+  
+          this.loading = true;
+  
+          try {
+            const bundleId = new Date().getTime();
+            let items = [];
+  
+            // Remove the comparison product section and only add bundle items
+            const bundleItems = this.selectedItems.map(item => ({
+              id: parseInt(item.variant_id),
+              quantity: item.quantity,
+              properties: {
+                '_bundle_id': bundleId,
+                '_bundle_discount': this.discountPercentage + '%',
+                'Bundle': 'Jewelry Bundle Set - Bundle Item',
+                '_original_price': item.price
+              }
+            }));
+  
+            items = bundleItems; // Just use the bundle items directly
+  
+            // Ensure we have items to add
+            if (items.length === 0) {
+              throw new Error('No valid items to add to cart');
             }
-          "
-        ></div>
-      </template>
-    </div>
-
-    <div class="bundle-progress-labels">
-      <div
-        class="bundle-progress-label"
-        :class="{ 'active': selectedItems.length === 0 }"
-      >
-        Start
-      </div>
-      <div
-        class="bundle-progress-label"
-        :class="{ 'active': selectedItems.length > 0 && selectedItems.length < bundleSize }"
-      >
-        Building
-      </div>
-      <div
-        class="bundle-progress-label"
-        :class="{ 'active': selectedItems.length === bundleSize }"
-      >
-        Complete
-      </div>
-    </div>
-    <!-- View Box Button -->
-    <button
-      class="bundle-banner-button"
-      @click="toggleView()"
-      x-show="!isViewOpen"
-    >
-      {{ section.settings.view_box_text }} (<span x-text="selectedItems.length"></span>)
-    </button>
-  </div>
-
-  <div class="bundle-builder__header">
-    <h2 class="h1">{{ section.settings.title }}</h2>
-  </div>
-
-  <!-- Add type filter buttons after the header -->
-  <div class="bundle-type-filter">
-    <button
-      class="type-filter-button"
-      @click="selectedType = 'all'"
-      :class="{ 'active': selectedType === 'all' }"
-    >
-      All Products
-      <span class="active-indicator" x-show="selectedType === 'all'"></span>
-    </button>
-    {% assign product_types = collections[section.settings.bundle_collection].products | map: 'type' | uniq %}
-    {% for type in product_types %}
-      {% unless type == blank or type == 'top page' or type == 'HIDDEN' %}
-        <button
-          class="type-filter-button"
-          @click="selectedType = '{{ type | escape }}'"
-          :class="{ 'active': selectedType === '{{ type | escape }}' }"
-        >
-          {{ type }}
-          <span class="active-indicator" x-show="selectedType === '{{ type | escape }}'"></span>
-        </button>
-      {% endunless %}
-    {% endfor %}
-  </div>
-
-  <div class="bundle-builder__content">
-    <!-- Product Grid -->
-    <div class="bundle-builder__products">
-      {% for product in collections[section.settings.bundle_collection].products %}
-        <div
-          class="bundle-product-card"
-          x-data="
-            {
-              showVariants: false,
-              selectedVariant: {
-                id: '{{ product.first_available_variant.id }}',
-                price: {{ product.first_available_variant.price }},
-                title: '{{ product.first_available_variant.title | escape }}'
-              },
-              variantImage: '{{ product.featured_image | img_url: '300x300', crop: 'center' }}',
-              selectedOptions: [{% for option in product.first_available_variant.options %}'{{ option | escape }}'{% unless forloop.last %},{% endunless %}{% endfor %}]
+  
+            let cartResponse;
+            if (typeof window.liquidAjaxCart !== 'undefined') {
+              cartResponse = await window.liquidAjaxCart.add({
+                items: items
+              });
+            } else {
+              cartResponse = await fetch('/cart/add.js', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ items })
+              });
             }
-          "
-          x-show="selectedType === 'all' || selectedType === '{{ product.type | escape }}'"
-          :class="{ 'selected': isProductSelected('{{ product.id }}') }"
-        >
-          <div class="bundle-product-image-wrapper">
-            <img
-              :src="variantImage || '{{ product.featured_image | img_url: '300x300', crop: 'center' }}'"
-              alt="{{ product.title }}"
-              loading="lazy"
-              width="300"
-              height="300"
-              @error="$event.target.src='{{ 'product-placeholder.png' | asset_url }}'"
-            >
-            <div class="bundle-product-badge" x-show="isProductSelected('{{ product.id }}')">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-              </svg>
-            </div>
+  
+            if (!cartResponse.ok) {
+              const errorData = await cartResponse.json();
+              throw new Error(errorData.description || 'Failed to add bundle to cart');
+            }
+  
+            // Clear the bundle
+            this.selectedItems = [];
+            localStorage.removeItem('currentBundle');
+            this.isViewOpen = false;
+  
+            // Show success message
+            this.showNotification('{{ section.settings.bundle_added_message | escape }}', 'success');
+  
+            // Redirect to cart page
+            window.location.href = '/cart';
+  
+          } catch (error) {
+            this.showNotification('{{ section.settings.bundle_error_message | escape }}', 'error');
+          } finally {
+            this.loading = false;
+          }
+        },
+  
+        showNotification(message, type = 'success') {
+          // Clear any existing toasts first
+          const existingToasts = document.querySelectorAll('.toastify');
+          existingToasts.forEach(toast => toast.remove());
+  
+          // Show new toast
+          Toastify({
+            text: message,
+            duration: 3000,
+            gravity: window.innerWidth <= 768 ? "top" : "bottom", // Change gravity based on screen size
+            position: "left",
+            className: type,
+            style: {
+              background: type === 'success' ? "#000000" : "#ef4444"
+            },
+            onClick: function(){} // Callback after click
+          }).showToast();
+        },
+  
+        formatMoney(cents) {
+          return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: '{{ cart.currency.iso_code }}'
+          }).format(cents / 100);
+        }
+      }));
+    });
+  </script>
+  
+  <!-- Add event listener for cart drawer -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Prevent default cart form submission
+      document.addEventListener('submit', (e) => {
+        if (e.target.action && e.target.action.includes('/cart/add')) {
+          e.preventDefault();
+        }
+      });
+    });
+  </script>
+  
+  <div class="bundle-builder" 
+       x-data="bundleBuilder({{ section.settings.bundle_size }}, {{ section.settings.discount_percentage }})"
+       x-init="init()">
+  
+  
+      <div class="bundle-progress-container">
+        <div class="bundle-progress-text">
+          <span x-text="selectedItems.length"></span> / <span x-text="bundleSize"></span> items selected
+        </div>
+        
+        <div class="bundle-progress-bar">
+          <div class="bundle-progress-fill"
+               :style="{
+                 width: (selectedItems.length / bundleSize * 100) + '%',
+                 background: selectedItems.length === bundleSize ? 'var(--color-success, #4CAF50)' : 'linear-gradient(90deg, #000000, #333333)'
+               }">
           </div>
-
-          <div class="bundle-product-content">
-            <div class="bundle-product-info">
-              <h3 class="bundle-product-title">
-                <a
-                  href="{{ product.url }}"
-                  class="bundle-product-title-link"
-                  target="_blank"
-                  title="View {{ product.title }}"
-                >
-                  {{ product.title }}
-                </a>
-              </h3>
-              <p class="bundle-product-price" x-text="formatMoney(selectedVariant.price)"></p>
+        </div>
+        
+        <div class="bundle-progress-steps">
+          <template x-for="index in bundleSize" :key="index">
+            <div class="bundle-progress-step"
+                 :class="{
+                   'active': selectedItems.length === index,
+                   'completed': selectedItems.length > index
+                 }">
             </div>
-
-            <div class="bundle-product-controls">
-              {% if product.variants.size > 1 %}
-                <div class="variant-selects">
-                  {% for option in product.options_with_values %}
-                    <select
-                      class="variant-dropdown"
-                      @change="
-                        const selectedOptions = Array.from(
-                          $el.closest('.variant-selects').querySelectorAll('select')
-                        ).map(select => select.value);
-
-                        const matchingVariant = [
-                          {% for variant in product.variants %}
-                            {
-                              id: '{{ variant.id }}',
-                              price: {{ variant.price }},
-                              title: '{{ variant.title | escape }}',
-                              options: [{% for option in variant.options %}'{{ option | escape }}'{% unless forloop.last %},{% endunless %}{% endfor %}],
-                              image: '{{ variant.featured_image | default: product.featured_image | img_url: '300x300', crop: 'center' }}'
-                            }{% unless forloop.last %},{% endunless %}
-                          {% endfor %}
-                        ].find(v => JSON.stringify(v.options) === JSON.stringify(selectedOptions));
-
-                        if (matchingVariant) {
-                          selectedVariant = {
-                            id: matchingVariant.id,
-                            price: matchingVariant.price,
-                            title: matchingVariant.title
-                          };
-                          variantImage = matchingVariant.image;
-                        }
-                      "
-                    >
-                      {% assign first_value = option.values | first %}
-                      {% for value in option.values %}
-                        <option
-                          value="{{ value | escape }}"
-                          {% if forloop.first %}
-                            selected="selected"
-                          {% endif %}
-                        >
-                          {{ value }}
-                        </option>
-                      {% endfor %}
-                    </select>
-                  {% endfor %}
-                </div>
-              {% else %}
-                {% assign single_variant = product.variants.first %}
-                {% assign variant_title = single_variant.title | split: ' / ' | first %}
-                {% unless variant_title == 'Default Title' %}
-                  <div class="variant-single">{{ variant_title }}</div>
-                {% endunless %}
-              {% endif %}
-
-              <div class="bundle-button-group">
-                <button
-                  class="bundle-button"
-                  x-show="!isProductSelected('{{ product.id }}')"
-                  @click="
-                    addToBundle({
-                      id: '{{ product.id }}',
-                      variant_id: selectedVariant.id,
-                      title: '{{ product.title | escape }}',
-                      price: selectedVariant.price,
-                      variant_title: selectedVariant.title,
-                      image: variantImage
-                    })
-                  "
-                  :disabled="selectedItems.length >= bundleSize"
-                >
-                  <span
-                    x-text="selectedItems.length >= bundleSize ? '{{ section.settings.box_full_message }}' : '{{ section.settings.add_to_bundle_text }}'"
-                  ></span>
-                </button>
-
-                <template x-if="isProductSelected('{{ product.id }}')">
-                  <div class="bundle-button-row">
-                    <button
-                      class="bundle-button bundle-button--add-another"
-                      @click="
-                        addToBundle({
-                          id: '{{ product.id }}',
-                          variant_id: selectedVariant.id,
-                          title: '{{ product.title | escape }}',
-                          price: selectedVariant.price,
-                          variant_title: selectedVariant.title,
-                          image: variantImage
-                        })
-                      "
-                      :disabled="selectedItems.length >= bundleSize"
-                    >
-                      <span
-                        x-text="selectedItems.length >= bundleSize ? '{{ section.settings.box_full_message }}' : '{{ section.settings.add_another_text }}'"
-                      ></span>
-                    </button>
-                    <button
-                      class="bundle-button bundle-button--remove"
-                      @click="removeFromBundle('{{ product.id }}')"
-                    >
-                      {{ section.settings.remove_text }}
-                    </button>
+          </template>
+        </div>
+        
+        <div class="bundle-progress-labels">
+          <div class="bundle-progress-label"
+               :class="{ 'active': selectedItems.length === 0 }">
+            Start
+          </div>
+          <div class="bundle-progress-label"
+               :class="{ 'active': selectedItems.length > 0 && selectedItems.length < bundleSize }">
+            Building
+          </div>
+          <div class="bundle-progress-label"
+               :class="{ 'active': selectedItems.length === bundleSize }">
+            Complete
+          </div>
+        </div>
+          <!-- View Box Button -->
+        <button class="bundle-banner-button"
+                @click="toggleView()"
+                x-show="!isViewOpen">
+          {{ section.settings.view_box_text }} (<span x-text="selectedItems.length"></span>)
+        </button>
+      </div>
+    
+    <div class="bundle-builder__header">
+      <h2 class="h1">{{ section.settings.title }}</h2>
+    </div>
+  
+    <!-- Add type filter buttons after the header -->
+    <div class="bundle-type-filter">
+      <button class="type-filter-button" 
+              @click="selectedType = 'all'"
+              :class="{ 'active': selectedType === 'all' }">
+        All Products
+        <span class="active-indicator" x-show="selectedType === 'all'"></span>
+      </button>
+      {% assign product_types = collections[section.settings.bundle_collection].products | map: 'type' | uniq %}
+      {% for type in product_types %}
+        {% unless type == blank or type == 'top page' or type == 'HIDDEN' %}
+          <button class="type-filter-button"
+                  @click="selectedType = '{{ type | escape }}'"
+                  :class="{ 'active': selectedType === '{{ type | escape }}' }">
+            {{ type }}
+            <span class="active-indicator" x-show="selectedType === '{{ type | escape }}'"></span>
+          </button>
+        {% endunless %}
+      {% endfor %}
+    </div>
+  
+    <div class="bundle-builder__content">
+      <!-- Product Grid -->
+      <div class="bundle-builder__products">
+        {% for product in collections[section.settings.bundle_collection].products %}
+          <div class="bundle-product-card" 
+               x-data="{ 
+                 showVariants: false,
+                 selectedVariant: {
+                   id: '{{ product.first_available_variant.id }}',
+                   price: {{ product.first_available_variant.price }},
+                   title: '{{ product.first_available_variant.title | escape }}'
+                 },
+                 variantImage: '{{ product.featured_image | img_url: '300x300', crop: 'center' }}',
+                 selectedOptions: [{% for option in product.first_available_variant.options %}'{{ option | escape }}'{% unless forloop.last %},{% endunless %}{% endfor %}]
+               }"
+               x-show="selectedType === 'all' || selectedType === '{{ product.type | escape }}'"
+               :class="{ 'selected': isProductSelected('{{ product.id }}') }">
+            
+            <div class="bundle-product-image-wrapper">
+              <img :src="variantImage" 
+                   alt="{{ product.title }}"
+                   loading="lazy"
+                   width="300"
+                   height="300">
+              <div class="bundle-product-badge" x-show="isProductSelected('{{ product.id }}')">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                </svg>
+              </div>
+            </div>
+            
+            <div class="bundle-product-content">
+              <div class="bundle-product-info">
+                <h3 class="bundle-product-title">
+                  <a href="{{ product.url }}" 
+                     class="bundle-product-title-link" 
+                     target="_blank" 
+                     title="View {{ product.title }}">
+                    {{ product.title }}
+                  </a>
+                </h3>
+                <p class="bundle-product-price" x-text="formatMoney(selectedVariant.price)"></p>
+              </div>
+              
+              <div class="bundle-product-controls">
+                {% if product.variants.size > 1 %}
+                  <div class="variant-selects">
+                    {% for option in product.options_with_values %}
+                      <select class="variant-dropdown"
+                              @change="
+                                const selectedOptions = Array.from(
+                                  $el.closest('.variant-selects').querySelectorAll('select')
+                                ).map(select => select.value);
+                                
+                                const matchingVariant = [
+                                  {% for variant in product.variants %}
+                                    {
+                                      id: '{{ variant.id }}',
+                                      price: {{ variant.price }},
+                                      title: '{{ variant.title | escape }}',
+                                      options: [{% for option in variant.options %}'{{ option | escape }}'{% unless forloop.last %},{% endunless %}{% endfor %}],
+                                      image: '{{ variant.featured_image | default: product.featured_image | img_url: '300x300', crop: 'center' }}'
+                                    }{% unless forloop.last %},{% endunless %}
+                                  {% endfor %}
+                                ].find(v => JSON.stringify(v.options) === JSON.stringify(selectedOptions));
+                                
+                                if (matchingVariant) {
+                                  selectedVariant = {
+                                    id: matchingVariant.id,
+                                    price: matchingVariant.price,
+                                    title: matchingVariant.title
+                                  };
+                                  variantImage = matchingVariant.image;
+                                }
+                              ">
+                            {% assign first_value = option.values | first %}
+                            {% for value in option.values %}
+                              <option value="{{ value | escape }}" 
+                                      {% if forloop.first %}selected="selected"{% endif %}>
+                                {{ value }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                    {% endfor %}
                   </div>
-                </template>
+                {% else %}
+                  {% assign single_variant = product.variants.first %}
+                  {% assign variant_title = single_variant.title | split: ' / ' | first %}
+                  {% unless variant_title == 'Default Title' %}
+                    <div class="variant-single">{{ variant_title }}</div>
+                  {% endunless %}
+                {% endif %}
+                
+                <div class="bundle-button-group">
+                  <button class="bundle-button"
+                          x-show="!isProductSelected('{{ product.id }}')"
+                          @click="addToBundle({
+                            id: '{{ product.id }}',
+                            variant_id: selectedVariant.id,
+                            title: '{{ product.title | escape }}',
+                            price: selectedVariant.price,
+                            variant_title: selectedVariant.title,
+                            image: variantImage
+                          })"
+                          :disabled="selectedItems.length >= bundleSize">
+                    <span x-text="selectedItems.length >= bundleSize ? '{{ section.settings.box_full_message }}' : '{{ section.settings.add_to_bundle_text }}'"></span>
+                  </button>
+                  
+                  <template x-if="isProductSelected('{{ product.id }}')">
+                    <div class="bundle-button-row">
+                      <button class="bundle-button bundle-button--add-another"
+                              @click="addToBundle({
+                                id: '{{ product.id }}',
+                                variant_id: selectedVariant.id,
+                                title: '{{ product.title | escape }}',
+                                price: selectedVariant.price,
+                                variant_title: selectedVariant.title,
+                                image: variantImage
+                              })"
+                              :disabled="selectedItems.length >= bundleSize">
+                        <span x-text="selectedItems.length >= bundleSize ? '{{ section.settings.box_full_message }}' : '{{ section.settings.add_another_text }}'"></span>
+                      </button>
+                      <button class="bundle-button bundle-button--remove"
+                              @click="removeFromBundle('{{ product.id }}')">
+                        {{ section.settings.remove_text }}
+                      </button>
+                    </div>
+                  </template>
+                </div>
               </div>
             </div>
           </div>
+        {% endfor %}
+      </div>
+    </div>
+  
+    <!-- View Box Button -->
+    <button class="bundle-view-button"
+            @click="toggleView()"
+            x-show="!isViewOpen">
+      {{ section.settings.view_box_text }} (<span x-text="selectedItems.length"></span>)
+    </button>
+  
+    <!-- Bundle View Sidebar -->
+    <div class="bundle-view"
+         :class="{ 'active': isViewOpen }"
+         x-show="isViewOpen"
+         x-transition
+         @click.outside="if (!$event.target.closest('.bundle-product-card')) isViewOpen = false">
+      
+      <div class="bundle-view-header">
+        <h3>Your Box</h3>
+        <button class="close-button" @click="toggleView()">Close</button>
+      </div>
+  
+        <div class="bundle-progress-text" x-text="
+          bundleSize - selectedItems.length === 0 
+            ? '{{ section.settings.box_full_message }} 📦' 
+            : `Add ${bundleSize - selectedItems.length} more product${bundleSize - selectedItems.length > 1 ? 's' : ''} to fill your box 🎁`
+        ">
         </div>
-      {% endfor %}
-    </div>
-  </div>
-
-  <!-- View Box Button -->
-  <button
-    class="bundle-view-button"
-    @click="toggleView()"
-    x-show="!isViewOpen"
-  >
-    {{ section.settings.view_box_text }} (<span x-text="selectedItems.length"></span>)
-  </button>
-
-  <!-- Bundle View Sidebar -->
-  <div
-    class="bundle-view"
-    :class="{ 'active': isViewOpen }"
-    x-show="isViewOpen"
-    x-transition
-    @click.outside="if (!$event.target.closest('.bundle-product-card')) isViewOpen = false"
-  >
-    <div class="bundle-view-header">
-      <h3>Your Box</h3>
-      <button class="close-button" @click="toggleView()">Close</button>
-    </div>
-
-    <div
-      class="bundle-progress-text"
-      x-text="
-                  bundleSize - selectedItems.length === 0
-        ? '{{ section.settings.box_full_message }} 📦'
-        : `Add ${bundleSize - selectedItems.length} more product${bundleSize - selectedItems.length > 1 ? 's' : ''} to fill your box 🎁`
-      "
-    ></div>
-
-    <div class="bundle-progress-bar">
-      <div
-        class="bundle-progress-fill"
-        :style="
-          {
-            width: (selectedItems.length / bundleSize * 100) + '%',
-            background: selectedItems.length === bundleSize ? 'var(--color-success, #4CAF50)' : 'linear-gradient(90deg, #000000, #333333)'
-          }
-        "
-      ></div>
-    </div>
-
-    <!-- Empty state message -->
-    <div class="bundle-view-empty" x-show="selectedItems.length === 0">
-      <h4>{{ section.settings.empty_box_title }}</h4>
-      <p>{{ section.settings.empty_box_text }}</p>
-    </div>
-
-    <!-- Selected items -->
-    <template x-for="item in selectedItems" :key="item.instanceId">
-      <div class="bundle-item">
-        <div class="bundle-item-content">
-          <img class="bundle-item-image" :src="item.image" :alt="item.title">
-          <div class="bundle-item-info">
-            <h4 class="bundle-item-title" x-text="item.title"></h4>
-            <span class="bundle-item-variant" x-text="item.variant_title"></span>
-            <span class="bundle-item-price" x-text="formatMoney(item.price)"></span>
-            <button
-              class="bundle-item-remove"
-              @click="removeFromBundle(item.id)"
-            >
-              {{ section.settings.remove_text }}
-            </button>
+        
+        <div class="bundle-progress-bar">
+          <div class="bundle-progress-fill"
+               :style="{
+                 width: (selectedItems.length / bundleSize * 100) + '%',
+                 background: selectedItems.length === bundleSize ? 'var(--color-success, #4CAF50)' : 'linear-gradient(90deg, #000000, #333333)'
+               }">
           </div>
         </div>
+      
+      <!-- Empty state message -->
+      <div class="bundle-view-empty" x-show="selectedItems.length === 0">
+        <h4>{{ section.settings.empty_box_title }}</h4>
+        <p>{{ section.settings.empty_box_text }}</p>
       </div>
-    </template>
-
-    <!-- Bundle totals -->
-    <div class="bundle-total" x-show="selectedItems.length > 0">
-      <p>
-        <span>Original Total:</span>
-        <span x-text="formatMoney(originalTotal)"></span>
-      </p>
-      <p>
-        <span>You Save:</span>
-        <span
-          class="savings"
-          x-text="formatMoney(originalTotal - {{ section.settings.comparison_product.price }})"
-        ></span>
-      </p>
-      <p class="final-price">
-        <span>Final Price:</span>
-        <span x-text="formatMoney({{ section.settings.comparison_product.price }})"></span>
-      </p>
-    </div>
-
-    <!-- Bundle actions -->
-    <div class="bundle-actions" x-show="selectedItems.length > 0">
-      <button
-        class="add-bundle-to-cart"
-        @click="addBundleToCart()"
-        :disabled="selectedItems.length < bundleSize || loading"
-      >
-        <span x-show="!loading">{{ section.settings.add_to_cart_text }}</span>
-        <span x-show="loading">{{ section.settings.adding_to_cart_text }}</span>
-      </button>
+      
+      <!-- Selected items -->
+      <template x-for="item in selectedItems" :key="item.instanceId">
+        <div class="bundle-item">
+          <div class="bundle-item-content">
+            <img class="bundle-item-image" :src="item.image" :alt="item.title">
+            <div class="bundle-item-info">
+              <h4 class="bundle-item-title" x-text="item.title"></h4>
+              <span class="bundle-item-variant" x-text="item.variant_title"></span>
+              <span class="bundle-item-price" x-text="formatMoney(item.price)"></span>
+              <button class="bundle-item-remove"
+                      @click="removeFromBundle(item.id)">
+                {{ section.settings.remove_text }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </template>
+      
+      <!-- Bundle totals -->
+      <div class="bundle-total" x-show="selectedItems.length > 0">
+        <p>
+          <span>Original Total:</span>
+          <span x-text="formatMoney(originalTotal)"></span>
+        </p>
+        <p>
+          <span>You Save:</span>
+          <span class="savings" x-text="formatMoney(originalTotal - {{ section.settings.comparison_product.price }})"></span>
+        </p>
+        <p class="final-price">
+          <span>Final Price:</span>
+          <span x-text="formatMoney({{ section.settings.comparison_product.price }})"></span>
+        </p>
+      </div>
+  
+      <!-- Bundle actions -->
+      <div class="bundle-actions" x-show="selectedItems.length > 0">
+        <button class="add-bundle-to-cart"
+                @click="addBundleToCart()"
+                :disabled="selectedItems.length < bundleSize || loading">
+          <span x-show="!loading">{{ section.settings.add_to_cart_text }}</span>
+          <span x-show="loading">{{ section.settings.adding_to_cart_text }}</span>
+        </button>
+      </div>
     </div>
   </div>
-</div>
-
-<script>
-  function truncateVariantOptions() {
-    const windowWidth = window.innerWidth;
-    let maxLength;
-
-    // Set different maxLength based on screen size
-    if (windowWidth <= 465) {
-      maxLength = 10; // Extra small devices
-    } else if (windowWidth <= 768) {
-      maxLength = 15; // Mobile devices
-    } else {
-      maxLength = 22; // Larger devices
-    }
-
-    document.querySelectorAll('.variant-dropdown').forEach((dropdown) => {
-      // Store original selected text
-      const selectedOption = dropdown.options[dropdown.selectedIndex];
-      const originalSelectedText = selectedOption.getAttribute('data-original-text') || selectedOption.text;
-
-      // Truncate only the selected text display
-      dropdown.options[dropdown.selectedIndex].text =
-        originalSelectedText.length > maxLength
-          ? originalSelectedText.substring(0, maxLength) + '...'
+  
+  <script>
+    function truncateVariantOptions() {
+      const windowWidth = window.innerWidth;
+      let maxLength;
+      
+      // Set different maxLength based on screen size
+      if (windowWidth <= 465) {
+        maxLength = 10; // Extra small devices
+      } else if (windowWidth <= 768) {
+        maxLength = 15; // Mobile devices
+      } else {
+        maxLength = 22; // Larger devices
+      }
+      
+      document.querySelectorAll('.variant-dropdown').forEach(dropdown => {
+        // Store original selected text
+        const selectedOption = dropdown.options[dropdown.selectedIndex];
+        const originalSelectedText = selectedOption.getAttribute('data-original-text') || selectedOption.text;
+        
+        // Truncate only the selected text display
+        dropdown.options[dropdown.selectedIndex].text = originalSelectedText.length > maxLength 
+          ? originalSelectedText.substring(0, maxLength) + '...' 
           : originalSelectedText;
-
-      // Restore full text for all options when dropdown is opened
-      dropdown.addEventListener('mousedown', function () {
-        Array.from(this.options).forEach((option) => {
-          const originalText = option.getAttribute('data-original-text') || option.text;
-          option.text = originalText;
+  
+        // Restore full text for all options when dropdown is opened
+        dropdown.addEventListener('mousedown', function() {
+          Array.from(this.options).forEach(option => {
+            const originalText = option.getAttribute('data-original-text') || option.text;
+            option.text = originalText;
+          });
+        });
+  
+        // Truncate selected option text when an option is selected
+        dropdown.addEventListener('change', function() {
+          const selectedOpt = this.options[this.selectedIndex];
+          const originalText = selectedOpt.getAttribute('data-original-text') || selectedOpt.text;
+          
+          // Store original text if not already stored
+          if (!selectedOpt.getAttribute('data-original-text')) {
+            selectedOpt.setAttribute('data-original-text', originalText);
+          }
+          
+          // Truncate the selected text
+          selectedOpt.text = originalText.length > maxLength 
+            ? originalText.substring(0, maxLength) + '...' 
+            : originalText;
         });
       });
-
-      // Truncate selected option text when an option is selected
-      dropdown.addEventListener('change', function () {
-        const selectedOpt = this.options[this.selectedIndex];
-        const originalText = selectedOpt.getAttribute('data-original-text') || selectedOpt.text;
-
-        // Store original text if not already stored
-        if (!selectedOpt.getAttribute('data-original-text')) {
-          selectedOpt.setAttribute('data-original-text', originalText);
-        }
-
-        // Truncate the selected text
-        selectedOpt.text =
-          originalText.length > maxLength ? originalText.substring(0, maxLength) + '...' : originalText;
-      });
+    }
+  
+    // Run on page load
+    document.addEventListener('DOMContentLoaded', truncateVariantOptions);
+    
+    // Run on window resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(truncateVariantOptions, 250);
     });
+  </script>
+  
+  {% schema %}
+  {
+    "name": "Bundle Builder",
+    "settings": [
+      {
+        "type": "header",
+        "content": "General Settings"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Build Your Bundle"
+      },
+      {
+        "type": "number",
+        "id": "bundle_size",
+        "label": "Number of Items in Bundle",
+        "default": 7
+      },
+      {
+        "type": "number",
+        "id": "discount_percentage",
+        "label": "Bundle Discount Percentage",
+        "default": 20
+      },
+      {
+        "type": "collection",
+        "id": "bundle_collection",
+        "label": "Bundle Products Collection"
+      },
+      {
+        "type": "header",
+        "content": "Desktop Design Settings"
+      },
+      {
+        "type": "range",
+        "id": "card_radius",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Card Border Radius",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "button_radius",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Button Border Radius",
+        "default": 8
+      },
+      {
+        "type": "range",
+        "id": "input_radius",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Input Border Radius",
+        "default": 8
+      },
+      {
+        "type": "range",
+        "id": "card_shadow",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "label": "Card Shadow Size",
+        "default": 4
+      },
+      {
+        "type": "header",
+        "content": "Desktop Typography"
+      },
+      {
+        "type": "range",
+        "id": "title_size",
+        "min": 12,
+        "max": 28,
+        "step": 1,
+        "unit": "px",
+        "label": "Product Title Size",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "price_size",
+        "min": 12,
+        "max": 28,
+        "step": 1,
+        "unit": "px",
+        "label": "Price Size",
+        "default": 18
+      },
+      {
+        "type": "header",
+        "content": "Desktop Colors"
+      },
+      {
+        "type": "color",
+        "id": "add_button_color",
+        "label": "Add to Bundle Button Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_color",
+        "label": "Remove/Add Another Button Color",
+        "default": "#212121"
+      },
+      {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Add Button Text Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_text_color",
+        "label": "Remove/Add Another Button Text Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "header",
+        "content": "Mobile Design Settings"
+      },
+      {
+        "type": "range",
+        "id": "mobile_card_radius",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Mobile Card Border Radius",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "mobile_button_radius",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Mobile Button Border Radius",
+        "default": 4
+      },
+      {
+        "type": "range",
+        "id": "mobile_input_radius",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Mobile Input Border Radius",
+        "default": 4
+      },
+      {
+        "type": "header",
+        "content": "Mobile Typography"
+      },
+      {
+        "type": "range",
+        "id": "mobile_title_size",
+        "min": 12,
+        "max": 40,
+        "step": 1,
+        "unit": "px",
+        "label": "Mobile Product Title Size",
+        "default": 32
+      },
+      {
+        "type": "range",
+        "id": "mobile_price_size",
+        "min": 12,
+        "max": 40,
+        "step": 1,
+        "unit": "px",
+        "label": "Mobile Price Size",
+        "default": 36
+      },
+      {
+        "type": "header",
+        "content": "Mobile Colors"
+      },
+      {
+        "type": "color",
+        "id": "mobile_add_button_color",
+        "label": "Mobile Add to Bundle Button Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "mobile_remove_button_color",
+        "label": "Mobile Remove/Add Another Button Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "mobile_button_text_color",
+        "label": "Mobile Add Button Text Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "mobile_remove_text_color",
+        "label": "Mobile Remove/Add Another Button Text Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "header",
+        "content": "Button Text"
+      },
+      {
+        "type": "text",
+        "id": "add_to_bundle_text",
+        "label": "Add to Bundle Button Text",
+        "default": "Add to Bundle"
+      },
+      {
+        "type": "text",
+        "id": "add_another_text",
+        "label": "Add Another Button Text",
+        "default": "Add Another"
+      },
+      {
+        "type": "text",
+        "id": "remove_text",
+        "label": "Remove Button Text",
+        "default": "Remove"
+      },
+      {
+        "type": "text",
+        "id": "view_box_text",
+        "label": "View Box Button Text",
+        "default": "View Box"
+      },
+      {
+        "type": "text",
+        "id": "add_to_cart_text",
+        "label": "Add to Cart Button Text",
+        "default": "Add Bundle to Cart"
+      },
+      {
+        "type": "text",
+        "id": "adding_to_cart_text",
+        "label": "Adding to Cart Text",
+        "default": "Adding to Cart..."
+      },
+      {
+        "type": "header",
+        "content": "Notification Messages"
+      },
+      {
+        "type": "text",
+        "id": "box_full_notification",
+        "label": "Box Full Notification",
+        "default": "🎁 Your bundle box is full! 🛑"
+      },
+      {
+        "type": "text",
+        "id": "item_added_notification",
+        "label": "Item Added Notification",
+        "default": "✨ Item added to your bundle! 🛍️"
+      },
+      {
+        "type": "text",
+        "id": "item_removed_notification",
+        "label": "Item Removed Notification",
+        "default": "❌ Item removed from bundle!"
+      },
+      {
+        "type": "text",
+        "id": "exceed_size_notification",
+        "label": "Exceed Size Notification",
+        "default": "⚠️ Cannot exceed bundle size of {size} 🛑"
+      },
+      {
+        "type": "text",
+        "id": "bundle_added_message",
+        "label": "Bundle Added Message",
+        "default": "🎉 Bundle added to cart! Taking you there... 🛒"
+      },
+      {
+        "type": "text",
+        "id": "bundle_error_message",
+        "label": "Bundle Error Message",
+        "default": "😔 Oops! Something went wrong. Please try again."
+      },
+      {
+        "type": "text",
+        "id": "bundle_incomplete_message",
+        "label": "Bundle Incomplete Message",
+        "default": "💝 Please select all items to complete your bundle"
+      },
+      {
+        "type": "header",
+        "content": "Empty Box Messages"
+      },
+      {
+        "type": "text",
+        "id": "empty_box_title",
+        "label": "Empty Box Title",
+        "default": "Your Box is Empty"
+      },
+      {
+        "type": "text",
+        "id": "empty_box_text",
+        "label": "Empty Box Description",
+        "default": "Add items to your bundle to get started!"
+      },
+      {
+        "type": "text",
+        "id": "box_full_message",
+        "label": "Box Full Message",
+        "default": "Box is full!"
+      },
+      {
+        "type": "product",
+        "id": "comparison_product",
+        "label": "Bundle Comparison Product",
+        "info": "Select the product that represents the bundle price"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Bundle Builder",
+        "category": "Custom"
+      }
+    ]
   }
-
-  // Run on page load
-  document.addEventListener('DOMContentLoaded', truncateVariantOptions);
-
-  // Run on window resize
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(truncateVariantOptions, 250);
-  });
-</script>
-
-{% schema %}
-{
-  "name": "Bundle Builder",
-  "settings": [
-    {
-      "type": "header",
-      "content": "General Settings"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Section Title",
-      "default": "Build Your Bundle"
-    },
-    {
-      "type": "number",
-      "id": "bundle_size",
-      "label": "Number of Items in Bundle",
-      "default": 7
-    },
-    {
-      "type": "number",
-      "id": "discount_percentage",
-      "label": "Bundle Discount Percentage",
-      "default": 20
-    },
-    {
-      "type": "collection",
-      "id": "bundle_collection",
-      "label": "Bundle Products Collection"
-    },
-    {
-      "type": "header",
-      "content": "Desktop Design Settings"
-    },
-    {
-      "type": "range",
-      "id": "card_radius",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "label": "Card Border Radius",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "button_radius",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "label": "Button Border Radius",
-      "default": 8
-    },
-    {
-      "type": "range",
-      "id": "input_radius",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "label": "Input Border Radius",
-      "default": 8
-    },
-    {
-      "type": "range",
-      "id": "card_shadow",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "label": "Card Shadow Size",
-      "default": 4
-    },
-    {
-      "type": "header",
-      "content": "Desktop Typography"
-    },
-    {
-      "type": "range",
-      "id": "title_size",
-      "min": 12,
-      "max": 28,
-      "step": 1,
-      "unit": "px",
-      "label": "Product Title Size",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "price_size",
-      "min": 12,
-      "max": 28,
-      "step": 1,
-      "unit": "px",
-      "label": "Price Size",
-      "default": 18
-    },
-    {
-      "type": "header",
-      "content": "Desktop Colors"
-    },
-    {
-      "type": "color",
-      "id": "add_button_color",
-      "label": "Add to Bundle Button Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "secondary_button_color",
-      "label": "Remove/Add Another Button Color",
-      "default": "#212121"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Add Button Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "secondary_button_text_color",
-      "label": "Remove/Add Another Button Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "header",
-      "content": "Mobile Design Settings"
-    },
-    {
-      "type": "range",
-      "id": "mobile_card_radius",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "label": "Mobile Card Border Radius",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "mobile_button_radius",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "label": "Mobile Button Border Radius",
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "mobile_input_radius",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "label": "Mobile Input Border Radius",
-      "default": 4
-    },
-    {
-      "type": "header",
-      "content": "Mobile Typography"
-    },
-    {
-      "type": "range",
-      "id": "mobile_title_size",
-      "min": 12,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "label": "Mobile Product Title Size",
-      "default": 32
-    },
-    {
-      "type": "range",
-      "id": "mobile_price_size",
-      "min": 12,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "label": "Mobile Price Size",
-      "default": 36
-    },
-    {
-      "type": "header",
-      "content": "Mobile Colors"
-    },
-    {
-      "type": "color",
-      "id": "mobile_add_button_color",
-      "label": "Mobile Add to Bundle Button Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "mobile_remove_button_color",
-      "label": "Mobile Remove/Add Another Button Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "mobile_button_text_color",
-      "label": "Mobile Add Button Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "mobile_remove_text_color",
-      "label": "Mobile Remove/Add Another Button Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "header",
-      "content": "Button Text"
-    },
-    {
-      "type": "text",
-      "id": "add_to_bundle_text",
-      "label": "Add to Bundle Button Text",
-      "default": "Add to Bundle"
-    },
-    {
-      "type": "text",
-      "id": "add_another_text",
-      "label": "Add Another Button Text",
-      "default": "Add Another"
-    },
-    {
-      "type": "text",
-      "id": "remove_text",
-      "label": "Remove Button Text",
-      "default": "Remove"
-    },
-    {
-      "type": "text",
-      "id": "view_box_text",
-      "label": "View Box Button Text",
-      "default": "View Box"
-    },
-    {
-      "type": "text",
-      "id": "add_to_cart_text",
-      "label": "Add to Cart Button Text",
-      "default": "Add Bundle to Cart"
-    },
-    {
-      "type": "text",
-      "id": "adding_to_cart_text",
-      "label": "Adding to Cart Text",
-      "default": "Adding to Cart..."
-    },
-    {
-      "type": "header",
-      "content": "Notification Messages"
-    },
-    {
-      "type": "text",
-      "id": "box_full_notification",
-      "label": "Box Full Notification",
-      "default": "🎁 Your bundle box is full! 🛑"
-    },
-    {
-      "type": "text",
-      "id": "item_added_notification",
-      "label": "Item Added Notification",
-      "default": "✨ Item added to your bundle! 🛍️"
-    },
-    {
-      "type": "text",
-      "id": "item_removed_notification",
-      "label": "Item Removed Notification",
-      "default": "❌ Item removed from bundle!"
-    },
-    {
-      "type": "text",
-      "id": "exceed_size_notification",
-      "label": "Exceed Size Notification",
-      "default": "⚠️ Cannot exceed bundle size of {size} 🛑"
-    },
-    {
-      "type": "text",
-      "id": "bundle_added_message",
-      "label": "Bundle Added Message",
-      "default": "🎉 Bundle added to cart! Taking you there... 🛒"
-    },
-    {
-      "type": "text",
-      "id": "bundle_error_message",
-      "label": "Bundle Error Message",
-      "default": "😔 Oops! Something went wrong. Please try again."
-    },
-    {
-      "type": "text",
-      "id": "bundle_incomplete_message",
-      "label": "Bundle Incomplete Message",
-      "default": "💝 Please select all items to complete your bundle"
-    },
-    {
-      "type": "header",
-      "content": "Empty Box Messages"
-    },
-    {
-      "type": "text",
-      "id": "empty_box_title",
-      "label": "Empty Box Title",
-      "default": "Your Box is Empty"
-    },
-    {
-      "type": "text",
-      "id": "empty_box_text",
-      "label": "Empty Box Description",
-      "default": "Add items to your bundle to get started!"
-    },
-    {
-      "type": "text",
-      "id": "box_full_message",
-      "label": "Box Full Message",
-      "default": "Box is full!"
-    },
-    {
-      "type": "product",
-      "id": "comparison_product",
-      "label": "Bundle Comparison Product",
-      "info": "Select the product that represents the bundle price"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Bundle Builder",
-      "category": "Custom"
-    }
-  ]
-}
-{% endschema %}
+  {% endschema %} 
