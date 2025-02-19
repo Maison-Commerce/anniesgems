@@ -5,6 +5,12 @@
   {%- render 'head' -%}
 
   {{ content_for_header }}
+
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/liquid-ajax-cart@2.3.0/liquid-ajax-cart.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/liquid-ajax-cart@2.3.0/liquid-ajax-cart.css" rel="stylesheet">
 </head>
 
 <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }} grid-{{ settings.grid_style }}{% if customer %} customer-logged-in{% endif %}{% if settings.animations_enable %} aos-initialized{% endif %}{% if settings.product_grid_outline %} has-line-design{% endif %}" data-animations="{{ settings.animations_enable }}">
