@@ -90,6 +90,93 @@
         "show_placeholder": true
       }
     },
+    "section_multicolumn_nAbfiV": {
+      "type": "section-multicolumn",
+      "blocks": {
+        "icon_XntdBH": {
+          "type": "icon",
+          "settings": {
+            "column_width": 25,
+            "icon_name": "icon-truck",
+            "icon_size": 35,
+            "icon_alignment": "icon--top",
+            "icon_color": "#551116",
+            "title": "Free Worldwide Shipping",
+            "heading_font_size": "heading-small",
+            "text": "<p>We offer free worldwide shipping on all orders, including all duties & taxes.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_qXYGgt": {
+          "type": "icon",
+          "settings": {
+            "column_width": 25,
+            "icon_name": "icon-trophy",
+            "icon_size": 35,
+            "icon_alignment": "icon--top",
+            "icon_color": "#551116",
+            "title": "Lifetime Color Warranty",
+            "heading_font_size": "heading-small",
+            "text": "<p>We promise the color stays in perfect condition for life. Otherwise we'll send you a replacement for free.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_6Lpj4h": {
+          "type": "icon",
+          "settings": {
+            "column_width": 25,
+            "icon_name": "icon-star",
+            "icon_size": 35,
+            "icon_alignment": "icon--top",
+            "icon_color": "#551116",
+            "title": "Unique Design",
+            "heading_font_size": "heading-small",
+            "text": "<p>Made to elevate any look, from casual days to special occasions.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_d6GVEj": {
+          "type": "icon",
+          "settings": {
+            "column_width": 25,
+            "icon_name": "icon-recycle",
+            "icon_size": 35,
+            "icon_alignment": "icon--top",
+            "icon_color": "#551116",
+            "title": "30-Day Returns",
+            "heading_font_size": "heading-small",
+            "text": "<p>We offer hassle-free returns or exchanges for every order. No questions asked.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "icon_XntdBH",
+        "icon_qXYGgt",
+        "icon_6Lpj4h",
+        "icon_d6GVEj"
+      ],
+      "settings": {
+        "customclass": "",
+        "title": "",
+        "subheading": "",
+        "heading_font_size": "heading-x-small",
+        "description": "",
+        "align_heading": "text-center",
+        "align_text": "text-center",
+        "width": "wrapper--full-padded",
+        "align_columns": "flex-align-center",
+        "layout_mobile": "1",
+        "color_scheme": "scheme-1",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    },
     "section_double_FJF8rU": {
       "type": "section-double",
       "blocks": {
@@ -142,93 +229,6 @@
         "padding_top": 0,
         "padding_bottom": 0,
         "show_placeholder": true
-      }
-    },
-    "section_multicolumn_nAbfiV": {
-      "type": "section-multicolumn",
-      "blocks": {
-        "icon_XntdBH": {
-          "type": "icon",
-          "settings": {
-            "column_width": 25,
-            "icon_name": "icon-shield",
-            "icon_size": 50,
-            "icon_alignment": "icon--top",
-            "icon_color": "",
-            "title": "Free Worldwide Shipping",
-            "heading_font_size": "heading-small",
-            "text": "<p>We offer free worldwide shipping on all orders, including all duties & taxes.</p>",
-            "text_font_size": "body-medium",
-            "heading_tag": "automatic"
-          }
-        },
-        "icon_qXYGgt": {
-          "type": "icon",
-          "settings": {
-            "column_width": 25,
-            "icon_name": "icon-shield",
-            "icon_size": 50,
-            "icon_alignment": "icon--top",
-            "icon_color": "",
-            "title": "Lifetime Color Warranty",
-            "heading_font_size": "heading-small",
-            "text": "<p>We promise the color stays in perfect condition for life. Otherwise we'll send you a replacement for free.</p>",
-            "text_font_size": "body-medium",
-            "heading_tag": "automatic"
-          }
-        },
-        "icon_6Lpj4h": {
-          "type": "icon",
-          "settings": {
-            "column_width": 25,
-            "icon_name": "icon-shield",
-            "icon_size": 50,
-            "icon_alignment": "icon--top",
-            "icon_color": "",
-            "title": "Timeless Design",
-            "heading_font_size": "heading-small",
-            "text": "<p>Made to elevate any look, from casual days to special occasions.</p>",
-            "text_font_size": "body-medium",
-            "heading_tag": "automatic"
-          }
-        },
-        "icon_d6GVEj": {
-          "type": "icon",
-          "settings": {
-            "column_width": 25,
-            "icon_name": "icon-shield",
-            "icon_size": 50,
-            "icon_alignment": "icon--top",
-            "icon_color": "",
-            "title": "Forget 10x Mark Ups",
-            "heading_font_size": "heading-small",
-            "text": "<p>We believe high quality jewelry should be affordable so we guarantee fair pricing always.</p>",
-            "text_font_size": "body-medium",
-            "heading_tag": "automatic"
-          }
-        }
-      },
-      "block_order": [
-        "icon_XntdBH",
-        "icon_qXYGgt",
-        "icon_6Lpj4h",
-        "icon_d6GVEj"
-      ],
-      "settings": {
-        "customclass": "",
-        "title": "",
-        "subheading": "",
-        "heading_font_size": "heading-x-small",
-        "description": "",
-        "align_heading": "text-center",
-        "align_text": "text-center",
-        "width": "wrapper--full-padded",
-        "align_columns": "flex-align-center",
-        "layout_mobile": "2",
-        "color_scheme": "scheme-1",
-        "padding_top": 50,
-        "padding_bottom": 50,
-        "heading_tag": "automatic"
       }
     },
     "section_press_logos_WwXrdD": {
@@ -520,8 +520,8 @@
   "order": [
     "main",
     "section_double_nWNXec",
-    "section_double_FJF8rU",
     "section_multicolumn_nAbfiV",
+    "section_double_FJF8rU",
     "section_press_logos_WwXrdD",
     "bundle_builder",
     "section_multicolumn_eqFPgc",
