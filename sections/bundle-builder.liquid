@@ -1,6 +1,11 @@
+
+
+
+
+
 <!-- Initialize Liquid Ajax Cart -->
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function() {
     if (typeof window.liquidAjaxCart === 'undefined') {
       console.warn('Liquid Ajax Cart not loaded, falling back to standard cart functionality');
     }
@@ -22,7 +27,7 @@
     --bundle-text-color: {{ section.settings.text_color }};
     --bundle-button-text-color: {{ section.settings.button_text_color }};
     --bundle-button-text-color-secondary: {{ section.settings.button_text_color_secondary }};
-
+    
     /* Mobile specific variables */
     --bundle-mobile-title-size: {{ section.settings.mobile_title_size }}px;
     --bundle-mobile-price-size: {{ section.settings.mobile_price_size }}px;
@@ -80,7 +85,7 @@
     }
   }
 
-  @media screen and (min-width: 769px) and (max-width: 1124px) {
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
     .bundle-builder__products {
       grid-template-columns: repeat(3, 1fr);
     }
@@ -570,7 +575,7 @@
     background: var(--color-background);
     padding: 15px;
     border-radius: 8px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     display: block;
     overflow: visible;
     will-change: transform;
@@ -1112,7 +1117,7 @@
       notification: {
         show: false,
         message: '',
-        type: 'success',
+        type: 'success'
       },
       loading: false,
       isViewOpen: false,
@@ -1129,7 +1134,7 @@
       },
 
       get originalTotal() {
-        return this.selectedItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        return this.selectedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
       },
 
       get finalPrice() {
@@ -1141,7 +1146,7 @@
       },
 
       isProductSelected(productId) {
-        return this.selectedItems.some((item) => item.id === productId);
+        return this.selectedItems.some(item => item.id === productId);
       },
 
       addToBundle(product) {
@@ -1153,7 +1158,7 @@
         const bundleItem = {
           ...product,
           instanceId: `${product.id}_${Date.now()}`,
-          quantity: 1,
+          quantity: 1
         };
 
         this.selectedItems.push(bundleItem);
@@ -1162,8 +1167,9 @@
       },
 
       removeFromBundle(productId) {
-        const lastIndex = [...this.selectedItems].reverse().findIndex((item) => item.id === productId);
-
+        const lastIndex = [...this.selectedItems].reverse()
+          .findIndex(item => item.id === productId);
+        
         if (lastIndex !== -1) {
           const actualIndex = this.selectedItems.length - 1 - lastIndex;
           this.selectedItems.splice(actualIndex, 1);
@@ -1173,7 +1179,7 @@
       },
 
       updateQuantity(instanceId, change) {
-        const item = this.selectedItems.find((item) => item.instanceId === instanceId);
+        const item = this.selectedItems.find(item => item.instanceId === instanceId);
         if (!item) return;
 
         const newQuantity = item.quantity + change;
@@ -1203,15 +1209,15 @@
           let items = [];
 
           // Remove the comparison product section and only add bundle items
-          const bundleItems = this.selectedItems.map((item) => ({
+          const bundleItems = this.selectedItems.map(item => ({
             id: parseInt(item.variant_id),
             quantity: item.quantity,
             properties: {
-              _bundle_id: bundleId,
-              _bundle_discount: this.discountPercentage + '%',
-              Bundle: 'Jewelry Bundle Set - Bundle Item',
-              _original_price: item.price,
-            },
+              '_bundle_id': bundleId,
+              '_bundle_discount': this.discountPercentage + '%',
+              'Bundle': 'Jewelry Bundle Set - Bundle Item',
+              '_original_price': item.price
+            }
           }));
 
           items = bundleItems; // Just use the bundle items directly
@@ -1224,15 +1230,15 @@
           let cartResponse;
           if (typeof window.liquidAjaxCart !== 'undefined') {
             cartResponse = await window.liquidAjaxCart.add({
-              items: items,
+              items: items
             });
           } else {
             cartResponse = await fetch('/cart/add.js', {
               method: 'POST',
               headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
               },
-              body: JSON.stringify({ items }),
+              body: JSON.stringify({ items })
             });
           }
 
@@ -1251,6 +1257,7 @@
 
           // Redirect to cart page
           window.location.href = '/cart';
+
         } catch (error) {
           this.showNotification('{{ section.settings.bundle_error_message | escape }}', 'error');
         } finally {
@@ -1261,28 +1268,28 @@
       showNotification(message, type = 'success') {
         // Clear any existing toasts first
         const existingToasts = document.querySelectorAll('.toastify');
-        existingToasts.forEach((toast) => toast.remove());
+        existingToasts.forEach(toast => toast.remove());
 
         // Show new toast
         Toastify({
           text: message,
           duration: 3000,
-          gravity: window.innerWidth <= 768 ? 'top' : 'bottom', // Change gravity based on screen size
-          position: 'left',
+          gravity: window.innerWidth <= 768 ? "top" : "bottom", // Change gravity based on screen size
+          position: "left",
           className: type,
           style: {
-            background: type === 'success' ? '#000000' : '#ef4444',
+            background: type === 'success' ? "#000000" : "#ef4444"
           },
-          onClick: function () {}, // Callback after click
+          onClick: function(){} // Callback after click
         }).showToast();
       },
 
       formatMoney(cents) {
         return new Intl.NumberFormat('en-US', {
           style: 'currency',
-          currency: '{{ cart.currency.iso_code }}',
+          currency: '{{ cart.currency.iso_code }}'
         }).format(cents / 100);
-      },
+      }
     }));
   });
 </script>
@@ -1299,94 +1306,76 @@
   });
 </script>
 
-<div
-  class="bundle-builder"
-  x-data="bundleBuilder({{ section.settings.bundle_size }}, {{ section.settings.discount_percentage }})"
-  x-init="init()"
->
-  <div class="bundle-progress-container">
-    <div class="bundle-progress-text">
-      <span x-text="selectedItems.length"></span> / <span x-text="bundleSize"></span> items selected
-    </div>
+<div class="bundle-builder" 
+     x-data="bundleBuilder({{ section.settings.bundle_size }}, {{ section.settings.discount_percentage }})"
+     x-init="init()">
 
-    <div class="bundle-progress-bar">
-      <div
-        class="bundle-progress-fill"
-        :style="
-          {
-            width: (selectedItems.length / bundleSize * 100) + '%',
-            background: selectedItems.length === bundleSize ? 'var(--color-success, #4CAF50)' : 'linear-gradient(90deg, #000000, #333333)'
-          }
-        "
-      ></div>
-    </div>
 
-    <div class="bundle-progress-steps">
-      <template x-for="index in bundleSize" :key="index">
-        <div
-          class="bundle-progress-step"
-          :class="
-            {
-              'active': selectedItems.length === index,
-              'completed': selectedItems.length > index
-            }
-          "
-        ></div>
-      </template>
-    </div>
-
-    <div class="bundle-progress-labels">
-      <div
-        class="bundle-progress-label"
-        :class="{ 'active': selectedItems.length === 0 }"
-      >
-        Start
+    <div class="bundle-progress-container">
+      <div class="bundle-progress-text">
+        <span x-text="selectedItems.length"></span> / <span x-text="bundleSize"></span> items selected
       </div>
-      <div
-        class="bundle-progress-label"
-        :class="{ 'active': selectedItems.length > 0 && selectedItems.length < bundleSize }"
-      >
-        Building
+      
+      <div class="bundle-progress-bar">
+        <div class="bundle-progress-fill"
+             :style="{
+               width: (selectedItems.length / bundleSize * 100) + '%',
+               background: selectedItems.length === bundleSize ? 'var(--color-success, #4CAF50)' : 'linear-gradient(90deg, #000000, #333333)'
+             }">
+        </div>
       </div>
-      <div
-        class="bundle-progress-label"
-        :class="{ 'active': selectedItems.length === bundleSize }"
-      >
-        Complete
+      
+      <div class="bundle-progress-steps">
+        <template x-for="index in bundleSize" :key="index">
+          <div class="bundle-progress-step"
+               :class="{
+                 'active': selectedItems.length === index,
+                 'completed': selectedItems.length > index
+               }">
+          </div>
+        </template>
       </div>
+      
+      <div class="bundle-progress-labels">
+        <div class="bundle-progress-label"
+             :class="{ 'active': selectedItems.length === 0 }">
+          Start
+        </div>
+        <div class="bundle-progress-label"
+             :class="{ 'active': selectedItems.length > 0 && selectedItems.length < bundleSize }">
+          Building
+        </div>
+        <div class="bundle-progress-label"
+             :class="{ 'active': selectedItems.length === bundleSize }">
+          Complete
+        </div>
+      </div>
+        <!-- View Box Button -->
+      <button class="bundle-banner-button"
+              @click="toggleView()"
+              x-show="!isViewOpen">
+        {{ section.settings.view_box_text }} (<span x-text="selectedItems.length"></span>)
+      </button>
     </div>
-    <!-- View Box Button -->
-    <button
-      class="bundle-banner-button"
-      @click="toggleView()"
-      x-show="!isViewOpen"
-    >
-      {{ section.settings.view_box_text }} (<span x-text="selectedItems.length"></span>)
-    </button>
-  </div>
-
+  
   <div class="bundle-builder__header">
     <h2 class="h1">{{ section.settings.title }}</h2>
   </div>
 
   <!-- Add type filter buttons after the header -->
   <div class="bundle-type-filter">
-    <button
-      class="type-filter-button"
-      @click="selectedType = 'all'"
-      :class="{ 'active': selectedType === 'all' }"
-    >
+    <button class="type-filter-button" 
+            @click="selectedType = 'all'"
+            :class="{ 'active': selectedType === 'all' }">
       All Products
       <span class="active-indicator" x-show="selectedType === 'all'"></span>
     </button>
     {% assign product_types = collections[section.settings.bundle_collection].products | map: 'type' | uniq %}
     {% for type in product_types %}
       {% unless type == blank or type == 'top page' or type == 'HIDDEN' %}
-        <button
-          class="type-filter-button"
-          @click="selectedType = '{{ type | escape }}'"
-          :class="{ 'active': selectedType === '{{ type | escape }}' }"
-        >
+        <button class="type-filter-button"
+                @click="selectedType = '{{ type | escape }}'"
+                :class="{ 'active': selectedType === '{{ type | escape }}' }">
           {{ type }}
           <span class="active-indicator" x-show="selectedType === '{{ type | escape }}'"></span>
         </button>
@@ -1397,216 +1386,182 @@
   <div class="bundle-builder__content">
     <!-- Product Grid -->
     <div class="bundle-builder__products">
-      {% for product in collections[section.settings.bundle_collection].products %}
-        <div
-          class="bundle-product-card"
-          x-data="
-            {
-              showVariants: false,
-              selectedVariant: {
-                id: {% if product.first_available_variant %}{{ product.first_available_variant.id | json }}{% else %}{{ product.variants.first.id | json }}{% endif %},
-                price: {% if product.first_available_variant %}{{ product.first_available_variant.price | json }}{% else %}{{ product.variants.first.price | json }}{% endif %},
-                title: {% if product.first_available_variant %}'{{ product.first_available_variant.title | escape }}'{% else %}'{{ product.variants.first.title | escape }}'{% endif %}
-              },
-              variantImage: {% if product.featured_image %}'{{ product.featured_image | img_url: '300x300', crop: 'center' }}'{% else %}'{{ product.images.first | img_url: '300x300', crop: 'center' }}'{% endif %},
-              selectedOptions: [{% for option in product.variants.first.options %}'{{ option | escape }}'{% unless forloop.last %},{% endunless %}{% endfor %}]
-            }
-          "
-          x-show="selectedType === 'all' || selectedType === '{{ product.type | escape }}'"
-          :class="{ 'selected': isProductSelected('{{ product.id }}') }"
-        >
-          <div class="bundle-product-image-wrapper">
-            <img
-              :src="variantImage"
-              alt="{{ product.title | escape }}"
-              loading="lazy"
-              width="300"
-              height="300"
-              @error="$event.target.src='{{ 'no-image.jpg' | asset_url }}'"
-            >
-            <div class="bundle-product-badge" x-show="isProductSelected('{{ product.id }}')">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-              </svg>
+      {% paginate collections[section.settings.bundle_collection].products by 250 %}
+        {% for product in collections[section.settings.bundle_collection].products %}
+          <div class="bundle-product-card" 
+               x-data="{ 
+                 showVariants: false,
+                 selectedVariant: {
+                   id: '{{ product.first_available_variant.id }}',
+                   price: {{ product.first_available_variant.price }},
+                   title: '{{ product.first_available_variant.title | escape }}'
+                 },
+                 variantImage: '{{ product.featured_image | img_url: '300x300', crop: 'center' }}',
+                 selectedOptions: [{% for option in product.first_available_variant.options %}'{{ option | escape }}'{% unless forloop.last %},{% endunless %}{% endfor %}]
+               }"
+               x-show="selectedType === 'all' || selectedType === '{{ product.type | escape }}'"
+               :class="{ 'selected': isProductSelected('{{ product.id }}') }">
+            
+            <div class="bundle-product-image-wrapper">
+              <img :src="variantImage" 
+                   alt="{{ product.title }}"
+                   loading="lazy"
+                   width="300"
+                   height="300">
+              <div class="bundle-product-badge" x-show="isProductSelected('{{ product.id }}')">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                </svg>
+              </div>
             </div>
-          </div>
-
-          <div class="bundle-product-content">
-            <div class="bundle-product-info">
-              <h3 class="bundle-product-title">
-                <a
-                  href="{{ product.url }}"
-                  class="bundle-product-title-link"
-                  target="_blank"
-                  title="View {{ product.title }}"
-                >
-                  {{ product.title }}
-                </a>
-              </h3>
-              <p class="bundle-product-price" x-text="formatMoney(selectedVariant.price)"></p>
-            </div>
-
-            <div class="bundle-product-controls">
-              {% if product.variants.size > 1 %}
-                <div class="variant-selects">
-                  {% for option in product.options_with_values %}
-                    <select
-                      class="variant-dropdown"
-                      @change="
-                        const selectedOptions = Array.from(
-                          $el.closest('.variant-selects').querySelectorAll('select')
-                        ).map(select => select.value);
-
-                        const matchingVariant = [
-                          {% for variant in product.variants %}
-                            {
-                              id: '{{ variant.id }}',
-                              price: {{ variant.price }},
-                              title: '{{ variant.title | escape }}',
-                              options: [{% for option in variant.options %}'{{ option | escape }}'{% unless forloop.last %},{% endunless %}{% endfor %}],
-                              image: '{{ variant.featured_image | default: product.featured_image | img_url: '300x300', crop: 'center' }}'
-                            }{% unless forloop.last %},{% endunless %}
-                          {% endfor %}
-                        ].find(v => JSON.stringify(v.options) === JSON.stringify(selectedOptions));
-
-                        if (matchingVariant) {
-                          selectedVariant = {
-                            id: matchingVariant.id,
-                            price: matchingVariant.price,
-                            title: matchingVariant.title
-                          };
-                          variantImage = matchingVariant.image;
-                        }
-                      "
-                    >
-                      {% assign first_value = option.values | first %}
-                      {% for value in option.values %}
-                        <option
-                          value="{{ value | escape }}"
-                          {% if forloop.first %}
-                            selected="selected"
-                          {% endif %}
-                        >
-                          {{ value }}
-                        </option>
-                      {% endfor %}
-                    </select>
-                  {% endfor %}
-                </div>
-              {% else %}
-                {% assign single_variant = product.variants.first %}
-                {% assign variant_title = single_variant.title | split: ' / ' | first %}
-                {% unless variant_title == 'Default Title' %}
-                  <div class="variant-single">{{ variant_title }}</div>
-                {% endunless %}
-              {% endif %}
-
-              <div class="bundle-button-group">
-                <button
-                  class="bundle-button"
-                  x-show="!isProductSelected('{{ product.id }}')"
-                  @click="
-                    addToBundle({
-                      id: '{{ product.id }}',
-                      variant_id: selectedVariant.id,
-                      title: '{{ product.title | escape }}',
-                      price: selectedVariant.price,
-                      variant_title: selectedVariant.title,
-                      image: variantImage
-                    })
-                  "
-                  :disabled="selectedItems.length >= bundleSize"
-                >
-                  <span
-                    x-text="selectedItems.length >= bundleSize ? '{{ section.settings.box_full_message }}' : '{{ section.settings.add_to_bundle_text }}'"
-                  ></span>
-                </button>
-
-                <template x-if="isProductSelected('{{ product.id }}')">
-                  <div class="bundle-button-row">
-                    <button
-                      class="bundle-button bundle-button--add-another"
-                      @click="
-                        addToBundle({
-                          id: '{{ product.id }}',
-                          variant_id: selectedVariant.id,
-                          title: '{{ product.title | escape }}',
-                          price: selectedVariant.price,
-                          variant_title: selectedVariant.title,
-                          image: variantImage
-                        })
-                      "
-                      :disabled="selectedItems.length >= bundleSize"
-                    >
-                      <span
-                        x-text="selectedItems.length >= bundleSize ? '{{ section.settings.box_full_message }}' : '{{ section.settings.add_another_text }}'"
-                      ></span>
-                    </button>
-                    <button
-                      class="bundle-button bundle-button--remove"
-                      @click="removeFromBundle('{{ product.id }}')"
-                    >
-                      {{ section.settings.remove_text }}
-                    </button>
+            
+            <div class="bundle-product-content">
+              <div class="bundle-product-info">
+                <h3 class="bundle-product-title">
+                  <a href="{{ product.url }}" 
+                     class="bundle-product-title-link" 
+                     target="_blank" 
+                     title="View {{ product.title }}">
+                    {{ product.title }}
+                  </a>
+                </h3>
+                <!-- <p class="bundle-product-price" x-text="formatMoney(selectedVariant.price)"></p> -->
+              </div>
+              
+              <div class="bundle-product-controls">
+                {% if product.variants.size > 1 %}
+                  <div class="variant-selects">
+                    {% for option in product.options_with_values %}
+                      <select class="variant-dropdown"
+                              @change="
+                                const selectedOptions = Array.from(
+                                  $el.closest('.variant-selects').querySelectorAll('select')
+                                ).map(select => select.value);
+                                
+                                const matchingVariant = [
+                                  {% for variant in product.variants %}
+                                    {
+                                      id: '{{ variant.id }}',
+                                      price: {{ variant.price }},
+                                      title: '{{ variant.title | escape }}',
+                                      options: [{% for option in variant.options %}'{{ option | escape }}'{% unless forloop.last %},{% endunless %}{% endfor %}],
+                                      image: '{{ variant.featured_image | default: product.featured_image | img_url: '300x300', crop: 'center' }}'
+                                    }{% unless forloop.last %},{% endunless %}
+                                  {% endfor %}
+                                ].find(v => JSON.stringify(v.options) === JSON.stringify(selectedOptions));
+                                
+                                if (matchingVariant) {
+                                  selectedVariant = {
+                                    id: matchingVariant.id,
+                                    price: matchingVariant.price,
+                                    title: matchingVariant.title
+                                  };
+                                  variantImage = matchingVariant.image;
+                                }
+                              ">
+                            {% assign first_value = option.values | first %}
+                            {% for value in option.values %}
+                              <option value="{{ value | escape }}" 
+                                      {% if forloop.first %}selected="selected"{% endif %}>
+                                {{ value }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                    {% endfor %}
                   </div>
-                </template>
+                {% else %}
+                  {% assign single_variant = product.variants.first %}
+                  {% assign variant_title = single_variant.title | split: ' / ' | first %}
+                  {% unless variant_title == 'Default Title' %}
+                    <div class="variant-single">{{ variant_title }}</div>
+                  {% endunless %}
+                {% endif %}
+                
+                <div class="bundle-button-group">
+                  <button class="bundle-button"
+                          x-show="!isProductSelected('{{ product.id }}')"
+                          @click="addToBundle({
+                            id: '{{ product.id }}',
+                            variant_id: selectedVariant.id,
+                            title: '{{ product.title | escape }}',
+                            price: selectedVariant.price,
+                            variant_title: selectedVariant.title,
+                            image: variantImage
+                          })"
+                          :disabled="selectedItems.length >= bundleSize">
+                    <span x-text="selectedItems.length >= bundleSize ? '{{ section.settings.box_full_message }}' : '{{ section.settings.add_to_bundle_text }}'"></span>
+                  </button>
+                  
+                  <template x-if="isProductSelected('{{ product.id }}')">
+                    <div class="bundle-button-row">
+                      <button class="bundle-button bundle-button--add-another"
+                              @click="addToBundle({
+                                id: '{{ product.id }}',
+                                variant_id: selectedVariant.id,
+                                title: '{{ product.title | escape }}',
+                                price: selectedVariant.price,
+                                variant_title: selectedVariant.title,
+                                image: variantImage
+                              })"
+                              :disabled="selectedItems.length >= bundleSize">
+                        <span x-text="selectedItems.length >= bundleSize ? '{{ section.settings.box_full_message }}' : '{{ section.settings.add_another_text }}'"></span>
+                      </button>
+                      <button class="bundle-button bundle-button--remove"
+                              @click="removeFromBundle('{{ product.id }}')">
+                        {{ section.settings.remove_text }}
+                      </button>
+                    </div>
+                  </template>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      {% endpaginate %}
     </div>
   </div>
 
   <!-- View Box Button -->
-  <button
-    class="bundle-view-button"
-    @click="toggleView()"
-    x-show="!isViewOpen"
-  >
+  <button class="bundle-view-button"
+          @click="toggleView()"
+          x-show="!isViewOpen">
     {{ section.settings.view_box_text }} (<span x-text="selectedItems.length"></span>)
   </button>
 
   <!-- Bundle View Sidebar -->
-  <div
-    class="bundle-view"
-    :class="{ 'active': isViewOpen }"
-    x-show="isViewOpen"
-    x-transition
-    @click.outside="if (!$event.target.closest('.bundle-product-card')) isViewOpen = false"
-  >
+  <div class="bundle-view"
+       :class="{ 'active': isViewOpen }"
+       x-show="isViewOpen"
+       x-transition
+       @click.outside="if (!$event.target.closest('.bundle-product-card')) isViewOpen = false">
+    
     <div class="bundle-view-header">
       <h3>Your Box</h3>
       <button class="close-button" @click="toggleView()">Close</button>
     </div>
 
-    <div
-      class="bundle-progress-text"
-      x-text="
-                  bundleSize - selectedItems.length === 0
-        ? '{{ section.settings.box_full_message }} 📦'
-        : `Add ${bundleSize - selectedItems.length} more product${bundleSize - selectedItems.length > 1 ? 's' : ''} to fill your box 🎁`
-      "
-    ></div>
-
-    <div class="bundle-progress-bar">
-      <div
-        class="bundle-progress-fill"
-        :style="
-          {
-            width: (selectedItems.length / bundleSize * 100) + '%',
-            background: selectedItems.length === bundleSize ? 'var(--color-success, #4CAF50)' : 'linear-gradient(90deg, #000000, #333333)'
-          }
-        "
-      ></div>
-    </div>
-
+      <div class="bundle-progress-text" x-text="
+        bundleSize - selectedItems.length === 0 
+          ? '{{ section.settings.box_full_message }} 📦' 
+          : `Add ${bundleSize - selectedItems.length} more product${bundleSize - selectedItems.length > 1 ? 's' : ''} to fill your box 🎁`
+      ">
+      </div>
+      
+      <div class="bundle-progress-bar">
+        <div class="bundle-progress-fill"
+             :style="{
+               width: (selectedItems.length / bundleSize * 100) + '%',
+               background: selectedItems.length === bundleSize ? 'var(--color-success, #4CAF50)' : 'linear-gradient(90deg, #000000, #333333)'
+             }">
+        </div>
+      </div>
+    
     <!-- Empty state message -->
     <div class="bundle-view-empty" x-show="selectedItems.length === 0">
       <h4>{{ section.settings.empty_box_title }}</h4>
       <p>{{ section.settings.empty_box_text }}</p>
     </div>
-
+    
     <!-- Selected items -->
     <template x-for="item in selectedItems" :key="item.instanceId">
       <div class="bundle-item">
@@ -1616,17 +1571,15 @@
             <h4 class="bundle-item-title" x-text="item.title"></h4>
             <span class="bundle-item-variant" x-text="item.variant_title"></span>
             <span class="bundle-item-price" x-text="formatMoney(item.price)"></span>
-            <button
-              class="bundle-item-remove"
-              @click="removeFromBundle(item.id)"
-            >
+            <button class="bundle-item-remove"
+                    @click="removeFromBundle(item.id)">
               {{ section.settings.remove_text }}
             </button>
           </div>
         </div>
       </div>
     </template>
-
+    
     <!-- Bundle totals -->
     <div class="bundle-total" x-show="selectedItems.length > 0">
       <p>
@@ -1635,10 +1588,7 @@
       </p>
       <p>
         <span>You Save:</span>
-        <span
-          class="savings"
-          x-text="formatMoney(originalTotal - {{ section.settings.comparison_product.price }})"
-        ></span>
+        <span class="savings" x-text="formatMoney(originalTotal - {{ section.settings.comparison_product.price }})"></span>
       </p>
       <p class="final-price">
         <span>Final Price:</span>
@@ -1648,11 +1598,9 @@
 
     <!-- Bundle actions -->
     <div class="bundle-actions" x-show="selectedItems.length > 0">
-      <button
-        class="add-bundle-to-cart"
-        @click="addBundleToCart()"
-        :disabled="selectedItems.length < bundleSize || loading"
-      >
+      <button class="add-bundle-to-cart"
+              @click="addBundleToCart()"
+              :disabled="selectedItems.length < bundleSize || loading">
         <span x-show="!loading">{{ section.settings.add_to_cart_text }}</span>
         <span x-show="loading">{{ section.settings.adding_to_cart_text }}</span>
       </button>
@@ -1664,7 +1612,7 @@
   function truncateVariantOptions() {
     const windowWidth = window.innerWidth;
     let maxLength;
-
+    
     // Set different maxLength based on screen size
     if (windowWidth <= 465) {
       maxLength = 10; // Extra small devices
@@ -1673,46 +1621,46 @@
     } else {
       maxLength = 22; // Larger devices
     }
-
-    document.querySelectorAll('.variant-dropdown').forEach((dropdown) => {
+    
+    document.querySelectorAll('.variant-dropdown').forEach(dropdown => {
       // Store original selected text
       const selectedOption = dropdown.options[dropdown.selectedIndex];
       const originalSelectedText = selectedOption.getAttribute('data-original-text') || selectedOption.text;
-
+      
       // Truncate only the selected text display
-      dropdown.options[dropdown.selectedIndex].text =
-        originalSelectedText.length > maxLength
-          ? originalSelectedText.substring(0, maxLength) + '...'
-          : originalSelectedText;
+      dropdown.options[dropdown.selectedIndex].text = originalSelectedText.length > maxLength 
+        ? originalSelectedText.substring(0, maxLength) + '...' 
+        : originalSelectedText;
 
       // Restore full text for all options when dropdown is opened
-      dropdown.addEventListener('mousedown', function () {
-        Array.from(this.options).forEach((option) => {
+      dropdown.addEventListener('mousedown', function() {
+        Array.from(this.options).forEach(option => {
           const originalText = option.getAttribute('data-original-text') || option.text;
           option.text = originalText;
         });
       });
 
       // Truncate selected option text when an option is selected
-      dropdown.addEventListener('change', function () {
+      dropdown.addEventListener('change', function() {
         const selectedOpt = this.options[this.selectedIndex];
         const originalText = selectedOpt.getAttribute('data-original-text') || selectedOpt.text;
-
+        
         // Store original text if not already stored
         if (!selectedOpt.getAttribute('data-original-text')) {
           selectedOpt.setAttribute('data-original-text', originalText);
         }
-
+        
         // Truncate the selected text
-        selectedOpt.text =
-          originalText.length > maxLength ? originalText.substring(0, maxLength) + '...' : originalText;
+        selectedOpt.text = originalText.length > maxLength 
+          ? originalText.substring(0, maxLength) + '...' 
+          : originalText;
       });
     });
   }
 
   // Run on page load
   document.addEventListener('DOMContentLoaded', truncateVariantOptions);
-
+  
   // Run on window resize
   let resizeTimer;
   window.addEventListener('resize', () => {
@@ -1734,6 +1682,13 @@
       "id": "title",
       "label": "Section Title",
       "default": "Build Your Bundle"
+    },
+    {
+      "type": "number",
+      "id": "products_per_page",
+      "label": "Number of Products to Show",
+      "default": 250,
+      "info": "Maximum number of products to display (up to 250)"
     },
     {
       "type": "number",
@@ -2056,4 +2011,4 @@
     }
   ]
 }
-{% endschema %}
+{% endschema %} 
