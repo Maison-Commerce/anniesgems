@@ -331,7 +331,7 @@
         "align_text": "text-center",
         "width": "wrapper--full-padded",
         "align_columns": "flex-align-center",
-        "layout_mobile": "1",
+        "layout_mobile": "slider",
         "color_scheme": "scheme-1",
         "padding_top": 50,
         "padding_bottom": 50,
