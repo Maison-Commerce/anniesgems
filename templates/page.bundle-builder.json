@@ -20,7 +20,7 @@
         "text_font_size": "body-medium",
         "align_text": "text-left",
         "width": "wrapper",
-        "color_scheme": "",
+        "color_scheme": "scheme-5",
         "padding_top": 74,
         "padding_bottom": 74,
         "heading_tag": "automatic"
