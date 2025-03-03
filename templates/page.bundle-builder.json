@@ -396,6 +396,16 @@
             "featured_image": "shopify://shop_images/review5.webp",
             "review_url": ""
           }
+        },
+        "review_cheUcc": {
+          "type": "review",
+          "settings": {
+            "title": "Olivia S.",
+            "subheading": "VERIFIED CUSTOMER",
+            "review_content": "<p>Every time I wear Annie's jewelry, someone compliments it and asks 'Where did you get that?'. Of course I always refer them!!</p>",
+            "featured_image": "shopify://shop_images/review6.webp",
+            "review_url": ""
+          }
         }
       },
       "block_order": [
@@ -403,7 +413,8 @@
         "review_tGVGVG",
         "review_yR34gi",
         "review_cKyD9x",
-        "review_x9bpzd"
+        "review_x9bpzd",
+        "review_cheUcc"
       ],
       "settings": {
         "show_featured_image": true,
