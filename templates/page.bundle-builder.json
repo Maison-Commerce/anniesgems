@@ -104,6 +104,7 @@
         "logo_item_text_MXWEX9": {
           "type": "logo-item-text",
           "settings": {
+            "logo": "shopify://shop_images/Marie_Claire_Magazine_logo.svg",
             "logo_width": 100,
             "link": "",
             "text": "",
@@ -113,6 +114,7 @@
         "logo_item_text_8KFha3": {
           "type": "logo-item-text",
           "settings": {
+            "logo": "shopify://shop_images/Tatler_logo.svg",
             "logo_width": 100,
             "link": "",
             "text": "",
@@ -122,6 +124,7 @@
         "logo_item_text_mCY4bG": {
           "type": "logo-item-text",
           "settings": {
+            "logo": "shopify://shop_images/ELLE_Magazine_Logo.svg",
             "logo_width": 100,
             "link": "",
             "text": "",
@@ -131,6 +134,7 @@
         "logo_item_text_D6gaKq": {
           "type": "logo-item-text",
           "settings": {
+            "logo": "shopify://shop_images/VOGUE_LOGO.svg",
             "logo_width": 100,
             "link": "",
             "text": "",
