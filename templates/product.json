@@ -42,6 +42,19 @@
             "padding_bottom": 16
           }
         },
+        "popup_zTH9cp": {
+          "type": "popup",
+          "disabled": true,
+          "settings": {
+            "title": "Free Worldwide Shipping",
+            "text": "<p>Annie's Gems is offering <strong>free worldwide shipping</strong> including import duties & taxes.</p><p>You'll receive a tracking link after we've processed your order, which usually takes up to <strong>1 business day.</strong></p><p>You can expect your beautiful new pieces to arrive within <strong>5 to 8 business days.</strong></p><p>For exact delivery times, please visit our <a href=\"/pages/shipping-information\" target=\"_blank\" title=\"Shipping Information\">Shipping Information</a> page.</p>",
+            "page": "",
+            "icon_name": "icon-truck",
+            "icon_size": 25,
+            "icon_color": "",
+            "padding_bottom": 16
+          }
+        },
         "swatches_NwXrhD": {
           "type": "swatches",
           "settings": {
@@ -80,18 +93,6 @@
             "text_font_size": "body-medium",
             "width": "full",
             "padding_bottom": 26
-          }
-        },
-        "popup_zTH9cp": {
-          "type": "popup",
-          "settings": {
-            "title": "Free Worldwide Shipping",
-            "text": "<p>Annie's Gems is offering <strong>free worldwide shipping</strong> including import duties & taxes.</p><p>You'll receive a tracking link after we've processed your order, which usually takes up to <strong>1 business day.</strong></p><p>You can expect your beautiful new pieces to arrive within <strong>5 to 8 business days.</strong></p><p>For exact delivery times, please visit our <a href=\"/pages/shipping-information\" target=\"_blank\" title=\"Shipping Information\">Shipping Information</a> page.</p>",
-            "page": "",
-            "icon_name": "icon-truck",
-            "icon_size": 25,
-            "icon_color": "",
-            "padding_bottom": 16
           }
         },
         "variants": {
@@ -245,10 +246,10 @@
         "rating_zdgngb",
         "price",
         "afterpay_DjkRdW",
+        "popup_zTH9cp",
         "swatches_NwXrhD",
         "icon_1",
         "icon_2",
-        "popup_zTH9cp",
         "variants",
         "buttons",
         "offer_xwgGYD",
