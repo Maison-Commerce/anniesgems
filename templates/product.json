@@ -117,6 +117,19 @@
             "padding_bottom": 16
           }
         },
+        "features_mPbcGN": {
+          "type": "features",
+          "settings": {
+            "icon_name": "icon-discount",
+            "icon_size": 20,
+            "title": "<span style=\"color:#551116\">Buy More & Save</span>",
+            "text_font_size": "body-medium",
+            "text": "<p>Add 2 items to your cart and get 20% OFF<br/>Add 3 items to your cart and get 25% OFF<br/>Add 4 items to your cart and get 30% OFF</p>",
+            "bg_color": "#f6f2ed",
+            "color": "",
+            "padding_bottom": 16
+          }
+        },
         "offer_xwgGYD": {
           "type": "offer",
           "settings": {
@@ -252,6 +265,7 @@
         "icon_2",
         "variants",
         "buttons",
+        "features_mPbcGN",
         "offer_xwgGYD",
         "tabs",
         "trustpilot_4JtJGc",
