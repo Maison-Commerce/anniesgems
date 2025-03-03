@@ -16,7 +16,7 @@
         "@media screen and (max-width: 768px) {.bundle-view-button {right: 0px; bottom: 0px; padding: 15px 20px; width: 100%; border-radius: 0px; }}"
       ],
       "settings": {
-        "title": "ANY 5 PIECES FOR $59.99",
+        "title": "CHOOSE 5 JEWELRY PIECES",
         "products_per_page": 250,
         "bundle_size": 5,
         "discount_percentage": 50,
