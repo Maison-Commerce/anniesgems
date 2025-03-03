@@ -356,10 +356,21 @@
             "featured_image": "shopify://shop_images/review1.webp",
             "review_url": ""
           }
+        },
+        "review_tGVGVG": {
+          "type": "review",
+          "settings": {
+            "title": "Megan R.",
+            "subheading": "VERIFIED CUSTOMER",
+            "review_content": "<p>I've never found jewelry as unique and heartfelt as Annie's Gems. Every piece feels like it was made just for me. I love the items I've collected over the years.</p>",
+            "featured_image": "shopify://shop_images/review2.webp",
+            "review_url": ""
+          }
         }
       },
       "block_order": [
-        "review_eFJPzh"
+        "review_eFJPzh",
+        "review_tGVGVG"
       ],
       "settings": {
         "show_featured_image": true,
