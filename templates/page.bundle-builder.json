@@ -366,11 +366,22 @@
             "featured_image": "shopify://shop_images/review2.webp",
             "review_url": ""
           }
+        },
+        "review_yR34gi": {
+          "type": "review",
+          "settings": {
+            "title": "Lisa M.",
+            "subheading": "VERIFIED CUSTOMER",
+            "review_content": "<p>Annie's Gems has always been my go-to for thoughtful gifts. The craftsmanship and love they put into every piece are unmatched!</p>",
+            "featured_image": "shopify://shop_images/review3.webp",
+            "review_url": ""
+          }
         }
       },
       "block_order": [
         "review_eFJPzh",
-        "review_tGVGVG"
+        "review_tGVGVG",
+        "review_yR34gi"
       ],
       "settings": {
         "show_featured_image": true,
