@@ -32,7 +32,7 @@
         "heading_FTmCte": {
           "type": "heading",
           "settings": {
-            "title": "<span style=\"color:#AE232D;font-weight:600\">Our Biggest Bundle Deal Ever!</span>",
+            "title": "Our Biggest Bundle Deal Ever!",
             "heading_font_size": "heading-small",
             "padding_bottom": 16,
             "heading_tag": "automatic"
@@ -344,6 +344,35 @@
         "heading_tag": "automatic"
       }
     },
+    "section_reviews_Xn3iBt": {
+      "type": "section-reviews",
+      "blocks": {
+        "review_eFJPzh": {
+          "type": "review",
+          "settings": {
+            "title": "Sarah T.",
+            "subheading": "VERIFIED CUSTOMER",
+            "review_content": "<p>Annie's jewelry has been part of so many milestones in my life - my wedding, my daughter's graduation, and even just little moments of self-care. Their pieces are timeless, and I'm so grateful to have them as keepsakes.</p>",
+            "featured_image": "shopify://shop_images/review1.webp",
+            "review_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "review_eFJPzh"
+      ],
+      "settings": {
+        "show_featured_image": true,
+        "image_aspect_ratio": 1,
+        "show_quotation_marks": true,
+        "heading_font_size": "heading-small",
+        "text_align": "text-left",
+        "color_scheme": "",
+        "card_bg_color": "#fcfbf9",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
     "bundle_builder": {
       "type": "bundle-builder",
       "custom_css": [
@@ -582,6 +611,7 @@
     "section_press_logos_WwXrdD",
     "section_double_FJF8rU",
     "section_multicolumn_nAbfiV",
+    "section_reviews_Xn3iBt",
     "bundle_builder",
     "section_multicolumn_eqFPgc",
     "section_sidebar_FFdyeB"
