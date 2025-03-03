@@ -132,7 +132,7 @@
         "class": "",
         "image_1": "shopify://shop_images/trust.png",
         "image_width": "one-half",
-        "text_alignment": "text-center",
+        "text_alignment": "text-left",
         "layout": "is-reversed",
         "width": "wrapper--full",
         "height": "five-fifty-height-hero",
