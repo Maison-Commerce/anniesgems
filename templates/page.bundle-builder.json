@@ -457,6 +457,7 @@
     "bundle_builder": {
       "type": "bundle-builder",
       "custom_css": [
+        ".bundle-progress-container {top: 20px !important;}",
         ".h1 {font-size: 28px;}",
         ".bundle-product-card {background-color: #f5f2ec;}",
         "@media screen and (max-width: 768px) {.h4-title {font-size: 14px; }}",
@@ -580,7 +581,7 @@
       "settings": {
         "customclass": "",
         "title": "",
-        "subheading": "<p>Keep your piece beautiful for generations with these essential care guidelines</p>",
+        "subheading": "Keep your piece beautiful for generations with these essential care guidelines",
         "heading_font_size": "heading-medium",
         "description": "",
         "align_heading": "text-center",
