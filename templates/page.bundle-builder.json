@@ -105,7 +105,7 @@
         "text_rVwYTi": {
           "type": "text",
           "settings": {
-            "text": "<ol><li>Click on <strong>'Choose My Jewelry'</strong></li><li>Select Your Pieces By Clicking <strong>'Add To Box'</strong></li><li><strong>Add 5 items to your box</strong> & Checkout as Normal!</li><li><strong>Enjoy Your Jewelry</strong> - We Know You'll Love It!</li></ol>",
+            "text": "<p><strong>Step 1<br/></strong>Click on 'Choose My Jewelry'</p><p><strong>Step 2</strong><br/>Select Your Pieces By Clicking 'Add To Box'</p><p><strong>Step 3<br/></strong>Add 5 items to your box & Checkout as Normal!</p><p><strong>Step 4<br/></strong>Enjoy Your Jewelry - We Know You'll Love It!</p>",
             "text_font_size": "body-large",
             "padding_bottom": 16
           }
