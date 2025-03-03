@@ -228,6 +228,7 @@
         },
         "text_Hk7Y6E": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "background": "#f6f2ed",
             "aligncenter": false,
@@ -312,10 +313,89 @@
         "padding_bottom": 0
       }
     },
+    "section_text_row_HUBMRx": {
+      "type": "section-text-row",
+      "blocks": {
+        "icon_f9wPqh": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-chat",
+            "icon_size": 35,
+            "icon_color": "#551116",
+            "title": "Free Worldwide Shipping",
+            "heading_font_size": "heading-x-small",
+            "text": "",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_nAidNY": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-trophy",
+            "icon_size": 35,
+            "icon_color": "#551116",
+            "title": "Lifetime Color Warranty",
+            "heading_font_size": "heading-x-small",
+            "text": "",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_CQe3He": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-flare",
+            "icon_size": 35,
+            "icon_color": "#551116",
+            "title": "Exclusive Designs",
+            "heading_font_size": "heading-x-small",
+            "text": "",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_YBp9pE": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-recycle",
+            "icon_size": 35,
+            "icon_color": "#551116",
+            "title": "30-Day Returns",
+            "heading_font_size": "heading-x-small",
+            "text": "",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "icon_f9wPqh",
+        "icon_nAidNY",
+        "icon_CQe3He",
+        "icon_YBp9pE"
+      ],
+      "settings": {
+        "title": "",
+        "heading_font_size": "heading-small",
+        "align_heading": "text-center",
+        "align_text": "text-center",
+        "icon_alignment": "icon--top",
+        "width": "wrapper",
+        "align_columns": "flex-align-center",
+        "layout": "grid",
+        "grid": 4,
+        "layout_mobile": "2",
+        "color_scheme": "scheme-11",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    },
     "section_collection_8phdRy": {
       "type": "section-collection",
       "settings": {
-        "featured_collection": "frontpage",
+        "featured_collection": "best-sellers",
         "heading": "Our Latest Collection",
         "heading_font_size": "heading-medium",
         "description": "<p>Discover our newest handcrafted pieces, each telling a unique story of artisanalexcellence</p>",
@@ -326,7 +406,7 @@
         "button_type": "btn--primary",
         "button_size": "",
         "button_style": "btn--solid",
-        "show_arrow": false,
+        "show_arrow": true,
         "layout_desktop": "grid",
         "grid": 4,
         "rows": 3,
@@ -647,6 +727,7 @@
   "order": [
     "main",
     "related",
+    "section_text_row_HUBMRx",
     "section_collection_8phdRy",
     "kopstorm_tabs_Enq3eC",
     "section_countdown_timer_FXUnHD",
