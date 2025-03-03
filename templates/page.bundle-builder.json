@@ -386,13 +386,24 @@
             "featured_image": "shopify://shop_images/review4.webp",
             "review_url": ""
           }
+        },
+        "review_x9bpzd": {
+          "type": "review",
+          "settings": {
+            "title": "Rachel C.",
+            "subheading": "VERIFIED CUSTOMER",
+            "review_content": "<p>Their jewelry isn't just beautiful, it tells a story.. Every time I wear their pieces I feel connected to something special. Annie's Gems has been such a treasure.</p>",
+            "featured_image": "shopify://shop_images/review5.webp",
+            "review_url": ""
+          }
         }
       },
       "block_order": [
         "review_eFJPzh",
         "review_tGVGVG",
         "review_yR34gi",
-        "review_cKyD9x"
+        "review_cKyD9x",
+        "review_x9bpzd"
       ],
       "settings": {
         "show_featured_image": true,
