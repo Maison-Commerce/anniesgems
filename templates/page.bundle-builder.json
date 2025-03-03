@@ -32,14 +32,14 @@
         "subheading_HGaVLg": {
           "type": "subheading",
           "settings": {
-            "subheading": "LOVED BY 100,000+ CUSTOMERS",
+            "subheading": "LOVED BY 10,000+ CUSTOMERS",
             "padding_bottom": 16
           }
         },
         "heading_UVVFfg": {
           "type": "heading",
           "settings": {
-            "title": "PICK ANY 5 ITEMS FOR ONLY <span style=\"color:#069BA8\">$59.99</span> | 70% OFF",
+            "title": "PICK ANY 5 ITEMS FOR ONLY $59.99",
             "heading_font_size": "heading-large",
             "padding_bottom": 16,
             "heading_tag": "automatic"
@@ -48,7 +48,7 @@
         "text_ny46xw": {
           "type": "text",
           "settings": {
-            "text": "<p>High quality jewelry, unique designs, and FREE shipping for all orders 🌸</p>",
+            "text": "<p>Unique designs, high quality materials, and free shipping on all orders.</p>",
             "text_font_size": "body-large",
             "padding_bottom": 16
           }
@@ -285,7 +285,7 @@
     "bundle_builder": {
       "type": "bundle-builder",
       "custom_css": [
-        ".bundle-product-card {background-color: #F5F2EC}",
+        ".bundle-product-card {background-color: #f5f2ec;}",
         "@media screen and (max-width: 768px) {.h4-title {font-size: 14px; }}",
         "@media screen and (max-width: 768px) {.bundle-view-button {right: 0px; bottom: 0px; padding: 15px 20px; width: 100%; border-radius: 0px; }}"
       ],
