@@ -154,7 +154,7 @@
         "logo_item_text_D6gaKq"
       ],
       "settings": {
-        "enable_heading_slider": false,
+        "enable_heading_slider": true,
         "logo_opacity": 60,
         "title": "",
         "color_scheme": "scheme-4128de9a-8ed8-4e17-9393-3af4800cd057",
