@@ -20,7 +20,7 @@
         "text_font_size": "body-medium",
         "align_text": "text-left",
         "width": "wrapper",
-        "color_scheme": "scheme-5",
+        "color_scheme": "",
         "padding_top": 74,
         "padding_bottom": 74,
         "heading_tag": "automatic"
@@ -73,7 +73,7 @@
         "buttons_VjJcJp"
       ],
       "settings": {
-        "class": "",
+        "image_1": "shopify://shop_images/luciajade-box.webp",
         "image_width": "one-half",
         "text_alignment": "text-left",
         "layout": "",
@@ -126,7 +126,7 @@
         "buttons_iQE8MF"
       ],
       "settings": {
-        "class": "",
+        "image_1": "shopify://shop_images/lj-box-2.webp",
         "image_width": "one-half",
         "text_alignment": "text-left",
         "layout": "is-reversed",
@@ -151,6 +151,7 @@
             "icon_size": 50,
             "icon_alignment": "icon--top",
             "icon_color": "",
+            "image": "shopify://shop_images/free-delivery_411776.png",
             "title": "Free Worldwide Shipping",
             "heading_font_size": "heading-small",
             "text": "<p>We offer free worldwide shipping on all orders, including all duties & taxes.</p>",
@@ -166,6 +167,7 @@
             "icon_size": 50,
             "icon_alignment": "icon--top",
             "icon_color": "",
+            "image": "shopify://shop_images/diamond-ring_4647987.png",
             "title": "Lifetime Color Warranty",
             "heading_font_size": "heading-small",
             "text": "<p>We promise the color stays in perfect condition for life. Otherwise we'll send you a replacement for free.</p>",
@@ -181,6 +183,7 @@
             "icon_size": 50,
             "icon_alignment": "icon--top",
             "icon_color": "",
+            "image": "shopify://shop_images/Materials_d3feed5e-c6c0-405c-9c46-fc7860f215dd.png",
             "title": "Timeless Design",
             "heading_font_size": "heading-small",
             "text": "<p>Made to elevate any look, from casual days to special occasions.</p>",
@@ -196,6 +199,7 @@
             "icon_size": 50,
             "icon_alignment": "icon--top",
             "icon_color": "",
+            "image": "shopify://shop_images/bad_3336878.png",
             "title": "Forget 10x Mark Ups",
             "heading_font_size": "heading-small",
             "text": "<p>We believe high quality jewelry should be affordable so we guarantee fair pricing always.</p>",
@@ -211,9 +215,7 @@
         "icon_d6GVEj"
       ],
       "settings": {
-        "customclass": "",
         "title": "WHY SHOP WITH US?",
-        "subheading": "Keep your piece beautiful for generations with these essential care guidelines",
         "heading_font_size": "heading-medium",
         "description": "",
         "align_heading": "text-center",
@@ -233,6 +235,7 @@
         "logo_item_text_MXWEX9": {
           "type": "logo-item-text",
           "settings": {
+            "logo": "shopify://shop_images/logo-001.svg",
             "logo_width": 100,
             "link": "",
             "text": "",
@@ -242,6 +245,7 @@
         "logo_item_text_8KFha3": {
           "type": "logo-item-text",
           "settings": {
+            "logo": "shopify://shop_images/logo-002.svg",
             "logo_width": 100,
             "link": "",
             "text": "",
@@ -251,6 +255,7 @@
         "logo_item_text_mCY4bG": {
           "type": "logo-item-text",
           "settings": {
+            "logo": "shopify://shop_images/logo-003.svg",
             "logo_width": 100,
             "link": "",
             "text": "",
@@ -260,6 +265,7 @@
         "logo_item_text_D6gaKq": {
           "type": "logo-item-text",
           "settings": {
+            "logo": "shopify://shop_images/logo-004.svg",
             "logo_width": 100,
             "link": "",
             "text": "",
@@ -300,8 +306,8 @@
         "card_shadow": 2,
         "title_size": 16,
         "price_size": 16,
-        "add_button_color": "#551116",
-        "secondary_button_color": "#551116",
+        "add_button_color": "#000000",
+        "secondary_button_color": "#212121",
         "button_text_color": "#ffffff",
         "secondary_button_text_color": "#ffffff",
         "mobile_card_radius": 0,
@@ -309,8 +315,8 @@
         "mobile_input_radius": 0,
         "mobile_title_size": 12,
         "mobile_price_size": 14,
-        "mobile_add_button_color": "#551116",
-        "mobile_remove_button_color": "#551116",
+        "mobile_add_button_color": "#000000",
+        "mobile_remove_button_color": "#000000",
         "mobile_button_text_color": "#ffffff",
         "mobile_remove_text_color": "#ffffff",
         "add_to_bundle_text": "Add to Box",
@@ -404,9 +410,7 @@
       ],
       "disabled": true,
       "settings": {
-        "customclass": "",
         "title": "",
-        "subheading": "<p>Keep your piece beautiful for generations with these essential care guidelines</p>",
         "heading_font_size": "heading-medium",
         "description": "",
         "align_heading": "text-center",
