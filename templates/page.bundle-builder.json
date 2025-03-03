@@ -9,15 +9,293 @@
  */
 {
   "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "subheading": "",
+        "show_title": true,
+        "heading_font_size": "heading-large",
+        "show_content": true,
+        "text_font_size": "body-medium",
+        "align_text": "text-left",
+        "width": "wrapper",
+        "color_scheme": "",
+        "padding_top": 74,
+        "padding_bottom": 74,
+        "heading_tag": "automatic"
+      }
+    },
+    "section_double_nWNXec": {
+      "type": "section-double",
+      "blocks": {
+        "subheading_HGaVLg": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "LOVED BY 100,000+ CUSTOMERS",
+            "padding_bottom": 16
+          }
+        },
+        "heading_UVVFfg": {
+          "type": "heading",
+          "settings": {
+            "title": "PICK ANY 5 ITEMS FOR ONLY <span style=\"color:#069BA8\">$59.99</span> | 70% OFF",
+            "heading_font_size": "heading-large",
+            "padding_bottom": 16,
+            "heading_tag": "automatic"
+          }
+        },
+        "text_ny46xw": {
+          "type": "text",
+          "settings": {
+            "text": "<p>High quality jewelry, unique designs, and FREE shipping for all orders 🌸</p>",
+            "text_font_size": "body-large",
+            "padding_bottom": 16
+          }
+        },
+        "buttons_VjJcJp": {
+          "type": "buttons",
+          "settings": {
+            "button_text": "CHOOSE MY JEWELRY",
+            "button_url": "#shopify-section-template--24232753922326__bundle_builder",
+            "button_type": "btn--primary",
+            "button_size": "btn--large",
+            "button_style": "btn--solid",
+            "show_arrow": true,
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "subheading_HGaVLg",
+        "heading_UVVFfg",
+        "text_ny46xw",
+        "buttons_VjJcJp"
+      ],
+      "settings": {
+        "image_1": "shopify://shop_images/luciajade-box.webp",
+        "image_width": "one-half",
+        "text_alignment": "text-left",
+        "layout": "",
+        "width": "wrapper--full",
+        "height": "five-fifty-height-hero",
+        "mobile_height": "four-fifty-height-hero--mobile",
+        "reverse_blocks": false,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_placeholder": true
+      }
+    },
+    "section_double_FJF8rU": {
+      "type": "section-double",
+      "blocks": {
+        "heading_LTWriy": {
+          "type": "heading",
+          "settings": {
+            "title": "How it works?",
+            "heading_font_size": "heading-medium",
+            "padding_bottom": 16,
+            "heading_tag": "automatic"
+          }
+        },
+        "text_rVwYTi": {
+          "type": "text",
+          "settings": {
+            "text": "<ol><li>Click on <strong>'Choose My Jewelry'</strong></li><li>Select Your Pieces By Clicking <strong>'Add To Box'</strong></li><li><strong>Add 5 items to your box</strong> & Checkout as Normal!</li><li><strong>Enjoy Your Jewelry</strong> - We Know You'll Love It!</li></ol>",
+            "text_font_size": "body-large",
+            "padding_bottom": 16
+          }
+        },
+        "buttons_iQE8MF": {
+          "type": "buttons",
+          "settings": {
+            "button_text": "CHOOSE MY JEWELRY",
+            "button_url": "#shopify-section-template--24232753922326__bundle_builder",
+            "button_type": "btn--primary",
+            "button_size": "btn--large",
+            "button_style": "btn--solid",
+            "show_arrow": true,
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "heading_LTWriy",
+        "text_rVwYTi",
+        "buttons_iQE8MF"
+      ],
+      "settings": {
+        "image_1": "shopify://shop_images/lj-box-2.webp",
+        "image_width": "one-half",
+        "text_alignment": "text-left",
+        "layout": "is-reversed",
+        "width": "wrapper--full",
+        "height": "five-fifty-height-hero",
+        "mobile_height": "image-height--mobile",
+        "reverse_blocks": false,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_placeholder": true
+      }
+    },
+    "section_multicolumn_nAbfiV": {
+      "type": "section-multicolumn",
+      "blocks": {
+        "icon_XntdBH": {
+          "type": "icon",
+          "settings": {
+            "column_width": 25,
+            "icon_name": "icon-shield",
+            "icon_size": 50,
+            "icon_alignment": "icon--top",
+            "icon_color": "",
+            "image": "shopify://shop_images/free-delivery_411776.png",
+            "title": "Free Worldwide Shipping",
+            "heading_font_size": "heading-small",
+            "text": "<p>We offer free worldwide shipping on all orders, including all duties & taxes.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_qXYGgt": {
+          "type": "icon",
+          "settings": {
+            "column_width": 25,
+            "icon_name": "icon-shield",
+            "icon_size": 50,
+            "icon_alignment": "icon--top",
+            "icon_color": "",
+            "image": "shopify://shop_images/diamond-ring_4647987.png",
+            "title": "Lifetime Color Warranty",
+            "heading_font_size": "heading-small",
+            "text": "<p>We promise the color stays in perfect condition for life. Otherwise we'll send you a replacement for free.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_6Lpj4h": {
+          "type": "icon",
+          "settings": {
+            "column_width": 25,
+            "icon_name": "icon-shield",
+            "icon_size": 50,
+            "icon_alignment": "icon--top",
+            "icon_color": "",
+            "image": "shopify://shop_images/Materials_d3feed5e-c6c0-405c-9c46-fc7860f215dd.png",
+            "title": "Timeless Design",
+            "heading_font_size": "heading-small",
+            "text": "<p>Made to elevate any look, from casual days to special occasions.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_d6GVEj": {
+          "type": "icon",
+          "settings": {
+            "column_width": 25,
+            "icon_name": "icon-shield",
+            "icon_size": 50,
+            "icon_alignment": "icon--top",
+            "icon_color": "",
+            "image": "shopify://shop_images/bad_3336878.png",
+            "title": "Forget 10x Mark Ups",
+            "heading_font_size": "heading-small",
+            "text": "<p>We believe high quality jewelry should be affordable so we guarantee fair pricing always.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "icon_XntdBH",
+        "icon_qXYGgt",
+        "icon_6Lpj4h",
+        "icon_d6GVEj"
+      ],
+      "settings": {
+        "title": "WHY SHOP WITH US?",
+        "heading_font_size": "heading-medium",
+        "description": "",
+        "align_heading": "text-center",
+        "align_text": "text-center",
+        "width": "wrapper--full-padded",
+        "align_columns": "flex-align-center",
+        "layout_mobile": "slider",
+        "color_scheme": "scheme-3",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    },
+    "section_press_logos_WwXrdD": {
+      "type": "section-press-logos",
+      "blocks": {
+        "logo_item_text_MXWEX9": {
+          "type": "logo-item-text",
+          "settings": {
+            "logo": "shopify://shop_images/logo-001.svg",
+            "logo_width": 100,
+            "link": "",
+            "text": "",
+            "text_font_size": "body-x-large"
+          }
+        },
+        "logo_item_text_8KFha3": {
+          "type": "logo-item-text",
+          "settings": {
+            "logo": "shopify://shop_images/logo-002.svg",
+            "logo_width": 100,
+            "link": "",
+            "text": "",
+            "text_font_size": "body-x-large"
+          }
+        },
+        "logo_item_text_mCY4bG": {
+          "type": "logo-item-text",
+          "settings": {
+            "logo": "shopify://shop_images/logo-003.svg",
+            "logo_width": 100,
+            "link": "",
+            "text": "",
+            "text_font_size": "body-x-large"
+          }
+        },
+        "logo_item_text_D6gaKq": {
+          "type": "logo-item-text",
+          "settings": {
+            "logo": "shopify://shop_images/logo-004.svg",
+            "logo_width": 100,
+            "link": "",
+            "text": "",
+            "text_font_size": "body-x-large"
+          }
+        }
+      },
+      "block_order": [
+        "logo_item_text_MXWEX9",
+        "logo_item_text_8KFha3",
+        "logo_item_text_mCY4bG",
+        "logo_item_text_D6gaKq"
+      ],
+      "settings": {
+        "enable_heading_slider": false,
+        "logo_opacity": 60,
+        "title": "As seen in",
+        "color_scheme": "scheme-4128de9a-8ed8-4e17-9393-3af4800cd057",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
     "bundle_builder": {
       "type": "bundle-builder",
       "custom_css": [
-        ".h1 {font-size: 32px !important;}",
         "@media screen and (max-width: 768px) {.h4-title {font-size: 14px; }}",
         "@media screen and (max-width: 768px) {.bundle-view-button {right: 0px; bottom: 0px; padding: 15px 20px; width: 100%; border-radius: 0px; }}"
       ],
       "settings": {
-        "title": "CHOOSE 5 JEWELRY PIECES",
+        "title": "CHOOSE ANY 5 PIECES",
         "products_per_page": 250,
         "bundle_size": 5,
         "discount_percentage": 50,
@@ -28,8 +306,8 @@
         "card_shadow": 2,
         "title_size": 16,
         "price_size": 16,
-        "add_button_color": "#551116",
-        "secondary_button_color": "#551116",
+        "add_button_color": "#000000",
+        "secondary_button_color": "#212121",
         "button_text_color": "#ffffff",
         "secondary_button_text_color": "#ffffff",
         "mobile_card_radius": 0,
@@ -37,8 +315,8 @@
         "mobile_input_radius": 0,
         "mobile_title_size": 12,
         "mobile_price_size": 14,
-        "mobile_add_button_color": "#551116",
-        "mobile_remove_button_color": "#551116",
+        "mobile_add_button_color": "#000000",
+        "mobile_remove_button_color": "#000000",
         "mobile_button_text_color": "#ffffff",
         "mobile_remove_text_color": "#ffffff",
         "add_to_bundle_text": "Add to Box",
@@ -57,11 +335,195 @@
         "empty_box_title": "Your Box is Empty",
         "empty_box_text": "Add items to your box to get started!",
         "box_full_message": "Box is full!",
-        "comparison_product": "bundle-prducts"
+        "comparison_product": "bundle-products"
+      }
+    },
+    "section_multicolumn_eqFPgc": {
+      "type": "section-multicolumn",
+      "blocks": {
+        "icon_D3Fd7A": {
+          "type": "icon",
+          "settings": {
+            "column_width": 25,
+            "icon_name": "icon-truck",
+            "icon_size": 30,
+            "icon_alignment": "icon--top",
+            "icon_color": "",
+            "title": "Free Shipping",
+            "heading_font_size": "heading-small",
+            "text": "<p>I always offer free standard shipping throughout the country</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_cxCGhy": {
+          "type": "icon",
+          "settings": {
+            "column_width": 25,
+            "icon_name": "icon-droplet",
+            "icon_size": 30,
+            "icon_alignment": "icon--top",
+            "icon_color": "",
+            "title": "Waterproof & Tarnish-Free",
+            "heading_font_size": "heading-small",
+            "text": "<p>All my jewelry is built to last and made to be worn every day, anywhere</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_pc9egM": {
+          "type": "icon",
+          "settings": {
+            "column_width": 25,
+            "icon_name": "icon-recycle",
+            "icon_size": 30,
+            "icon_alignment": "icon--top",
+            "icon_color": "",
+            "title": "30-Day Returns",
+            "heading_font_size": "heading-small",
+            "text": "<p>You can easily return or exchange your order within 30 days, no questions asked.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_chJcDP": {
+          "type": "icon",
+          "settings": {
+            "column_width": 25,
+            "icon_name": "icon-heart",
+            "icon_size": 30,
+            "icon_alignment": "icon--top",
+            "icon_color": "",
+            "title": "Craftsmanship Guarantee",
+            "heading_font_size": "heading-small",
+            "text": "<p>Every piece is backed by a lifetime craftsmanship guarantee.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "icon_D3Fd7A",
+        "icon_cxCGhy",
+        "icon_pc9egM",
+        "icon_chJcDP"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "heading_font_size": "heading-medium",
+        "description": "",
+        "align_heading": "text-center",
+        "align_text": "text-center",
+        "width": "wrapper",
+        "align_columns": "flex-align-top",
+        "layout_mobile": "2",
+        "color_scheme": "scheme-3",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    },
+    "section_sidebar_FFdyeB": {
+      "type": "section-sidebar",
+      "blocks": {
+        "header_GfLd38": {
+          "type": "header",
+          "settings": {
+            "title": "Frequently Asked Questions"
+          }
+        },
+        "accordion_nAacDB": {
+          "type": "accordion",
+          "settings": {
+            "title": "How can i reach you?",
+            "content": "<p>I'm always here to help! Whether you have a question or just want to chat about my jewelry, I'm available every day of the week.</p><p><strong>My hours:</strong></p><ul><li>Mon - Fri: 9:00 AM - 5:00 PM</li><li>Sat - Sun: 10:00 AM - 3:00 PM</li></ul><p>I'll do my best to get back to you within 48 hours but always strive to respond as quickly as I can.</p><p>Email me at: <a href=\"mailto:info@helens-gems.com\" title=\"mailto:info@helens-gems.com\">info@annies-gems.com</a></p>"
+          }
+        },
+        "accordion_mdWUYt": {
+          "type": "accordion",
+          "settings": {
+            "title": "How long do i have to return my order?",
+            "content": "<p>I want you to love your pieces as much as I loved making it. You can return your order within 30 days of receiving it.</p>"
+          }
+        },
+        "accordion_EJEejy": {
+          "type": "accordion",
+          "settings": {
+            "title": "How is your jewelry made?",
+            "content": "<p>Yes. My jewelry is crafted with high-quality materials and is designed to last.</p><p>On top of that, my stainless steel pieces are 100% waterproof and will never tarnish or lose their color, even with frequent water contact.</p>"
+          }
+        },
+        "accordion_YXxJxe": {
+          "type": "accordion",
+          "settings": {
+            "title": "Is your jewelry durable? Will it tarnish?",
+            "content": "<p>Yes. My jewelry is crafted with high-quality materials and is designed to last.</p><p>On top of that, my stainless steel pieces are 100% waterproof and will never tarnish or lose their color, even with frequent water contact.</p>"
+          }
+        },
+        "header_WTneYP": {
+          "type": "header",
+          "settings": {
+            "title": "Payments"
+          }
+        },
+        "accordion_R76hKU": {
+          "type": "accordion",
+          "settings": {
+            "title": "Which payment methods do you accept?",
+            "content": "<p>I've made it simple and secure. My store takes American Express, Mastercard, Visa, Apple Pay, Google Pay, Shop Pay, PayPal, and Afterpay.</p>"
+          }
+        },
+        "text_dY7Nkz": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Still have questions? We're happy to help! Please email us at info@annies-gems.com and we will get back to you within 24 hours.</p>"
+          }
+        },
+        "header_TaeeM9": {
+          "type": "header",
+          "settings": {
+            "title": "Shipping"
+          }
+        },
+        "accordion_cGg84r": {
+          "type": "accordion",
+          "settings": {
+            "title": "Do you offer free shipping?",
+            "content": "<p>Yes, I'm happy to offer FREE shipping across the country! Once your jewelry is on its way, I'll send you a tracking number so you can follow its journey from my hands to yours.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "header_GfLd38",
+        "accordion_nAacDB",
+        "accordion_mdWUYt",
+        "accordion_EJEejy",
+        "accordion_YXxJxe",
+        "header_WTneYP",
+        "accordion_R76hKU",
+        "text_dY7Nkz",
+        "header_TaeeM9",
+        "accordion_cGg84r"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading_font_size": "heading-small",
+        "width": "wrapper",
+        "color_scheme": "",
+        "padding_top": 74,
+        "padding_bottom": 74
       }
     }
   },
   "order": [
-    "bundle_builder"
+    "main",
+    "section_double_nWNXec",
+    "section_double_FJF8rU",
+    "section_multicolumn_nAbfiV",
+    "section_press_logos_WwXrdD",
+    "bundle_builder",
+    "section_multicolumn_eqFPgc",
+    "section_sidebar_FFdyeB"
   ]
 }
