@@ -376,12 +376,23 @@
             "featured_image": "shopify://shop_images/review3.webp",
             "review_url": ""
           }
+        },
+        "review_cKyD9x": {
+          "type": "review",
+          "settings": {
+            "title": "Amanda F.",
+            "subheading": "VERIFIED CUSTOMER",
+            "review_content": "<p>I love my new earrings from Annie's Gems. The creativity shines through everything they do, from the jewelry designs to the packaging and the handwritten note I received with my order. Thank you so much, I'll definitely be back.</p>",
+            "featured_image": "shopify://shop_images/review4.webp",
+            "review_url": ""
+          }
         }
       },
       "block_order": [
         "review_eFJPzh",
         "review_tGVGVG",
-        "review_yR34gi"
+        "review_yR34gi",
+        "review_cKyD9x"
       ],
       "settings": {
         "show_featured_image": true,
