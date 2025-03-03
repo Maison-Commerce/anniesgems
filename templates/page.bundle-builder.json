@@ -32,7 +32,7 @@
         "heading_FTmCte": {
           "type": "heading",
           "settings": {
-            "title": "Our Biggest Bundle Deal Ever!",
+            "title": "<span style=\"color:#AE232D;font-weight:600\">Our Biggest Bundle Deal Ever!</span>",
             "heading_font_size": "heading-small",
             "padding_bottom": 16,
             "heading_tag": "automatic"
