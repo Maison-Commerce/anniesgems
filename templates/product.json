@@ -122,12 +122,12 @@
           "settings": {
             "first_sub_heading": "Buy More & Save",
             "first_main_heading": "Get up to 30% discount",
-            "first_description": "Add 2 items to your cart and get 20% OFF\nAdd 3 items to your cart and get 25% OFF\nAdd 4 items to your cart and get 30% OFF",
+            "first_description": "<p>Add <b>2 items</b> to your cart and get <b>20% OFF</b></p>\n<p>Add <b>3 items</b> to your cart and get <b>25% OFF</b></p>\n<p>Add <b>4 items</b> to your cart and get <b>30% OFF</b></p>",
             "first_small_text": "Automatic discount. No code required.",
-            "second_sub_heading": "FREE GIFT BOX",
-            "second_main_heading": "Add 4 items and get 30% off",
-            "second_description": "Select any four  pieces from our artisan collection and get an extra 20% off.",
-            "second_small_text": "Add 4 to your cart. No code required.",
+            "second_sub_heading": "",
+            "second_main_heading": "",
+            "second_description": "",
+            "second_small_text": "",
             "padding_top": 90,
             "padding_bottom": 37
           }
