@@ -386,10 +386,56 @@
         "layout": "grid",
         "grid": 4,
         "layout_mobile": "2",
-        "color_scheme": "scheme-11",
+        "color_scheme": "scheme-1",
         "padding_top": 50,
         "padding_bottom": 50,
         "heading_tag": "automatic"
+      }
+    },
+    "section_double_VNRQ9b": {
+      "type": "section-double",
+      "blocks": {
+        "heading_rNRWT7": {
+          "type": "heading",
+          "settings": {
+            "title": "Elegantly Packaged, Ready to Cherish",
+            "heading_font_size": "heading-large",
+            "padding_bottom": 16,
+            "heading_tag": "automatic"
+          }
+        },
+        "text_MxrRqE": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every piece from Annie’s Gems arrives beautifully nestled in our signature packaging—designed to reflect the timeless elegance of the jewelry inside.</p><p>Whether it's a cherished gift for a loved one or a special treat for yourself, our luxurious boxes add a touch of sophistication, making every unboxing a delightful experience.</p><p>Because every treasure deserves to be wrapped in beauty.</p>",
+            "text_font_size": "body-medium",
+            "padding_bottom": 16
+          }
+        },
+        "usps_PLCzhw": {
+          "type": "usps",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_rNRWT7",
+        "text_MxrRqE",
+        "usps_PLCzhw"
+      ],
+      "settings": {
+        "class": "",
+        "image_1": "shopify://shop_images/anniesgems-bundle-hero.jpg",
+        "image_width": "one-half",
+        "text_alignment": "text-left",
+        "layout": "",
+        "width": "wrapper--full",
+        "height": "four-fifty-height-hero",
+        "mobile_height": "image-height--mobile",
+        "reverse_blocks": false,
+        "color_scheme": "scheme-11",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_placeholder": true
       }
     },
     "section_collection_8phdRy": {
@@ -420,6 +466,7 @@
     },
     "kopstorm_tabs_Enq3eC": {
       "type": "kopstorm-tabs",
+      "disabled": true,
       "settings": {
         "show_announcement": true,
         "padding-top-desktop": 25,
@@ -455,6 +502,7 @@
         "heading_xdUydd",
         "buttons_tktbEM"
       ],
+      "disabled": true,
       "settings": {
         "end_date": "2025-12-31",
         "end_time": "11:59",
@@ -501,6 +549,7 @@
         "heading_hHgcdg",
         "text_xj8ePT"
       ],
+      "disabled": true,
       "settings": {
         "align_text": "text-center",
         "width": "wrapper",
@@ -562,6 +611,7 @@
         "icon_FmXcQP",
         "icon_cbViUr"
       ],
+      "disabled": true,
       "settings": {
         "title": "",
         "heading_font_size": "heading-medium",
@@ -687,6 +737,7 @@
         "post_mypK4V",
         "post_8rdfcT"
       ],
+      "disabled": true,
       "settings": {
         "padding-top-desktop": 75,
         "padding-bottom-desktop": 100,
@@ -728,6 +779,7 @@
     "main",
     "related",
     "section_text_row_HUBMRx",
+    "section_double_VNRQ9b",
     "section_collection_8phdRy",
     "kopstorm_tabs_Enq3eC",
     "section_countdown_timer_FXUnHD",
