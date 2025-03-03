@@ -73,6 +73,10 @@
             "show_arrow": true,
             "padding_bottom": 16
           }
+        },
+        "usps_qBYdWi": {
+          "type": "usps",
+          "settings": {}
         }
       },
       "block_order": [
@@ -80,7 +84,8 @@
         "divider_Q43XjB",
         "heading_UVVFfg",
         "text_ny46xw",
-        "buttons_VjJcJp"
+        "buttons_VjJcJp",
+        "usps_qBYdWi"
       ],
       "settings": {
         "class": "",
@@ -222,6 +227,7 @@
         },
         "usps_gdywjq": {
           "type": "usps",
+          "disabled": true,
           "settings": {}
         }
       },
@@ -264,7 +270,7 @@
             "icon_color": "#551116",
             "title": "Free Worldwide Shipping",
             "heading_font_size": "heading-small",
-            "text": "<p>We offer free worldwide shipping on all orders, including all duties & taxes.</p>",
+            "text": "",
             "text_font_size": "body-medium",
             "heading_tag": "automatic"
           }
@@ -279,7 +285,7 @@
             "icon_color": "#551116",
             "title": "Lifetime Color Warranty",
             "heading_font_size": "heading-small",
-            "text": "<p>We promise the color stays in perfect condition for life. Otherwise we'll send you a replacement for free.</p>",
+            "text": "",
             "text_font_size": "body-medium",
             "heading_tag": "automatic"
           }
@@ -294,7 +300,7 @@
             "icon_color": "#551116",
             "title": "Unique Design",
             "heading_font_size": "heading-small",
-            "text": "<p>Made to elevate any look, from casual days to special occasions.</p>",
+            "text": "",
             "text_font_size": "body-medium",
             "heading_tag": "automatic"
           }
@@ -309,7 +315,7 @@
             "icon_color": "#551116",
             "title": "30-Day Returns",
             "heading_font_size": "heading-small",
-            "text": "<p>We offer hassle-free returns or exchanges for every order. No questions asked.</p>",
+            "text": "",
             "text_font_size": "body-medium",
             "heading_tag": "automatic"
           }
@@ -331,7 +337,7 @@
         "align_text": "text-center",
         "width": "wrapper--full-padded",
         "align_columns": "flex-align-center",
-        "layout_mobile": "slider",
+        "layout_mobile": "2",
         "color_scheme": "scheme-1",
         "padding_top": 50,
         "padding_bottom": 50,
