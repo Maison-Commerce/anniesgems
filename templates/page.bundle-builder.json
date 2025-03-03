@@ -29,11 +29,13 @@
     "section_double_nWNXec": {
       "type": "section-double",
       "blocks": {
-        "subheading_HGaVLg": {
-          "type": "subheading",
+        "heading_FTmCte": {
+          "type": "heading",
           "settings": {
-            "subheading": "LOVED BY 10,000+ CUSTOMERS",
-            "padding_bottom": 16
+            "title": "<span style=\"color:#AE232D;font-weight:600\">Our Biggest Bundle Deal Ever!</span>",
+            "heading_font_size": "heading-small",
+            "padding_bottom": 16,
+            "heading_tag": "automatic"
           }
         },
         "heading_UVVFfg": {
@@ -67,7 +69,7 @@
         }
       },
       "block_order": [
-        "subheading_HGaVLg",
+        "heading_FTmCte",
         "heading_UVVFfg",
         "text_ny46xw",
         "buttons_VjJcJp"
@@ -75,12 +77,12 @@
       "settings": {
         "class": "",
         "image_width": "one-half",
-        "text_alignment": "text-left",
+        "text_alignment": "text-center",
         "layout": "",
         "width": "wrapper--full",
         "height": "five-fifty-height-hero",
         "mobile_height": "four-fifty-height-hero--mobile",
-        "reverse_blocks": false,
+        "reverse_blocks": true,
         "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0,
