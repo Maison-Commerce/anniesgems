@@ -86,7 +86,7 @@
           "type": "popup",
           "settings": {
             "title": "Free Worldwide Shipping",
-            "text": "<p>Annie's Gems is offering <strong>free worldwide shipping</strong> including import duties & taxes.</p><p>You'll receive a tracking link after we've processed your order, which usually takes up to <strong>1 business day.</strong></p><p>You can expect your beautiful new pieces to arrive within <strong>5 to 8 business days.</strong></p><p>For exact delivery times, please visit our <a href=\"/\" target=\"_blank\" title=\"/\">Shipping Information</a> page.</p>",
+            "text": "<p>Annie's Gems is offering <strong>free worldwide shipping</strong> including import duties & taxes.</p><p>You'll receive a tracking link after we've processed your order, which usually takes up to <strong>1 business day.</strong></p><p>You can expect your beautiful new pieces to arrive within <strong>5 to 8 business days.</strong></p><p>For exact delivery times, please visit our <a href=\"/pages/shipping-information\" target=\"_blank\" title=\"Shipping Information\">Shipping Information</a> page.</p>",
             "page": "",
             "icon_name": "icon-truck",
             "icon_size": 25,
@@ -151,6 +151,7 @@
         },
         "trustpilot_4JtJGc": {
           "type": "trustpilot",
+          "disabled": true,
           "settings": {
             "padding_bottom": 24
           }
