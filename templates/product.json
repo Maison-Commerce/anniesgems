@@ -152,24 +152,6 @@
             "padding_bottom": 37
           }
         },
-        "tabs": {
-          "type": "tab_richtext",
-          "settings": {
-            "show_description": true,
-            "show_read_more": false,
-            "title_1": "Tab",
-            "raw_content_1": "<p>This content type will accept <strong>rich text</strong> to help with adding styles and links to additional pages or content. Use this to add supplementary information to help your buyers.</p>",
-            "title_2": "Info",
-            "raw_content_2": "<p>You can use product metafields to assign content to this tab that is unique to an individual product.  Use tabs to highlight unique features, sizing information, or other sales information.</p>",
-            "title_3": "",
-            "raw_content_3": "",
-            "title_4": "",
-            "raw_content_4": "",
-            "title_5": "",
-            "raw_content_5": "",
-            "padding_bottom": 0
-          }
-        },
         "trustpilot_4JtJGc": {
           "type": "trustpilot",
           "disabled": true,
@@ -178,6 +160,18 @@
           }
         },
         "accordion_ERi73i": {
+          "type": "accordion",
+          "settings": {
+            "icon": "shopify://shop_images/diamond_5.svg",
+            "show_description": true,
+            "show_read_more": false,
+            "default_open": false,
+            "heading": "Details",
+            "text": "",
+            "padding_bottom": 0
+          }
+        },
+        "accordion_ib6YHt": {
           "type": "accordion",
           "settings": {
             "icon": "shopify://shop_images/delivery-truck_20.svg",
@@ -211,18 +205,6 @@
             "heading": "Size Guide",
             "text": "<p>This content type will accept <strong>rich text</strong> to help with adding styles and links to additional pages or content. Use this to add supplementary information to help your buyers.</p>",
             "padding_bottom": 0
-          }
-        },
-        "accordion_wLKjPE": {
-          "type": "accordion",
-          "settings": {
-            "icon": "shopify://shop_images/diamond_5.svg",
-            "show_description": false,
-            "show_read_more": true,
-            "default_open": false,
-            "heading": "Materials",
-            "text": "{{ product.metafields.custom.materials | metafield_tag }}<p>Dit is gekoppeld aan metafields (je kan deze tekst verwijderen)</p>",
-            "padding_bottom": 26
           }
         },
         "gift_selector_PTLJhm": {
@@ -275,12 +257,11 @@
         "code_bDiYKH",
         "features_mPbcGN",
         "offer_xwgGYD",
-        "tabs",
         "trustpilot_4JtJGc",
         "accordion_ERi73i",
+        "accordion_ib6YHt",
         "accordion_xaR3hm",
         "accordion_aXTtpP",
-        "accordion_wLKjPE",
         "gift_selector_PTLJhm",
         "text_eX3cgE",
         "text_Hk7Y6E"
