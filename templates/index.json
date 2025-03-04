@@ -168,21 +168,35 @@
         "collection_qU8UXL": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "rings",
             "title": ""
           }
         },
         "collection_7VkJbm": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "earrings",
             "title": ""
           }
         },
         "collection_fFENFB": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "necklaces",
+            "title": ""
+          }
+        },
+        "collection_7zCbj7": {
+          "type": "collection",
+          "settings": {
+            "collection": "bracelets",
+            "title": ""
+          }
+        },
+        "collection_xwAERg": {
+          "type": "collection",
+          "settings": {
+            "collection": "bracelets",
             "title": ""
           }
         }
@@ -191,7 +205,9 @@
         "collection_Mr6rej",
         "collection_qU8UXL",
         "collection_7VkJbm",
-        "collection_fFENFB"
+        "collection_fFENFB",
+        "collection_7zCbj7",
+        "collection_xwAERg"
       ],
       "settings": {
         "title": "Collection list",
