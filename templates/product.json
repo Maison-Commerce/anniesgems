@@ -117,6 +117,13 @@
             "padding_bottom": 16
           }
         },
+        "code_bDiYKH": {
+          "type": "code",
+          "settings": {
+            "code": "<p id=\"locationinfop\"></p>",
+            "padding_bottom": 16
+          }
+        },
         "features_mPbcGN": {
           "type": "features",
           "settings": {
@@ -265,6 +272,7 @@
         "icon_2",
         "variants",
         "buttons",
+        "code_bDiYKH",
         "features_mPbcGN",
         "offer_xwgGYD",
         "tabs",
