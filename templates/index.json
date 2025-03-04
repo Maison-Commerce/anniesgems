@@ -412,93 +412,6 @@
         "instagram_url": ""
       }
     },
-    "section_multicolumn_eqFPgc": {
-      "type": "section-multicolumn",
-      "blocks": {
-        "icon_D3Fd7A": {
-          "type": "icon",
-          "settings": {
-            "column_width": 25,
-            "icon_name": "icon-gift",
-            "icon_size": 30,
-            "icon_alignment": "icon--top",
-            "icon_color": "",
-            "title": "Premium signature packaging",
-            "heading_font_size": "heading-small",
-            "text": "<p>All our jewelry are beautifully wrapped in oursignature APM Monaco packaging.</p>",
-            "text_font_size": "body-medium",
-            "heading_tag": "automatic"
-          }
-        },
-        "icon_cxCGhy": {
-          "type": "icon",
-          "settings": {
-            "column_width": 25,
-            "icon_name": "icon-chat",
-            "icon_size": 30,
-            "icon_alignment": "icon--top",
-            "icon_color": "",
-            "title": "24/7 dedicated customer service",
-            "heading_font_size": "heading-small",
-            "text": "<p>Our Dedicated Advisors are available 24/7 to offer support.</p>",
-            "text_font_size": "body-medium",
-            "heading_tag": "automatic"
-          }
-        },
-        "icon_pc9egM": {
-          "type": "icon",
-          "settings": {
-            "column_width": 25,
-            "icon_name": "icon-box",
-            "icon_size": 30,
-            "icon_alignment": "icon--top",
-            "icon_color": "",
-            "title": "Craftmanship guarantee",
-            "heading_font_size": "heading-small",
-            "text": "<p>Every piece is backed by a lifetimecraftsmanship guarantee.</p>",
-            "text_font_size": "body-medium",
-            "heading_tag": "automatic"
-          }
-        },
-        "icon_chJcDP": {
-          "type": "icon",
-          "settings": {
-            "column_width": 25,
-            "icon_name": "icon-recycle",
-            "icon_size": 30,
-            "icon_alignment": "icon--top",
-            "icon_color": "",
-            "title": "Complimentary 30 days exchange",
-            "heading_font_size": "heading-small",
-            "text": "<p>You can easily return or exchange your order within 30 days, no questions asked.</p>",
-            "text_font_size": "body-medium",
-            "heading_tag": "automatic"
-          }
-        }
-      },
-      "block_order": [
-        "icon_D3Fd7A",
-        "icon_cxCGhy",
-        "icon_pc9egM",
-        "icon_chJcDP"
-      ],
-      "settings": {
-        "customclass": "",
-        "title": "",
-        "subheading": "Keep your piece beautiful for generations with these essential care guidelines",
-        "heading_font_size": "heading-medium",
-        "description": "",
-        "align_heading": "text-center",
-        "align_text": "text-center",
-        "width": "wrapper",
-        "align_columns": "flex-align-top",
-        "layout_mobile": "2",
-        "color_scheme": "scheme-1",
-        "padding_top": 0,
-        "padding_bottom": 50,
-        "heading_tag": "automatic"
-      }
-    },
     "ss_testimonial_12_4cCPxj": {
       "type": "ss-testimonial-12",
       "blocks": {
@@ -697,7 +610,6 @@
     "section_double_RtFGP6",
     "section_double_T8xN3N",
     "kopstorm_instagram_tNcPTj",
-    "section_multicolumn_eqFPgc",
     "ss_testimonial_12_4cCPxj"
   ]
 }
