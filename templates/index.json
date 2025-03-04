@@ -76,7 +76,7 @@
         "logo_item_header_pyTbp6": {
           "type": "logo-item-header",
           "settings": {
-            "logo": "shopify://shop_images/featured-logo-01.svg_fill.svg",
+            "logo": "shopify://shop_images/Marie_Claire_Magazine_logo.svg",
             "logo_width": 100,
             "link": "",
             "text": "",
@@ -86,7 +86,7 @@
         "logo_item_header_nWTr6X": {
           "type": "logo-item-header",
           "settings": {
-            "logo": "shopify://shop_images/Item_featured-logo-02_svg.svg",
+            "logo": "shopify://shop_images/Tatler_logo.svg",
             "logo_width": 100,
             "link": "",
             "text": "",
@@ -96,7 +96,7 @@
         "logo_item_header_Kh634F": {
           "type": "logo-item-header",
           "settings": {
-            "logo": "shopify://shop_images/Item_featured-logo-03_svg.svg",
+            "logo": "shopify://shop_images/ELLE_Magazine_Logo.svg",
             "logo_width": 100,
             "link": "",
             "text": "",
@@ -106,7 +106,7 @@
         "logo_item_header_hQayfi": {
           "type": "logo-item-header",
           "settings": {
-            "logo": "shopify://shop_images/Item_featured-logo-04_svg.svg",
+            "logo": "shopify://shop_images/VOGUE_LOGO.svg",
             "logo_width": 100,
             "link": "",
             "text": "",
