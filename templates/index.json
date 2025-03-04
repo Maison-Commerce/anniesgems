@@ -236,7 +236,7 @@
         "heading_p8Mek8": {
           "type": "heading",
           "settings": {
-            "title": "Welcome to our shop",
+            "title": "Welcome to Annie's Gems",
             "heading_font_size": "heading-medium",
             "padding_bottom": 16,
             "heading_tag": "automatic"
@@ -245,7 +245,7 @@
         "text_iFMq7i": {
           "type": "text",
           "settings": {
-            "text": "<p>For 25 years, I've crafted each piece with devotion in my Milanesestudio. Every creation tells a story of passion, precision, and timelesselegance. Thank you for being part of this artisanal journey.</p>",
+            "text": "<p>Every creation tells a story of passion, precision, and timeless elegance. At Annie’s Gems, we craft artisan-made jewelry that celebrates individuality and artistry.</p><p>Each piece is thoughtfully designed and meticulously crafted, ensuring that no two are ever the same, because true beauty is found in uniqueness.</p>",
             "text_font_size": "body-medium",
             "padding_bottom": 16
           }
@@ -254,7 +254,7 @@
           "type": "buttons",
           "settings": {
             "button_text": "LEARN MORE",
-            "button_url": "",
+            "button_url": "shopify://pages/our-story",
             "button_type": "btn--white",
             "button_size": "",
             "button_style": "btn--outline",
@@ -276,7 +276,7 @@
         "layout": "is-reversed",
         "width": "wrapper--full",
         "height": "four-fifty-height-hero",
-        "mobile_height": "screen-height-one-half--mobile",
+        "mobile_height": "image-height--mobile",
         "reverse_blocks": false,
         "color_scheme": "scheme-2",
         "padding_top": 0,
