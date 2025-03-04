@@ -107,7 +107,7 @@
         "buttons": {
           "type": "buttons",
           "settings": {
-            "show_quantity": false,
+            "show_quantity": true,
             "button_type": "btn--primary",
             "button_style": "btn--solid",
             "show_payment_button": false,
