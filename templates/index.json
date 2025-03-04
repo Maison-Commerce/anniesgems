@@ -214,130 +214,6 @@
         "heading_tag": "automatic"
       }
     },
-    "section_tab_collections_XnrDq7": {
-      "type": "section-tab-collections",
-      "blocks": {
-        "collection_Tk4Wxi": {
-          "type": "collection",
-          "settings": {
-            "title": "Best Sellers",
-            "featured_collection": "best-sellers",
-            "show_image": true,
-            "align_with_product_images": false,
-            "overlay_opacity": 0,
-            "overlay_color": "",
-            "description": "",
-            "color": "",
-            "link_text": "View products",
-            "link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--outline",
-            "show_arrow": false
-          }
-        },
-        "collection_e9NbeA": {
-          "type": "collection",
-          "settings": {
-            "title": "Rings",
-            "featured_collection": "frontpage",
-            "show_image": false,
-            "align_with_product_images": false,
-            "overlay_opacity": 0,
-            "overlay_color": "",
-            "description": "",
-            "color": "",
-            "link_text": "View products",
-            "link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--outline",
-            "show_arrow": false
-          }
-        },
-        "collection_ibkpmW": {
-          "type": "collection",
-          "settings": {
-            "title": "Necklaces",
-            "featured_collection": "frontpage",
-            "show_image": false,
-            "align_with_product_images": false,
-            "overlay_opacity": 0,
-            "overlay_color": "",
-            "description": "",
-            "color": "",
-            "link_text": "View products",
-            "link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--outline",
-            "show_arrow": false
-          }
-        },
-        "collection_gXaUww": {
-          "type": "collection",
-          "settings": {
-            "title": "Bracelets",
-            "featured_collection": "frontpage",
-            "show_image": false,
-            "align_with_product_images": false,
-            "overlay_opacity": 0,
-            "overlay_color": "",
-            "description": "",
-            "color": "",
-            "link_text": "View products",
-            "link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--outline",
-            "show_arrow": false
-          }
-        },
-        "collection_GqBwyt": {
-          "type": "collection",
-          "settings": {
-            "title": "Earrings",
-            "featured_collection": "frontpage",
-            "show_image": false,
-            "align_with_product_images": false,
-            "overlay_opacity": 0,
-            "overlay_color": "",
-            "description": "",
-            "color": "",
-            "link_text": "View products",
-            "link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--outline",
-            "show_arrow": false
-          }
-        }
-      },
-      "block_order": [
-        "collection_Tk4Wxi",
-        "collection_e9NbeA",
-        "collection_ibkpmW",
-        "collection_gXaUww",
-        "collection_GqBwyt"
-      ],
-      "settings": {
-        "show_product_count": false,
-        "title": "Explore Our Collections",
-        "heading_font_size": "heading-medium",
-        "text": "<p>Each piece is meticulously crafted in our Milanese atelier, combining traditional techniqueswith contemporary design</p>",
-        "text_font_size": "body-medium",
-        "layout": "stacked",
-        "layout_desktop": "slider",
-        "layout_mobile": "slider",
-        "product_limit": 6,
-        "grid": 4,
-        "rows": 3,
-        "color_scheme": "",
-        "padding_top": 32,
-        "padding_bottom": 32,
-        "heading_tag": "automatic"
-      }
-    },
     "section_double_RtFGP6": {
       "type": "section-double",
       "blocks": {
@@ -390,61 +266,6 @@
         "padding_top": 0,
         "padding_bottom": 0,
         "show_placeholder": true
-      }
-    },
-    "section_multicolumn_cUyFTt": {
-      "type": "section-multicolumn",
-      "blocks": {
-        "icon_7dfEGk": {
-          "type": "icon",
-          "settings": {
-            "column_width": 33,
-            "icon_name": "icon-shield",
-            "icon_size": 20,
-            "icon_alignment": "icon--top",
-            "icon_color": "",
-            "title": "Curated Collection",
-            "heading_font_size": "heading-x-small",
-            "text": "<h4>Pair & Save 20%</h4><p>Select any two pieces from our artisan collection andreceive a complimentary gift box</p><p>Valid on selected items</p>",
-            "text_font_size": "body-small",
-            "heading_tag": "automatic"
-          }
-        },
-        "icon_gR4DW7": {
-          "type": "icon",
-          "settings": {
-            "column_width": 33,
-            "icon_name": "icon-shield",
-            "icon_size": 20,
-            "icon_alignment": "icon--top",
-            "icon_color": "",
-            "title": "Limited Edition",
-            "heading_font_size": "heading-x-small",
-            "text": "<h4>Set of Three 30%</h4><p>Create your perfect collection with three pieces andenjoy preferred pricing</p><p><em>While stocks last</em></p>",
-            "text_font_size": "body-small",
-            "heading_tag": "automatic"
-          }
-        }
-      },
-      "block_order": [
-        "icon_7dfEGk",
-        "icon_gR4DW7"
-      ],
-      "settings": {
-        "customclass": "kopstorm-columns",
-        "title": "Special Collections",
-        "subheading": "",
-        "heading_font_size": "heading-medium",
-        "description": "",
-        "align_heading": "text-center",
-        "align_text": "text-center",
-        "width": "wrapper--full-padded",
-        "align_columns": "flex-align-top",
-        "layout_mobile": "1",
-        "color_scheme": "scheme-1",
-        "padding_top": 50,
-        "padding_bottom": 50,
-        "heading_tag": "automatic"
       }
     },
     "section_double_T8xN3N": {
@@ -667,9 +488,7 @@
     "section_press_logos_pJGpQF",
     "section_collection_pnGxgp",
     "section_collections_list_nPNqeg",
-    "section_tab_collections_XnrDq7",
     "section_double_RtFGP6",
-    "section_multicolumn_cUyFTt",
     "section_double_T8xN3N",
     "kopstorm_instagram_tNcPTj",
     "section_multicolumn_eqFPgc"
