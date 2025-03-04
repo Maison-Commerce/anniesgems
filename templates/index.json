@@ -290,14 +290,14 @@
         "subheading_QUepQA": {
           "type": "subheading",
           "settings": {
-            "subheading": "Holiday Preview",
+            "subheading": "SALE ENDS SOON",
             "padding_bottom": 16
           }
         },
         "heading_f8JXnX": {
           "type": "heading",
           "settings": {
-            "title": "Artisanal Holiday Collection",
+            "title": "Artisanal Bundle Collection",
             "heading_font_size": "heading-medium",
             "padding_bottom": 16,
             "heading_tag": "automatic"
@@ -306,7 +306,7 @@
         "text_6p8EhL": {
           "type": "text",
           "settings": {
-            "text": "<p>Experience the magic of the season with our limited editionpieces, each handcrafted to capture the enchanting spirit ofthe holidays.</p>",
+            "text": "<p>For a short time, select <strong>five handcrafted pieces</strong> for just <strong>$59.99</strong>—a stunning <strong>70% off</strong>. Thoughtfully designed and artisan-made, these timeless treasures are perfect for any occasion. Build your bundle today before this offer ends!</p>",
             "text_font_size": "body-medium",
             "padding_bottom": 16
           }
@@ -318,10 +318,10 @@
         "buttons_XkPaVf": {
           "type": "buttons",
           "settings": {
-            "button_text": "Explore Collection",
-            "button_url": "",
+            "button_text": "BUILD MY BUNDLE",
+            "button_url": "shopify://pages/bundle-any-5-pieces-70-off",
             "button_type": "btn--primary",
-            "button_size": "",
+            "button_size": "btn--large",
             "button_style": "btn--solid",
             "show_arrow": false,
             "padding_bottom": 16
@@ -330,7 +330,7 @@
         "subheading_nK3TCF": {
           "type": "subheading",
           "settings": {
-            "subheading": "Valid until December 24th. While stocks last.",
+            "subheading": "Offer valid while stocks last",
             "padding_bottom": 16
           }
         }
@@ -351,7 +351,7 @@
         "layout": "",
         "width": "wrapper--full",
         "height": "four-fifty-height-hero",
-        "mobile_height": "screen-height-one-half--mobile",
+        "mobile_height": "image-height--mobile",
         "reverse_blocks": false,
         "color_scheme": "scheme-11",
         "padding_top": 0,
