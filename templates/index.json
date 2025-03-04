@@ -142,7 +142,7 @@
         "link_url": "",
         "button_type": "btn--primary",
         "button_size": "",
-        "button_style": "btn--outline",
+        "button_style": "btn--solid",
         "show_arrow": true,
         "layout_desktop": "slider",
         "grid": 4,
@@ -152,6 +152,65 @@
         "color_scheme": "",
         "padding_top": 50,
         "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    },
+    "section_collections_list_nPNqeg": {
+      "type": "section-collections-list",
+      "blocks": {
+        "collection_Mr6rej": {
+          "type": "collection",
+          "settings": {
+            "collection": "best-sellers",
+            "title": ""
+          }
+        },
+        "collection_qU8UXL": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        },
+        "collection_7VkJbm": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        },
+        "collection_fFENFB": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_Mr6rej",
+        "collection_qU8UXL",
+        "collection_7VkJbm",
+        "collection_fFENFB"
+      ],
+      "settings": {
+        "title": "Collection list",
+        "heading_font_size": "heading-medium",
+        "description": "",
+        "text_font_size": "body-medium",
+        "button_text": "",
+        "button_url": "shopify://collections",
+        "button_type": "btn--primary",
+        "button_size": "",
+        "button_style": "btn--solid",
+        "show_arrow": false,
+        "aspect_ratio": 1,
+        "layout": "grid",
+        "grid": 4,
+        "layout_mobile": "slider",
+        "color_scheme": "",
+        "padding_top": 32,
+        "padding_bottom": 32,
         "heading_tag": "automatic"
       }
     },
@@ -261,7 +320,6 @@
         "collection_gXaUww",
         "collection_GqBwyt"
       ],
-      "disabled": true,
       "settings": {
         "show_product_count": false,
         "title": "Explore Our Collections",
@@ -608,6 +666,7 @@
     "hero",
     "section_press_logos_pJGpQF",
     "section_collection_pnGxgp",
+    "section_collections_list_nPNqeg",
     "section_tab_collections_XnrDq7",
     "section_double_RtFGP6",
     "section_multicolumn_cUyFTt",
