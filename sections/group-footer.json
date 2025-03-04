@@ -1,1 +1,99 @@
-{"type":"footer","name":"Footer","sections":{"footer":{"type":"footer","blocks":{"footer-1":{"type":"linklist","settings":{"logo":true,"linklist":"home","title":"","heading_font_size":"heading-x-small","column_width":13,"enable_accordion":false}},"linklist_Ycj9zB":{"type":"linklist","settings":{"logo":false,"linklist":"information","title":"","heading_font_size":"heading-x-small","column_width":13,"enable_accordion":false}},"linklist_BQQBQP":{"type":"linklist","settings":{"logo":false,"linklist":"legal","title":"","heading_font_size":"heading-x-small","column_width":13,"enable_accordion":false}},"text_kMkMPe":{"type":"text","settings":{"image_width":150,"title":"Get in touch","heading_font_size":"heading-small","text":"<p><strong>24\/7 Customer Support:<\/strong><\/p><p>support@anniesgems.com<\/p><p><strong>Phone number: <\/strong>+1<strong> <\/strong>(435) 264-9302<\/p>","column_width":25,"enable_accordion":false}},"footer-0":{"type":"newsletter","settings":{"title":"Newsletter","heading_font_size":"heading-medium","text":"<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.<\/p>","show_name":true,"button_text":"Join","show_arrow":false,"terms":true,"button_type":"btn--white","button_size":"","button_style":"btn--solid","show_social_links":true,"column_width":25}}},"block_order":["footer-1","linklist_Ycj9zB","linklist_BQQBQP","text_kMkMPe","footer-0"],"settings":{"logo":"shopify:\/\/shop_images\/anniesgems-white.svg","logo_image_width":165,"color_scheme":"scheme-2","border_color":"#ffffff","padding_top":30,"padding_bottom":30}}},"order":["footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer-1": {
+          "type": "linklist",
+          "settings": {
+            "logo": true,
+            "linklist": "home",
+            "title": "",
+            "heading_font_size": "heading-x-small",
+            "column_width": 13,
+            "enable_accordion": false
+          }
+        },
+        "linklist_Ycj9zB": {
+          "type": "linklist",
+          "settings": {
+            "logo": false,
+            "linklist": "information",
+            "title": "",
+            "heading_font_size": "heading-x-small",
+            "column_width": 13,
+            "enable_accordion": false
+          }
+        },
+        "linklist_BQQBQP": {
+          "type": "linklist",
+          "settings": {
+            "logo": false,
+            "linklist": "policies",
+            "title": "",
+            "heading_font_size": "heading-x-small",
+            "column_width": 13,
+            "enable_accordion": false
+          }
+        },
+        "text_kMkMPe": {
+          "type": "text",
+          "settings": {
+            "image_width": 150,
+            "title": "Get in touch",
+            "heading_font_size": "heading-small",
+            "text": "<p><strong>24/7 Customer Support:</strong></p><p>support@anniesgems.com</p><p><strong>Phone number: </strong>+1<strong> </strong>(435) 264-9302</p>",
+            "column_width": 25,
+            "enable_accordion": false
+          }
+        },
+        "footer-0": {
+          "type": "newsletter",
+          "settings": {
+            "title": "Newsletter",
+            "heading_font_size": "heading-medium",
+            "text": "<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>",
+            "show_name": true,
+            "button_text": "Join",
+            "show_arrow": false,
+            "terms": true,
+            "button_type": "btn--white",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_social_links": true,
+            "column_width": 25
+          }
+        }
+      },
+      "block_order": [
+        "footer-1",
+        "linklist_Ycj9zB",
+        "linklist_BQQBQP",
+        "text_kMkMPe",
+        "footer-0"
+      ],
+      "settings": {
+        "logo": "shopify://shop_images/anniesgems-white.svg",
+        "logo_image_width": 165,
+        "color_scheme": "scheme-2",
+        "border_color": "#ffffff",
+        "padding_top": 30,
+        "padding_bottom": 30
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}
