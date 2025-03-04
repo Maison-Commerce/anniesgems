@@ -506,16 +506,82 @@
           "type": "slide",
           "settings": {
             "media_style": "image",
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "image": "shopify://shop_images/review1.webp",
+            "video_url": "",
             "controls": false,
             "stars_count": 5,
-            "text": "<p>Love them, they give the perfect luxury touch to any room</p>",
-            "author": "<p><strong>@allfinds</strong></p>"
+            "text": "<p>\"Annie's jewelry has been part of so many milestones in my life - my wedding, my daughter's graduation, and even just little moments of self-care. Their pieces are timeless, and I'm so grateful to have them as keepsakes.\"</p>",
+            "author": "<p><strong>Sarah T.</strong></p>"
+          }
+        },
+        "slide_dVcKHC": {
+          "type": "slide",
+          "settings": {
+            "media_style": "image",
+            "image": "shopify://shop_images/review2.webp",
+            "video_url": "",
+            "controls": false,
+            "stars_count": 5,
+            "text": "<p>\"I've never found jewelry as unique and heartfelt as Annie's Gems. Every piece feels like it was made just for me. I love the items I've collected over the years.\"</p>",
+            "author": "<p><strong>Megan R.</strong></p>"
+          }
+        },
+        "slide_tPFijt": {
+          "type": "slide",
+          "settings": {
+            "media_style": "image",
+            "image": "shopify://shop_images/review3.webp",
+            "video_url": "",
+            "controls": false,
+            "stars_count": 5,
+            "text": "<p>\"Annie's Gems has always been my go-to for thoughtful gifts. The craftsmanship and love they put into every piece are unmatched!\"</p>",
+            "author": "<p><strong>Lisa M.</strong></p>"
+          }
+        },
+        "slide_EJi4gj": {
+          "type": "slide",
+          "settings": {
+            "media_style": "image",
+            "image": "shopify://shop_images/review4.webp",
+            "video_url": "",
+            "controls": false,
+            "stars_count": 5,
+            "text": "<p>\"I love my new earrings from Annie's Gems. The creativity shines through everything they do, from the jewelry designs to the packaging and the handwritten note I received with my order. Thank you so much, I'll definitely be back.\"</p>",
+            "author": "<p><strong>Amanda F.</strong></p>"
+          }
+        },
+        "slide_edjRdd": {
+          "type": "slide",
+          "settings": {
+            "media_style": "image",
+            "image": "shopify://shop_images/review5.webp",
+            "video_url": "",
+            "controls": false,
+            "stars_count": 5,
+            "text": "<p>\"Their jewelry isn't just beautiful, it tells a story.. Every time I wear their pieces I feel connected to something special. Annie's Gems has been such a treasure.\"</p>",
+            "author": "<p><strong>Rachel C.</strong></p>"
+          }
+        },
+        "slide_zw4gjL": {
+          "type": "slide",
+          "settings": {
+            "media_style": "image",
+            "image": "shopify://shop_images/review6.webp",
+            "video_url": "",
+            "controls": false,
+            "stars_count": 5,
+            "text": "<p>\"Every time I wear Annie's jewelry, someone compliments it and asks 'Where did you get that?'. Of course I always refer them!!\"</p>",
+            "author": "<p><strong>Olivia S.</strong></p>"
           }
         }
       },
       "block_order": [
-        "slide_7dDamw"
+        "slide_7dDamw",
+        "slide_dVcKHC",
+        "slide_tPFijt",
+        "slide_EJi4gj",
+        "slide_edjRdd",
+        "slide_zw4gjL"
       ],
       "settings": {
         "heading": "<h2>10,000+ Customers</h2><h2>Love Our Craftsmanship</h2>",
