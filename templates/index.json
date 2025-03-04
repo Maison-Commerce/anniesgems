@@ -210,7 +210,7 @@
         "collection_xwAERg"
       ],
       "settings": {
-        "title": "Collection list",
+        "title": "",
         "heading_font_size": "heading-medium",
         "description": "",
         "text_font_size": "body-medium",
@@ -222,8 +222,8 @@
         "show_arrow": false,
         "aspect_ratio": 1,
         "layout": "grid",
-        "grid": 4,
-        "layout_mobile": "slider",
+        "grid": 3,
+        "layout_mobile": "2",
         "color_scheme": "",
         "padding_top": 32,
         "padding_bottom": 32,
