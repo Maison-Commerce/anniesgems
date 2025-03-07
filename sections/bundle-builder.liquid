@@ -1735,19 +1735,45 @@
       x-transition:leave-start="content-transition-leave-start"
       x-transition:leave-end="content-transition-leave-end"
     >
-      <button class="modal-close-button" @click="closeProductModal()">×</button>
+      <button class="modal-close-button" @click="closeProductModal()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
       <div class="product-details-image">
-        <img :src="currentProduct?.image" :alt="currentProduct?.title" width="300" height="300">
+        <div class="image-wrapper">
+          <img :src="currentProduct?.image" :alt="currentProduct?.title" width="300" height="300">
+        </div>
       </div>
+
       <div class="product-details-info">
-        <h3 class="product-details-title" x-text="currentProduct?.title"></h3>
-        <p class="product-details-price" x-text="formatMoney(currentProduct?.price)"></p>
-        <p class="product-details-variant" x-text="currentProduct?.variant_title"></p>
+        <div class="product-details-header">
+          <h3 class="product-details-title" x-text="currentProduct?.title"></h3>
+          <p class="product-details-price" x-text="formatMoney(currentProduct?.price)"></p>
+        </div>
+
+        <div class="product-details-body">
+          <div class="product-details-variant-wrapper">
+            <span class="variant-label">Variant:</span>
+            <p class="product-details-variant" x-text="currentProduct?.variant_title"></p>
+          </div>
+
+          <div class="product-details-description">
+            <p>
+              This beautiful piece will complement your style perfectly. Add it to your bundle to create a stunning
+              jewelry set.
+            </p>
+          </div>
+        </div>
+
         <div class="product-details-actions">
           <button
             class="product-details-add"
             @click="addToBundle(currentProduct); closeProductModal()"
             :disabled="selectedItems.length >= bundleSize || isProductSelected(currentProduct?.id)"
+            :class="{'already-in-bundle': isProductSelected(currentProduct?.id)}"
           >
             <span
               x-text="isProductSelected(currentProduct?.id) ? 'Already in Bundle' : (selectedItems.length >= bundleSize ? '{{ section.settings.box_full_message }}' : '{{ section.settings.add_to_bundle_text }}')"
@@ -1771,120 +1797,199 @@
       align-items: center;
       justify-content: center;
       z-index: 10001;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
 
     /* Modal background transitions */
     .modal-transition-enter {
-      transition: all 0.3s ease-out;
+      transition: all 0.4s ease-out;
     }
     .modal-transition-enter-start {
       opacity: 0;
       background-color: rgba(0, 0, 0, 0);
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
     }
     .modal-transition-enter-end {
       opacity: 1;
       background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
     .modal-transition-leave {
-      transition: all 0.2s ease-in;
+      transition: all 0.3s ease-in;
     }
     .modal-transition-leave-start {
       opacity: 1;
       background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
     .modal-transition-leave-end {
       opacity: 0;
       background-color: rgba(0, 0, 0, 0);
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
     }
 
     /* Modal content transitions */
     .content-transition-enter {
-      transition: all 0.3s ease-out;
+      transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
     }
     .content-transition-enter-start {
       opacity: 0;
-      transform: scale(0.95);
+      transform: scale(0.95) translateY(10px);
     }
     .content-transition-enter-end {
       opacity: 1;
-      transform: scale(1);
+      transform: scale(1) translateY(0);
     }
     .content-transition-leave {
-      transition: all 0.2s ease-in;
+      transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     }
     .content-transition-leave-start {
       opacity: 1;
-      transform: scale(1);
+      transform: scale(1) translateY(0);
     }
     .content-transition-leave-end {
       opacity: 0;
-      transform: scale(0.95);
+      transform: scale(0.95) translateY(10px);
     }
 
     .product-details-content {
       background: white;
-      border-radius: 8px;
-      max-width: 800px;
+      border-radius: 16px;
+      max-width: 900px;
       width: 90%;
       max-height: 90vh;
-      overflow-y: auto;
-      padding: 30px;
+      overflow: hidden;
       position: relative;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     }
 
     @media (min-width: 768px) {
       .product-details-content {
         flex-direction: row;
-        gap: 30px;
       }
     }
 
     .modal-close-button {
       position: absolute;
-      top: 15px;
-      right: 15px;
-      background: transparent;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.9);
       border: none;
-      font-size: 24px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
-      z-index: 1;
+      z-index: 2;
+      color: #333;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+    }
+
+    .modal-close-button:hover {
+      background: white;
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .product-details-image {
       flex: 1;
-      margin-bottom: 20px;
+      background: #f8f8f8;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-wrapper {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
     }
 
     .product-details-image img {
       width: 100%;
       height: auto;
-      object-fit: cover;
-      border-radius: 4px;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .product-details-image img:hover {
+      transform: scale(1.03);
     }
 
     .product-details-info {
       flex: 1;
       display: flex;
       flex-direction: column;
+      padding: 40px;
+      background: white;
+      position: relative;
+    }
+
+    .product-details-header {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 20px;
     }
 
     .product-details-title {
-      font-size: 24px;
-      margin-bottom: 10px;
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #222;
+      line-height: 1.3;
+      font-family: 'DM Sans', sans-serif;
     }
 
     .product-details-price {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 15px;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--bundle-primary-color, #000000);
+      margin-bottom: 5px;
+    }
+
+    .product-details-body {
+      flex: 1;
+      margin-bottom: 30px;
+    }
+
+    .product-details-variant-wrapper {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .variant-label {
+      display: inline-block;
+      font-weight: 600;
+      margin-right: 10px;
+      color: #555;
     }
 
     .product-details-variant {
-      margin-bottom: 20px;
       color: #666;
+      font-size: 16px;
+      display: inline-block;
+    }
+
+    .product-details-description {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      font-size: 16px;
     }
 
     .product-details-actions {
@@ -1893,23 +1998,90 @@
 
     .product-details-add {
       width: 100%;
-      padding: 12px;
+      padding: 16px;
       background: var(--bundle-add-button-color, #000000);
       color: var(--bundle-add-button-text, #ffffff);
       border: none;
       border-radius: var(--bundle-button-radius, 8px);
       cursor: pointer;
-      font-weight: 500;
-      transition: opacity 0.3s;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-details-add::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .product-details-add:hover::after {
+      opacity: 1;
     }
 
     .product-details-add:hover {
-      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-details-add:active {
+      transform: translateY(0);
     }
 
     .product-details-add:disabled {
       opacity: 0.6;
       cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .product-details-add.already-in-bundle {
+      background: #f0f0f0;
+      color: #666;
+    }
+
+    @media screen and (max-width: 768px) {
+      .product-details-content {
+        flex-direction: column;
+        max-height: 85vh;
+        overflow-y: auto;
+      }
+
+      .image-wrapper {
+        padding: 20px;
+        height: 300px;
+      }
+
+      .product-details-info {
+        padding: 25px;
+      }
+
+      .product-details-title {
+        font-size: 22px;
+      }
+
+      .product-details-price {
+        font-size: 20px;
+      }
+
+      .product-details-description {
+        font-size: 15px;
+      }
+
+      .product-details-add {
+        padding: 14px;
+        font-size: 15px;
+      }
     }
 
     /* Improved scrolling in bundle view */
@@ -1942,7 +2114,7 @@
 
     /* Remove variant label styles since we're not using them anymore */
     .variant-label {
-      display: none;
+      display: inline-block;
     }
   </style>
 </div>
