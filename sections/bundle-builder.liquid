@@ -42,6 +42,11 @@
     --bundle-secondary-button-text: {{ section.settings.secondary_button_text_color }};
   }
 
+  /* Hide elements with x-cloak until Alpine.js is ready */
+  [x-cloak] {
+    display: none !important;
+  }
+
   .bundle-builder {
     padding: 2rem;
     max-width: 1200px;
@@ -1605,6 +1610,7 @@
     class="bundle-view-button"
     @click="toggleView()"
     x-show="!isViewOpen"
+    x-cloak
   >
     {{ section.settings.view_box_text }} (<span x-text="selectedItems.length"></span>)
   </button>
@@ -1614,6 +1620,7 @@
     class="bundle-view"
     :class="{ 'active': isViewOpen }"
     x-show="isViewOpen"
+    x-cloak
     x-transition
     @click.outside="if (!$event.target.closest('.bundle-product-card')) isViewOpen = false"
   >
@@ -1710,6 +1717,7 @@
   <div
     class="product-details-modal"
     x-show="showProductModal"
+    x-cloak
     x-transition:enter="modal-transition-enter"
     x-transition:enter-start="modal-transition-enter-start"
     x-transition:enter-end="modal-transition-enter-end"
