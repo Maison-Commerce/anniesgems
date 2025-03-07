@@ -1082,9 +1082,21 @@
     font-size: 0.875rem;
     color: #374151;
     background: #f9fafb;
-    text-align: center;
+    text-align: left;
     margin-bottom: 0.5rem;
     font-family: "DM Sans", sans-serif;
+    display: block;
+    height: 45px;
+    line-height: 1.5;
+    box-sizing: border-box;
+  }
+
+  @media screen and (max-width: 768px) {
+    .variant-single {
+      font-size: 0.8rem;
+      padding: 0.5rem 0.75rem;
+      height: 40px;
+    }
   }
 
   .bundle-banner-button {
@@ -1571,7 +1583,10 @@
                   {% assign single_variant = product.variants.first %}
                   {% assign variant_title = single_variant.title | split: ' / ' | first %}
                   {% unless variant_title == 'Default Title' %}
-                    <div class="variant-single">{{ variant_title }}</div>
+                    <div class="variant-select-wrapper">
+                      <label class="variant-label">{{ product.options_with_values.first.name }}:</label>
+                      <div class="variant-single">{{ variant_title }}</div>
+                    </div>
                   {% endunless %}
                 {% endif %}
 
