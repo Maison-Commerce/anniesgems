@@ -1955,12 +1955,12 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 20px;
+          {% comment %} padding: 20px; {% endcomment %}
         }
 
         @media (min-width: 768px) {
           .image-wrapper-bundle {
-            padding: 30px;
+            {% comment %} padding: 30px; {% endcomment %}
           }
         }
 
@@ -1971,6 +1971,7 @@
           border-radius: 0;
           transition: transform 0.3s ease;
           max-height: 100%;
+          height: 100%;
         }
 
         @media (min-width: 768px) {
@@ -2125,7 +2126,7 @@
           }
 
           .image-wrapper-bundle {
-            padding: 20px;
+{% comment %}             padding: 20px; {% endcomment %}
             height: 300px;
           }
 
