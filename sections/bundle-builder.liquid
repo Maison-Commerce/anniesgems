@@ -1755,7 +1755,7 @@
         </div>
 
         <div class="product-details-body">
-          <div class="product-details-variant-wrapper">
+          <div class="product-details-variant-wrapper" x-show="currentProduct?.variant_title !== 'Default Title'">
             <span class="variant-label">Variant:</span>
             <p class="product-details-variant" x-text="currentProduct?.variant_title"></p>
           </div>
@@ -1859,8 +1859,8 @@
 
     .product-details-content {
       background: white;
-      border-radius: 16px;
-      max-width: 900px;
+      border-radius: 12px;
+      max-width: 800px;
       width: 90%;
       max-height: 90vh;
       overflow: hidden;
@@ -1873,17 +1873,19 @@
     @media (min-width: 768px) {
       .product-details-content {
         flex-direction: row;
+        height: auto;
+        max-height: 600px;
       }
     }
 
     .modal-close-button {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: 15px;
+      right: 15px;
       background: rgba(255, 255, 255, 0.9);
       border: none;
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -1903,9 +1905,15 @@
 
     .product-details-image {
       flex: 1;
-      background: #f8f8f8;
+      background: #f9f9f9;
       position: relative;
       overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .product-details-image {
+        max-width: 50%;
+      }
     }
 
     .image-wrapper {
@@ -1914,7 +1922,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 30px;
+      padding: 20px;
     }
 
     .product-details-image img {
@@ -1922,7 +1930,6 @@
       height: auto;
       object-fit: contain;
       border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
       transition: transform 0.3s ease;
     }
 
@@ -1934,7 +1941,7 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      padding: 40px;
+      padding: 30px;
       background: white;
       position: relative;
     }
@@ -1942,20 +1949,20 @@
     .product-details-header {
       margin-bottom: 20px;
       border-bottom: 1px solid #f0f0f0;
-      padding-bottom: 20px;
+      padding-bottom: 15px;
     }
 
     .product-details-title {
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 600;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       color: #222;
       line-height: 1.3;
       font-family: 'DM Sans', sans-serif;
     }
 
     .product-details-price {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 700;
       color: var(--bundle-primary-color, #000000);
       margin-bottom: 5px;
@@ -1963,11 +1970,11 @@
 
     .product-details-body {
       flex: 1;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     .product-details-variant-wrapper {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       display: flex;
       align-items: center;
     }
@@ -1981,15 +1988,15 @@
 
     .product-details-variant {
       color: #666;
-      font-size: 16px;
+      font-size: 15px;
       display: inline-block;
     }
 
     .product-details-description {
       color: #666;
       line-height: 1.6;
-      margin-bottom: 30px;
-      font-size: 16px;
+      margin-bottom: 20px;
+      font-size: 15px;
     }
 
     .product-details-actions {
@@ -1998,14 +2005,14 @@
 
     .product-details-add {
       width: 100%;
-      padding: 16px;
-      background: var(--bundle-add-button-color, #000000);
-      color: var(--bundle-add-button-text, #ffffff);
+      padding: 14px;
+      background: #6b1d1d;
+      color: #ffffff;
       border: none;
-      border-radius: var(--bundle-button-radius, 8px);
+      border-radius: 4px;
       cursor: pointer;
-      font-weight: 600;
-      font-size: 16px;
+      font-weight: 500;
+      font-size: 15px;
       transition: all 0.3s ease;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -2063,24 +2070,24 @@
       }
 
       .product-details-info {
-        padding: 25px;
+        padding: 20px;
       }
 
       .product-details-title {
-        font-size: 22px;
-      }
-
-      .product-details-price {
         font-size: 20px;
       }
 
+      .product-details-price {
+        font-size: 18px;
+      }
+
       .product-details-description {
-        font-size: 15px;
+        font-size: 14px;
       }
 
       .product-details-add {
-        padding: 14px;
-        font-size: 15px;
+        padding: 12px;
+        font-size: 14px;
       }
     }
 
