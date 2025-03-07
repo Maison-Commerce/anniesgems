@@ -354,9 +354,9 @@
   }
 
   .bundle-total {
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid #e5e5e5;
+    margin: 1.5rem 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
   }
 
   .bundle-savings {
@@ -491,32 +491,32 @@
   }
 
   .bundle-total {
-    margin-top: 10px;
-    padding-top: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
     border-top: 1px solid #e5e5e5;
   }
 
   .bundle-total p {
     display: flex;
     justify-content: space-between;
-    margin: 3px 0;
-    font-size: 13px;
+    margin: 5px 0;
+    font-size: 14px;
     color: #666;
   }
 
   .bundle-total .final-price {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
     color: #333;
-    margin-top: 5px;
+    margin-top: 10px;
   }
 
   .bundle-actions {
     position: sticky;
     bottom: 0;
     background: #ffffff;
-    padding: 10px 0 0 0;
-    margin-top: 10px;
+    padding: 15px 0 0 0;
+    margin-top: 15px;
   }
 
   .add-bundle-to-cart {
@@ -1633,9 +1633,26 @@
       <button class="close-button" @click="toggleView()">Close</button>
     </div>
 
-    <div class="bundle-progress-text">
-      <span x-text="selectedItems.length"></span> / <span x-text="bundleSize"></span> items selected
+    <!-- Bundle actions moved to top -->
+    <div class="bundle-actions" x-show="selectedItems.length > 0">
+      <button
+        class="add-bundle-to-cart"
+        @click="addBundleToCart()"
+        :disabled="selectedItems.length < bundleSize || loading"
+      >
+        <span x-show="!loading">{{ section.settings.add_to_cart_text }}</span>
+        <span x-show="loading">{{ section.settings.adding_to_cart_text }}</span>
+      </button>
     </div>
+
+    <div
+      class="bundle-progress-text"
+      x-text="
+              bundleSize - selectedItems.length === 0
+        ? '{{ section.settings.box_full_message }} 📦'
+        : `Add ${bundleSize - selectedItems.length} more product${bundleSize - selectedItems.length > 1 ? 's' : ''} to fill your box 🎁`
+      "
+    ></div>
 
     <div class="bundle-progress-bar">
       <div
@@ -1678,7 +1695,7 @@
       </template>
     </div>
 
-    <!-- Bundle totals moved just before the actions -->
+    <!-- Bundle totals -->
     <div class="bundle-total" x-show="selectedItems.length > 0">
       <p>
         <span>Original Total:</span>
@@ -1697,22 +1714,66 @@
       </p>
     </div>
 
-    <!-- Bundle actions -->
-    <div class="bundle-actions" x-show="selectedItems.length > 0">
-      <button
-        class="add-bundle-to-cart"
-        @click="addBundleToCart()"
-        :disabled="selectedItems.length < bundleSize || loading"
-      >
-        <span x-show="!loading">{{ section.settings.add_to_cart_text }}</span>
-        <span x-show="loading">{{ section.settings.adding_to_cart_text }}</span>
-      </button>
-    </div>
+    <!-- Bundle actions removed from bottom -->
   </div>
 
   <!-- Product Details Modal -->
   <div
     class="product-details-modal"
+    x-show="showProductModal"
+    x-cloak
+    @click.outside="closeProductModal()"
+  >
+    <div class="product-details-content">
+      <button class="modal-close-button" @click="closeProductModal()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="product-details-image">
+        <div class="image-wrapper">
+          <img :src="currentProduct?.image" :alt="currentProduct?.title" width="300" height="300">
+        </div>
+      </div>
+
+      <div class="product-details-info">
+        <div class="product-details-header">
+          <h3 class="product-details-title" x-text="currentProduct?.title"></h3>
+          <p class="product-details-price" x-text="currentProduct ? formatMoney(currentProduct.price) : ''" x-cloak></p>
+        </div>
+
+        <div class="product-details-body">
+          <div class="product-details-variant-wrapper" x-show="currentProduct?.variant_title !== 'Default Title'">
+            <span class="variant-label">Variant:</span>
+            <p class="product-details-variant" x-text="currentProduct?.variant_title"></p>
+          </div>
+
+          <div class="product-details-description">
+            <p>
+              This beautiful piece will complement your style perfectly. Add it to your bundle to create a stunning
+              jewelry set.
+            </p>
+          </div>
+        </div>
+
+        <div class="product-details-actions">
+          <button
+            class="product-details-add"
+            @click="addToBundle(currentProduct); closeProductModal()"
+            :disabled="!currentProduct || selectedItems.length >= bundleSize || isProductSelected(currentProduct?.id)"
+            :class="{'already-in-bundle': isProductSelected(currentProduct?.id)}"
+          >
+            <span
+              x-text="!currentProduct ? '' : (isProductSelected(currentProduct?.id) ? 'Already in Bundle' : (selectedItems.length >= bundleSize ? '{{ section.settings.box_full_message }}' : '{{ section.settings.add_to_bundle_text }}'))"
+            ></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Add CSS for product details modal -->
   <style>
         .product-details-modal {
@@ -2004,7 +2065,7 @@
         .bundle-items-container {
           flex: 1;
           overflow-y: auto;
-          max-height: 60vh;
+          max-height: 50vh;
           margin: 10px 0;
           padding-right: 5px;
         }
