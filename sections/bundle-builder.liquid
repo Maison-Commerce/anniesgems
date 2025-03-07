@@ -1491,7 +1491,6 @@
                 {% if product.variants.size > 1 %}
                   <div class="variant-selects">
                     {% for option in product.options_with_values %}
-                      <label class="variant-label">{{ option.name }}</label>
                       <select
                         class="variant-dropdown"
                         @change="
@@ -1662,25 +1661,28 @@
       <p>{{ section.settings.empty_box_text }}</p>
     </div>
 
-    <!-- Selected items -->
-    <template x-for="item in selectedItems" :key="item.instanceId">
-      <div class="bundle-item">
-        <div class="bundle-item-content">
-          <img class="bundle-item-image" :src="item.image" :alt="item.title" width="80" height="80">
-          <div class="bundle-item-info">
-            <h4 class="bundle-item-title" x-text="item.title"></h4>
-            <span class="bundle-item-variant" x-text="item.variant_title"></span>
-            <span class="bundle-item-price" x-text="formatMoney(item.price)"></span>
-            <button
-              class="bundle-item-remove"
-              @click="removeFromBundle(item.id)"
-            >
-              {{ section.settings.remove_text }}
-            </button>
+    <!-- Selected items container with fixed height and scroll -->
+    <div class="bundle-items-container">
+      <!-- Selected items -->
+      <template x-for="item in selectedItems" :key="item.instanceId">
+        <div class="bundle-item">
+          <div class="bundle-item-content">
+            <img class="bundle-item-image" :src="item.image" :alt="item.title" width="80" height="80">
+            <div class="bundle-item-info">
+              <h4 class="bundle-item-title" x-text="item.title"></h4>
+              <span class="bundle-item-variant" x-text="item.variant_title"></span>
+              <span class="bundle-item-price" x-text="formatMoney(item.price)"></span>
+              <button
+                class="bundle-item-remove"
+                @click="removeFromBundle(item.id)"
+              >
+                {{ section.settings.remove_text }}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </template>
+      </template>
+    </div>
 
     <!-- Bundle totals -->
     <div class="bundle-total" x-show="selectedItems.length > 0">
@@ -1840,26 +1842,37 @@
       cursor: not-allowed;
     }
 
-    /* Fix scrolling in bundle view */
+    /* Improved scrolling in bundle view */
     .bundle-view {
-      overflow-y: auto;
+      overflow-y: hidden; /* Changed from auto to hidden */
       -webkit-overflow-scrolling: touch;
-      padding-bottom: 80px; /* Add padding to ensure content is not hidden */
+      display: flex;
+      flex-direction: column;
     }
 
-    /* Add labels for variant selects */
-    .variant-label {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 4px;
-      color: var(--bundle-text-color);
-      font-weight: 500;
+    /* New container for scrollable items */
+    .bundle-items-container {
+      flex: 1;
+      overflow-y: auto;
+      max-height: 40vh; /* Set a fixed height for scrolling */
+      margin: 15px 0;
+      padding-right: 5px; /* Add some padding for the scrollbar */
     }
 
+    /* Make sure the bundle view has enough space */
     @media screen and (max-width: 768px) {
-      .variant-label {
-        font-size: 13px;
+      .bundle-view {
+        padding-bottom: 20px;
       }
+
+      .bundle-items-container {
+        max-height: 35vh; /* Slightly smaller on mobile */
+      }
+    }
+
+    /* Remove variant label styles since we're not using them anymore */
+    .variant-label {
+      display: none;
     }
   </style>
 </div>
