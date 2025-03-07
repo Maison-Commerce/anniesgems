@@ -1150,12 +1150,10 @@
       },
 
       closeProductModal() {
-        this.isClosing = true;
-        setTimeout(() => {
-          this.showProductModal = false;
-          this.currentProduct = null;
-          this.isClosing = false;
-        }, 300); // Match this with your transition duration
+        // Set currentProduct to null immediately to prevent NaN display
+        this.currentProduct = null;
+        // Close modal immediately without animation
+        this.showProductModal = false;
       },
 
       get originalTotal() {
