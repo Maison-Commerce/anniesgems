@@ -1722,22 +1722,10 @@
     class="product-details-modal"
     x-show="showProductModal"
     x-cloak
-    x-transition:enter="modal-transition-enter"
-    x-transition:enter-start="modal-transition-enter-start"
-    x-transition:enter-end="modal-transition-enter-end"
-    x-transition:leave="modal-transition-leave"
-    x-transition:leave-start="modal-transition-leave-start"
-    x-transition:leave-end="modal-transition-leave-end"
     @click.outside="closeProductModal()"
   >
     <div
       class="product-details-content"
-      x-transition:enter="content-transition-enter"
-      x-transition:enter-start="content-transition-enter-start"
-      x-transition:enter-end="content-transition-enter-end"
-      x-transition:leave="content-transition-leave"
-      x-transition:leave-start="content-transition-leave-start"
-      x-transition:leave-end="content-transition-leave-end"
     >
       <button class="modal-close-button" @click="closeProductModal()">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1755,19 +1743,11 @@
       <div class="product-details-info">
         <div class="product-details-header">
           <h3 class="product-details-title" x-text="currentProduct?.title"></h3>
-          <p
-            class="product-details-price"
-            x-show="!isClosing"
-            x-text="currentProduct && !isClosing ? formatMoney(currentProduct.price) : ''"
-            x-cloak
-          ></p>
+          <p class="product-details-price" x-text="currentProduct ? formatMoney(currentProduct.price) : ''" x-cloak></p>
         </div>
 
         <div class="product-details-body">
-          <div
-            class="product-details-variant-wrapper"
-            x-show="currentProduct?.variant_title !== 'Default Title' && !isClosing"
-          >
+          <div class="product-details-variant-wrapper" x-show="currentProduct?.variant_title !== 'Default Title'">
             <span class="variant-label">Variant:</span>
             <p class="product-details-variant" x-text="currentProduct?.variant_title"></p>
           </div>
@@ -1784,11 +1764,11 @@
           <button
             class="product-details-add"
             @click="addToBundle(currentProduct); closeProductModal()"
-            :disabled="!currentProduct || selectedItems.length >= bundleSize || isProductSelected(currentProduct?.id) || isClosing"
+            :disabled="!currentProduct || selectedItems.length >= bundleSize || isProductSelected(currentProduct?.id)"
             :class="{'already-in-bundle': isProductSelected(currentProduct?.id)}"
           >
             <span
-              x-text="!currentProduct || isClosing ? '' : (isProductSelected(currentProduct?.id) ? 'Already in Bundle' : (selectedItems.length >= bundleSize ? '{{ section.settings.box_full_message }}' : '{{ section.settings.add_to_bundle_text }}'))"
+              x-text="!currentProduct ? '' : (isProductSelected(currentProduct?.id) ? 'Already in Bundle' : (selectedItems.length >= bundleSize ? '{{ section.settings.box_full_message }}' : '{{ section.settings.add_to_bundle_text }}'))"
             ></span>
           </button>
         </div>
