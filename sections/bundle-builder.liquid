@@ -1934,8 +1934,8 @@
 
     .product-details-image img {
       width: 100%;
-      height: auto;
-      object-fit: contain;
+      {% comment %} height: auto; {% endcomment %}
+      object-fit: cover;
       border-radius: 0;
       transition: transform 0.3s ease;
       max-height: 100%;
