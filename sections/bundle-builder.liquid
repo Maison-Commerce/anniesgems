@@ -1123,6 +1123,7 @@
       isViewOpen: false,
       showProductModal: false,
       currentProduct: null,
+      isClosing: false,
 
       init() {
         // Clear localStorage on page load
@@ -1145,11 +1146,16 @@
       showProductDetails(product) {
         this.currentProduct = product;
         this.showProductModal = true;
+        this.isClosing = false;
       },
 
       closeProductModal() {
-        this.showProductModal = false;
-        this.currentProduct = null;
+        this.isClosing = true;
+        setTimeout(() => {
+          this.showProductModal = false;
+          this.currentProduct = null;
+          this.isClosing = false;
+        }, 300); // Match this with your transition duration
       },
 
       get originalTotal() {
@@ -1751,11 +1757,19 @@
       <div class="product-details-info">
         <div class="product-details-header">
           <h3 class="product-details-title" x-text="currentProduct?.title"></h3>
-          <p class="product-details-price" x-text="currentProduct ? formatMoney(currentProduct.price) : ''" x-cloak></p>
+          <p
+            class="product-details-price"
+            x-show="!isClosing"
+            x-text="currentProduct && !isClosing ? formatMoney(currentProduct.price) : ''"
+            x-cloak
+          ></p>
         </div>
 
         <div class="product-details-body">
-          <div class="product-details-variant-wrapper" x-show="currentProduct?.variant_title !== 'Default Title'">
+          <div
+            class="product-details-variant-wrapper"
+            x-show="currentProduct?.variant_title !== 'Default Title' && !isClosing"
+          >
             <span class="variant-label">Variant:</span>
             <p class="product-details-variant" x-text="currentProduct?.variant_title"></p>
           </div>
@@ -1772,11 +1786,11 @@
           <button
             class="product-details-add"
             @click="addToBundle(currentProduct); closeProductModal()"
-            :disabled="!currentProduct || selectedItems.length >= bundleSize || isProductSelected(currentProduct?.id)"
+            :disabled="!currentProduct || selectedItems.length >= bundleSize || isProductSelected(currentProduct?.id) || isClosing"
             :class="{'already-in-bundle': isProductSelected(currentProduct?.id)}"
           >
             <span
-              x-text="!currentProduct ? '' : (isProductSelected(currentProduct?.id) ? 'Already in Bundle' : (selectedItems.length >= bundleSize ? '{{ section.settings.box_full_message }}' : '{{ section.settings.add_to_bundle_text }}'))"
+              x-text="!currentProduct || isClosing ? '' : (isProductSelected(currentProduct?.id) ? 'Already in Bundle' : (selectedItems.length >= bundleSize ? '{{ section.settings.box_full_message }}' : '{{ section.settings.add_to_bundle_text }}'))"
             ></span>
           </button>
         </div>
